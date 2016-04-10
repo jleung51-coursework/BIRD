@@ -92,5 +92,83 @@ void setup() {
   minuteCounter = millis()+(60*1000);
 }
 
-void loop(){
-  
+void loop() {
+  delay(300);
+  //MinuteSet();
+
+  // Power on/off
+  if(!SensorGreaterThan(pinCapacitive, thresholdCapacitive) &&
+     !powerToggled) {
+    powerOn = !powerOn;
+    powerToggled = true;
+  }
+  else if(SensorGreaterThan(pinCapacitive, thresholdCapacitive)) {
+    powerToggled = false;
+  }
+
+  digitalWrite(pinPowerLED, LOW);
+  digitalWrite(pinEssentialLED, LOW);
+  digitalWrite(pinGeneralLED, LOW);
+
+  char c0 = '0';
+  char c1 = '0';
+  if(powerOn) {
+    digitalWrite(pinPowerLED, HIGH);
+
+    if(!SensorGreaterThan(pinPressureEssential, thresholdPressureEssential)) {
+      digitalWrite(pinEssentialLED, HIGH);
+      c0 = '1';
+    }
+    if(!SensorGreaterThan(pinPressureGeneral, thresholdPressureGeneral)) {
+      digitalWrite(pinGeneralLED, HIGH);
+      c1 = '1';
+    }
+
+    Serial.println("20");
+  }
+  else {
+    Serial.println("21");
+  }
+
+  Serial.write(c0);
+  Serial.write(c1);
+  Serial.write('\n');
+
+  delay(100);
+  if(Serial.available()) {
+    String in = Serial.readStringUntil('\n');
+    //Serial.println(c0 + c1 + "IN: " + in);
+    if(in.charAt(0) == '0') {
+      c0 = '0';
+    }
+    if(in.charAt(1) == '0') {
+      c1 = '0';
+    }
+    //serialCarSystem.println(in);
+  }
+
+  if(c0 == '0' && c1 == '0') {
+    serialCarSystem.println("00");
+  }
+  else if(c0 == '0' && c1 == '1') {
+    serialCarSystem.println("01");
+  }
+  else if(c0 == '1' && c1 == '0') {
+    serialCarSystem.println("10");
+  }
+  else if(c0 == '1' && c1 == '1') {
+    serialCarSystem.println("11");
+  }
+  else {
+    serialCarSystem.println("SHIT'S CLOGGED");
+  }
+
+  /*
+  if(Serial.available()) {  // Communication from computer/USB port (scheduling)
+    unsigned long delay_hours_received = Serial.read();
+    unsigned long delay_minutes_received = Serial.read();
+    while(Serial.available() && Serial.read() != '\n');
+
+    SetDelayTime(delay_hours_received, delay_minutes_received);
+  }*/
+}
