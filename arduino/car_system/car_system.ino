@@ -82,4 +82,68 @@ void setup() {
 
 
 void loop() {
+  ppad.flush();
+  delay(100);
+
+  bool alertSensorEssential = false;
+  bool alertSensorGeneral = false;
+
+  digitalWrite(pinEssentialLED, LOW);
+  digitalWrite(pinGeneralLED, LOW);
+
+  // Power on/off
+  if(!powerOn) {
+    digitalWrite(pinPowerLED, LOW);
+    delay(3 * 1000);  // 3 seconds in addition to the 3 second delay
+    powerOn = true;
+  }
+  else {
+    digitalWrite(pinPowerLED, HIGH);
+
+    if(ppad.available()) {
+      String in = ppad.readStringUntil('\n');
+      Serial.println(in);
+      //Serial.print("Char1:");
+      //Serial.println(c1);
+      //Serial.print("Char2:");
+      //Serial.println(c2);
+      //Serial.flush();
+      //while(Serial.available() && Serial.read() != '\n');  // Newline clear
+
+      if(in.charAt(0) == '1') {
+        alertSensorEssential = true;
+      }
+      if(in.charAt(1) == '1') {
+        alertSensorGeneral = true;
+      }
+    }
+  }
+
+  while(powerOn &&
+        ProximityActivated() &&
+        (alertSensorEssential || alertSensorGeneral)) {
+
+    startPlayback(alertSound, sizeof(alertSound)); // PCM.h
+
+    digitalWrite(pinEssentialLED, LOW);
+    digitalWrite(pinGeneralLED, LOW);
+    if(alertSensorEssential) {
+      digitalWrite(pinEssentialLED, HIGH);
+
+    }
+    if(alertSensorGeneral) {
+      digitalWrite(pinGeneralLED, HIGH);
+    }
+
+    if(analogRead(pinCapacitive) < thresholdCapacitive) {
+      powerOn = false;
+      digitalWrite(pinPowerLED, LOW);
+      digitalWrite(pinEssentialLED, LOW);
+      digitalWrite(pinGeneralLED, LOW);
+    }
+
+    Serial.println("ALERT");
+
+    delay(.2 * 1000);
+  }
 }
