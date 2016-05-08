@@ -15,7 +15,7 @@ class Delay {
     minute = 0;
     second = 0;
   }
-  
+
   void update() {
     if (on) {
       if (timerS > 0 || timerM > 0 || timerH > 0){
@@ -44,11 +44,11 @@ class Delay {
             timerM = 0;
             timerH = 0;
           }
-        } 
+        }
       }
     }
   }
-  
+
   void activate( int h, int m, int s) {
     on = true;
     signal = 0;
@@ -57,5 +57,5 @@ class Delay {
     timerS = s;
     counter = 59;
   }
-  
+
 }
