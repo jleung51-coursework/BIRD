@@ -53,7 +53,6 @@ bool ProximityActivated() {
 }
 
 void setup() {
-  Serial.begin(9600);
   ppad.begin(9600);
 
   pinMode(pinCapacitive, INPUT);
@@ -97,8 +96,6 @@ void loop() {
 
     if(ppad.available()) {
       String in = ppad.readStringUntil('\n');
-      Serial.println(in);
-
       if(in.charAt(0) == '1') {
         alertSensorEssential = true;
       }
@@ -130,8 +127,6 @@ void loop() {
       digitalWrite(pinEssentialLED, LOW);
       digitalWrite(pinGeneralLED, LOW);
     }
-
-    Serial.println("ALERT");
 
     delay(.2 * 1000);
   }
