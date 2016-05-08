@@ -162,7 +162,4 @@ void loop() {
   else if(c0 == '1' && c1 == '1') {
     serialCarSystem.println("11");
   }
-  else {
-    serialCarSystem.println("SHIT'S CLOGGED");
-  }
 }
