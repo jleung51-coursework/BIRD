@@ -37,10 +37,6 @@ const unsigned int thresholdCapacitive = 200;
 bool powerOn = true;
 bool powerToggled = false;
 
-static unsigned long minuteCounter;
-unsigned long delay_hours;
-unsigned long delay_minutes;
-
 // Serial connections
 SoftwareSerial serialCarSystem(2, 3);  // Pins 2, 3
 
@@ -48,28 +44,6 @@ SoftwareSerial serialCarSystem(2, 3);  // Pins 2, 3
 // the given threshold.
 bool SensorGreaterThan(const unsigned int pin, const unsigned int threshold) {
   return analogRead(pin) > threshold;
-}
-
-// This method counts down by a single minute when a minute has passed.
-void MinuteSet() {
-  if(minuteCounter < millis()) {
-
-    if(delay_minutes == 0 && delay_hours > 0) {
-      --delay_hours;
-      delay_minutes = 59;
-    }
-    else if(delay_minutes > 0) {
-      --delay_minutes;
-    }
-
-    minuteCounter = millis()+(60*1000);
-  }
-}
-
-// This method sets a new delay time.
-void SetDelayTime(const unsigned long hours, const unsigned long minutes) {
-  delay_hours = hours;
-  delay_minutes = minutes;
 }
 
 void setup() {
@@ -93,13 +67,10 @@ void setup() {
   digitalWrite(pinPowerLED, HIGH);
   digitalWrite(pinEssentialLED, LOW);
   digitalWrite(pinGeneralLED, LOW);
-
-  minuteCounter = millis()+(60*1000);
 }
 
 void loop() {
   delay(300);
-  //MinuteSet();
 
   // Power on/off
   if(!SensorGreaterThan(pinCapacitive, thresholdCapacitive) &&
