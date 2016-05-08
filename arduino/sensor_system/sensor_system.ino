@@ -1,11 +1,16 @@
 /*
  *
- * Authors: Jeffrey Leung, Charles Li, Mina Li, Paul Pinto
- * Last edited: 2016-03-19
- *
  * This Arduino sketch detects the activation of pressure pads by the presence
- * of an item and sends the result using Bluetooth communication to the
- * car system.
+ * of an item and sends the result using serial communication to the
+ * Processing application.
+ * If the Processing application responds with an affirmative delay signal,
+ * then the result is replaced with the signal for no activation.
+ * If the Processing application does not respond or responds with a
+ * negative delay signal, then the result is unchanged (therefore,
+ * the system is fully functional regardless of the presence of the
+ * Processing application).
+ * The final result is sent to the car system with serial communication
+ * (using pins 2 and 3).
  *
  */
 
@@ -137,14 +142,12 @@ void loop() {
   delay(100);
   if(Serial.available()) {
     String in = Serial.readStringUntil('\n');
-    //Serial.println(c0 + c1 + "IN: " + in);
     if(in.charAt(0) == '0') {
       c0 = '0';
     }
     if(in.charAt(1) == '0') {
       c1 = '0';
     }
-    //serialCarSystem.println(in);
   }
 
   if(c0 == '0' && c1 == '0') {
@@ -162,13 +165,4 @@ void loop() {
   else {
     serialCarSystem.println("SHIT'S CLOGGED");
   }
-
-  /*
-  if(Serial.available()) {  // Communication from computer/USB port (scheduling)
-    unsigned long delay_hours_received = Serial.read();
-    unsigned long delay_minutes_received = Serial.read();
-    while(Serial.available() && Serial.read() != '\n');
-
-    SetDelayTime(delay_hours_received, delay_minutes_received);
-  }*/
 }
