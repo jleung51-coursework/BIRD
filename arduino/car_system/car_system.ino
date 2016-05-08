@@ -1,9 +1,6 @@
 /*
  *
- * Author: Jeffrey Leung
- * Last edited: 2016-03-19
- *
- * This Arduino sketch receives communication through Bluetooth relating
+ * This Arduino sketch receives data through serial communication relating
  * to whether or not the sensor systems are activated, and alerts the user if
  * a user is present and the sensors return the presence of an item.
  *
@@ -52,7 +49,6 @@ bool ProximityActivated() {
   // Divided by 2 because the sound travels twice the distance
   // Speed of sound is 343m/sec = 0.0343cm/μs = [1/29.1] cm/μs
   distance = (distance/2) / 29;
-  //Serial.println(distance);
   return distance < thresholdProximity;
 }
 
@@ -80,7 +76,6 @@ void setup() {
   digitalWrite(pinPowerLED, HIGH);
 }
 
-
 void loop() {
   ppad.flush();
   delay(100);
@@ -103,12 +98,6 @@ void loop() {
     if(ppad.available()) {
       String in = ppad.readStringUntil('\n');
       Serial.println(in);
-      //Serial.print("Char1:");
-      //Serial.println(c1);
-      //Serial.print("Char2:");
-      //Serial.println(c2);
-      //Serial.flush();
-      //while(Serial.available() && Serial.read() != '\n');  // Newline clear
 
       if(in.charAt(0) == '1') {
         alertSensorEssential = true;
