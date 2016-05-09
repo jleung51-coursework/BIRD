@@ -12,11 +12,11 @@ class LED {
   }
 
   void turnOn () {
-   on = true;
+    on = true;
   }
 
   void turnOff () {
-   on = false;
+    on = false;
   }
 
   void drawMe () {
@@ -28,6 +28,5 @@ class LED {
     }
     ellipse(xPos,yPos,10,10);
   }
-
 
 }

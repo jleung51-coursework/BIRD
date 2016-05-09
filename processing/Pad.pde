@@ -14,8 +14,6 @@ class Pad {
   }
 
   void update() {
-
-
   }
 
   void drawMe() {

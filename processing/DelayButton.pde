@@ -6,8 +6,10 @@ class DelayButton extends Button {
   }
 
   void drawMe(){
-   super.drawMe();
-   fill(255,255,255);
-   textSize(buttonW/3);
-   text("Delay", buttonX+buttonW/12, buttonY+buttonH*3/4);
+    super.drawMe();
+    fill(255,255,255);
+    textSize(buttonW/3);
+    text("Delay", buttonX+buttonW/12, buttonY+buttonH*3/4);
   }
+
+}
