@@ -26,12 +26,12 @@ class Button {
     }
   }
 
-
   boolean overButton(int x, int y, int width, int height)  {
     if (mouseX >= x && mouseX <= x+width &&
         mouseY >= y && mouseY <= y+height) {
       return true;
-    } else {
+    }
+    else {
       return false;
     }
   }
@@ -39,12 +39,12 @@ class Button {
   void drawMe () {
     if (buttonOver) {
       fill(buttonHighlight);
-    } else {
+    }
+    else {
       fill(buttonColor);
     }
     stroke(255);
     rect(buttonX, buttonY, buttonW, buttonH);
-
   }
 
 }
