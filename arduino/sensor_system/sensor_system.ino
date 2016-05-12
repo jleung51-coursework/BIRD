@@ -1,11 +1,16 @@
 /*
  *
- * Authors: Jeffrey Leung, Charles Li, Mina Li, Paul Pinto
- * Last edited: 2016-03-19
- *
  * This Arduino sketch detects the activation of pressure pads by the presence
- * of an item and sends the result using Bluetooth communication to the
- * car system.
+ * of an item and sends the result using serial communication to the
+ * Processing application.
+ * If the Processing application responds with an affirmative delay signal,
+ * then the result is replaced with the signal for no activation.
+ * If the Processing application does not respond or responds with a
+ * negative delay signal, then the result is unchanged (therefore,
+ * the system is fully functional regardless of the presence of the
+ * Processing application).
+ * The final result is sent to the car system with serial communication
+ * (using pins 2 and 3).
  *
  */
 
@@ -32,10 +37,6 @@ const unsigned int thresholdCapacitive = 200;
 bool powerOn = true;
 bool powerToggled = false;
 
-static unsigned long minuteCounter;
-unsigned long delay_hours;
-unsigned long delay_minutes;
-
 // Serial connections
 SoftwareSerial serialCarSystem(2, 3);  // Pins 2, 3
 
@@ -43,28 +44,6 @@ SoftwareSerial serialCarSystem(2, 3);  // Pins 2, 3
 // the given threshold.
 bool SensorGreaterThan(const unsigned int pin, const unsigned int threshold) {
   return analogRead(pin) > threshold;
-}
-
-// This method counts down by a single minute when a minute has passed.
-void MinuteSet() {
-  if(minuteCounter < millis()) {
-
-    if(delay_minutes == 0 && delay_hours > 0) {
-      --delay_hours;
-      delay_minutes = 59;
-    }
-    else if(delay_minutes > 0) {
-      --delay_minutes;
-    }
-
-    minuteCounter = millis()+(60*1000);
-  }
-}
-
-// This method sets a new delay time.
-void SetDelayTime(const unsigned long hours, const unsigned long minutes) {
-  delay_hours = hours;
-  delay_minutes = minutes;
 }
 
 void setup() {
@@ -88,13 +67,10 @@ void setup() {
   digitalWrite(pinPowerLED, HIGH);
   digitalWrite(pinEssentialLED, LOW);
   digitalWrite(pinGeneralLED, LOW);
-
-  minuteCounter = millis()+(60*1000);
 }
 
 void loop() {
   delay(300);
-  //MinuteSet();
 
   // Power on/off
   if(!SensorGreaterThan(pinCapacitive, thresholdCapacitive) &&
@@ -137,14 +113,12 @@ void loop() {
   delay(100);
   if(Serial.available()) {
     String in = Serial.readStringUntil('\n');
-    //Serial.println(c0 + c1 + "IN: " + in);
     if(in.charAt(0) == '0') {
       c0 = '0';
     }
     if(in.charAt(1) == '0') {
       c1 = '0';
     }
-    //serialCarSystem.println(in);
   }
 
   if(c0 == '0' && c1 == '0') {
@@ -159,16 +133,4 @@ void loop() {
   else if(c0 == '1' && c1 == '1') {
     serialCarSystem.println("11");
   }
-  else {
-    serialCarSystem.println("SHIT'S CLOGGED");
-  }
-
-  /*
-  if(Serial.available()) {  // Communication from computer/USB port (scheduling)
-    unsigned long delay_hours_received = Serial.read();
-    unsigned long delay_minutes_received = Serial.read();
-    while(Serial.available() && Serial.read() != '\n');
-
-    SetDelayTime(delay_hours_received, delay_minutes_received);
-  }*/
 }
