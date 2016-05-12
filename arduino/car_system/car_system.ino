@@ -38,6 +38,9 @@ const unsigned char alertSound[] PROGMEM = {
 
 // This method returns whether the proximity sensor reads within
 // the proximity threshold.
+//
+// Configured for the SRF05 Ultrasonic Sensor:
+// http://www.robot-electronics.co.uk/htm/srf05tech.htm
 bool ProximityActivated() {
   digitalWrite(pinProximityTrigger, LOW);
   delay(2);
@@ -46,9 +49,11 @@ bool ProximityActivated() {
   digitalWrite(pinProximityTrigger, LOW);
 
   unsigned long distance = pulseIn(pinProximityEcho, HIGH);
-  // Divided by 2 because the sound travels twice the distance
-  // Speed of sound is 343m/sec = 0.0343cm/μs = [1/29.1] cm/μs
-  distance = (distance/2) / 29;
+
+  // Divided by 29 because the speed of sound is
+  //   343m/sec = 0.0343cm/μs = [1/29.1] cm/μs
+  distance = distance / 2 / 29;
+
   return distance < thresholdProximity;
 }
 
