@@ -16,4 +16,5 @@ class UpButton extends Button {
     buttonX + buttonW - buttonW/4, buttonY + buttonH - buttonH/4,
     buttonX + buttonW/4, buttonY + buttonH - buttonH/4);
   }
-  
+
+}
