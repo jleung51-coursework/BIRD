@@ -35,7 +35,7 @@ boolean t2 = false;
 void setup() {
   size (1024,768);
 
-  port = new Serial(this, "COM4", 9600);
+  port = new Serial(this, "/dev/ttyUSB0", 9600);
 
   //----------------------------------------------------------------------------
   // Delay For The First Pressure Pad
