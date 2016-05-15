@@ -1,4 +1,3 @@
-
 class DelayButton extends Button {
   
   DelayButton(int x, int y, int w, int h) {
@@ -11,4 +10,4 @@ class DelayButton extends Button {
    textSize(buttonW/3);
    text("Delay", buttonX+buttonW/12, buttonY+buttonH*3/4);
   }
-  
+}
