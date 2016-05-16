@@ -14,7 +14,7 @@ This directory contains all the code required for the Arduino system.
   * Navigate to _File_, _Preferences_
   * Note the location of the Arduino sketchbook folder
   * Move the _libraries_ folder in this repository into the aforementioned sketchbook folder
-* Open *arduino/car_system/car_system.ino* and *arduino/sensor_system/sensor_system.ino* in two independent Arduino programs
+* Open *arduino/src/car_system/car_system.ino* and *arduino/src/sensor_system/sensor_system.ino* in two independent Arduino programs
 
 ### Setting up the Circuit
 
