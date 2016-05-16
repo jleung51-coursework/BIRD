@@ -31,8 +31,8 @@ Connections:
 
 #### Sensor System Schematic
 
-![Sensor system schematic](arduino/img/p-pad.png)
+![Sensor system schematic](img/p-pad.png)
 
 #### Car System Schematic
 
-![Car system schematic](arduino/img/c-box.png)
+![Car system schematic](img/c-box.png)
