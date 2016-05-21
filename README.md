@@ -26,6 +26,8 @@ Either or both of the sensors can be delayed until a specified date and time - f
 
 ![Diagram of sensor system](img/sketch-p-pad.png)
 
+Further details can be found in the report.
+
 ## Setup
 
 See the READMEs in the *arduino/* and *processing/* folders.
