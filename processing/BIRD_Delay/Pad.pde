@@ -4,9 +4,9 @@ class Pad {
   LED p1;
   LED pwr;
   LED p2;
-  boolean onPad1 = false;
-  boolean onPad2 = false;
-  boolean onPwr = false;
+  boolean onPad1;
+  boolean onPad2;
+  boolean onPwr;
 
   Pad() {
     xPos = 300;
@@ -14,6 +14,9 @@ class Pad {
     p1 = new LED(xPos+100, yPos+20, color(255,0,0));
     pwr = new LED(xPos+200, yPos+20, color(0,255,0));
     p2 = new LED(xPos+300, yPos+20, color(255,255,0));
+    onPad1 = false;
+    onPad2 = false;
+    onPwr = false;
   }
 
   void update(boolean pad1, boolean pwr, boolean pad2) {

@@ -7,7 +7,7 @@ class Button {
   color baseColor;
   color buttonHighlight;
   color currentColor;
-  boolean buttonOver = false;
+  boolean buttonOver;
 
   Button(int x, int y, int w, int h) {
     buttonColor = color(0);
@@ -18,6 +18,7 @@ class Button {
     buttonY = y;
     buttonW = w;
     buttonH = h;
+    buttonOver = false;
   }
 
   void update(int x, int y) {
