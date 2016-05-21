@@ -129,16 +129,7 @@ void loop() {
     }
   }
 
-  if(c0 == '0' && c1 == '0') {
-    serialCarSystem.println("00");
-  }
-  else if(c0 == '0' && c1 == '1') {
-    serialCarSystem.println("01");
-  }
-  else if(c0 == '1' && c1 == '0') {
-    serialCarSystem.println("10");
-  }
-  else if(c0 == '1' && c1 == '1') {
-    serialCarSystem.println("11");
-  }
+  serialCarSystem.print(c0);
+  serialCarSystem.print(c1);
+  serialCarSystem.print("\n");
 }
