@@ -2,17 +2,25 @@ import processing.serial.*;
 Serial port;
 String val;
 
-UpButton hourUpButton1, hourUpButton2;
-DownButton hourDownButton1, hourDownButton2;
+UpButton hourUpButton1;
+UpButton hourUpButton2;
+DownButton hourDownButton1;
+DownButton hourDownButton2;
 
-UpButton minuteUpButton1, minuteUpButton2;
-DownButton minuteDownButton1, minuteDownButton2;
+UpButton minuteUpButton1;
+UpButton minuteUpButton2;
+DownButton minuteDownButton1;
+DownButton minuteDownButton2;
 
-UpButton secondUpButton1, secondUpButton2;
-DownButton secondDownButton1, secondDownButton2;
+UpButton secondUpButton1;
+UpButton secondUpButton2;
+DownButton secondDownButton1;
+DownButton secondDownButton2;
 
-DelayButton delayButton1, delayButton2;
-Delay panel1, panel2;
+DelayButton delayButton1;
+DelayButton delayButton2;
+Delay panel1;
+Delay panel2;
 
 Pad ppad;
 Box cbox;
@@ -21,8 +29,11 @@ int delaynum1 = 30;
 int delaynum2 = 542;
 int delaynum3 = 150;
 
-boolean padPower, padLED1, padLED2;
-boolean boxLED1, boxLED2;
+boolean padPower;
+boolean padLED1;
+boolean padLED2;
+boolean boxLED1;
+boolean boxLED2;
 
 boolean connected = false;
 
