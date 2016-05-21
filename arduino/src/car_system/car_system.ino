@@ -101,11 +101,8 @@ void loop() {
 
     if(ppad.available()) {
       String in = ppad.readStringUntil('\n');
-      if(in.charAt(0) == '1') {
-        alertSensorEssential = true;
-      }
-      if(in.charAt(1) == '1') {
-        alertSensorGeneral = true;
+      alertSensorEssential = (in.charAt(0) == '1');
+      alertSensorGeneral = (in.charAt(1) == '1');
       }
     }
   }

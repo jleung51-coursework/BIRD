@@ -78,6 +78,9 @@ void loop() {
     powerOn = !powerOn;
     powerToggled = true;
   }
+
+  // Does not allow power to be repeatedly toggled if the capacitive
+  // sensor is constantly contacted
   else if(SensorGreaterThan(pinCapacitive, thresholdCapacitive)) {
     powerToggled = false;
   }
@@ -100,9 +103,11 @@ void loop() {
       c1 = '1';
     }
 
+    // Signaling power on to Processing
     Serial.println("20");
   }
   else {
+    // Signaling power off to Processing
     Serial.println("21");
   }
 
@@ -113,6 +118,9 @@ void loop() {
   delay(100);
   if(Serial.available()) {
     String in = Serial.readStringUntil('\n');
+
+    // Not redundant; the if() statements prevent invalid values from
+    // the Processing application overwriting c0 and c1.
     if(in.charAt(0) == '0') {
       c0 = '0';
     }
@@ -121,16 +129,7 @@ void loop() {
     }
   }
 
-  if(c0 == '0' && c1 == '0') {
-    serialCarSystem.println("00");
-  }
-  else if(c0 == '0' && c1 == '1') {
-    serialCarSystem.println("01");
-  }
-  else if(c0 == '1' && c1 == '0') {
-    serialCarSystem.println("10");
-  }
-  else if(c0 == '1' && c1 == '1') {
-    serialCarSystem.println("11");
-  }
+  serialCarSystem.print(c0);
+  serialCarSystem.print(c1);
+  serialCarSystem.print("\n");
 }
