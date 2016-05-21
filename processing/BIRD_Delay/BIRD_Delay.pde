@@ -2,17 +2,25 @@ import processing.serial.*;
 Serial port;
 String val;
 
-UpButton hourUpButton1, hourUpButton2;
-DownButton hourDownButton1, hourDownButton2;
+UpButton hourUpButton1;
+UpButton hourUpButton2;
+DownButton hourDownButton1;
+DownButton hourDownButton2;
 
-UpButton minuteUpButton1, minuteUpButton2;
-DownButton minuteDownButton1, minuteDownButton2;
+UpButton minuteUpButton1;
+UpButton minuteUpButton2;
+DownButton minuteDownButton1;
+DownButton minuteDownButton2;
 
-UpButton secondUpButton1, secondUpButton2;
-DownButton secondDownButton1, secondDownButton2;
+UpButton secondUpButton1;
+UpButton secondUpButton2;
+DownButton secondDownButton1;
+DownButton secondDownButton2;
 
-DelayButton delayButton1, delayButton2;
-Delay panel1, panel2;
+DelayButton delayButton1;
+DelayButton delayButton2;
+Delay panel1;
+Delay panel2;
 
 Pad ppad;
 Box cbox;
@@ -21,8 +29,11 @@ int delaynum1 = 30;
 int delaynum2 = 542;
 int delaynum3 = 150;
 
-boolean padPower, padLED1, padLED2;
-boolean boxLED1, boxLED2;
+boolean padPower;
+boolean padLED1;
+boolean padLED2;
+boolean boxLED1;
+boolean boxLED2;
 
 boolean connected = false;
 
@@ -30,7 +41,6 @@ String sendval = "11";
 
 boolean t1 = false;
 boolean t2 = false;
-
 
 void setup() {
   size (1024,768);
@@ -73,67 +83,32 @@ void draw() {
 
   // Arduino to Processing
 
-  if ( port.available() > 0) {
+  if (port.available() > 0) {
     val = port.readStringUntil('\n');
     if(val != null){
-      val = trim(val);
+      val = trim(val);  // Remove excess whitespace at beginning/end
     }
     connected = true;
   }
   else {
     connected = false;
   }
-  println(val);
 
   if(val != null){
-  // Pad Power
-    if(val.equals("20")){
-      padPower = true;
-    }
+    // Pad Power
+    padPower = val.equals("20");
 
-    if(val.equals("21")){
-      padPower = false;
-    }
+    padLED1 = (val.charAt(0) == '1');
+    boxLED1 = padLED1;
 
-  // Pad LED 1
-    if(val.equals("10") || val.equals("11")){
-      padLED1 = true;
-      boxLED1 = true;
-    }
-
-    if(val.equals("00") || val.equals("01")){
-      padLED1 = false;
-      boxLED1 = false;
-    }
-
-  // Pad LED 2
-    if(val.equals("01") || val.equals("11")){
-      padLED2 = true;
-      boxLED2 = true;
-    }
-
-    if(val.equals("00") || val.equals("10")){
-      padLED2 = false;
-      boxLED2 = false;
-    }
+    padLED2 = (val.charAt(1) == '1');
+    boxLED2 = padLED1;
   }
 
   // Processing to Arduino
 
-  if(panel1.signal == 0){
-    t1 = false;
-  }
-  if(panel1.signal == 1){
-    t1 = true;
-  }
-
-  //Delay 2
-  if(panel2.signal == 0){
-    t2 = false;
-  }
-  if(panel2.signal == 1){
-    t2 = true;
-  }
+  t1 = panel1.signal;
+  t2 = panel2.signal;
 
   if( !t1 && !t2 ) {
     sendval = "00";
@@ -149,7 +124,7 @@ void draw() {
   }
 
   if(connected){
-   port.write(sendval);
+    port.write(sendval);
   }
 
   //----------------------------------------------------------------------------
@@ -190,7 +165,7 @@ void draw() {
   //----------------------------------------------------------------------------
   // LEDs
 
-  // PPAD - Power LED
+  // P-Pad - Power LED
   if(padPower){
     ppad.pwr.turnOn();
   }
@@ -198,7 +173,7 @@ void draw() {
     ppad.pwr.turnOff();
   }
 
-  // PPAD - LED Essential Pad
+  // P-Pad - LED Essential Pad
   if(padLED1){
     ppad.p1.turnOn();
   }
@@ -206,7 +181,7 @@ void draw() {
     ppad.p1.turnOff();
   }
 
-  // PPAD - LED Other Pad
+  // P-Pad - LED Other Pad
   if(padLED2){
     ppad.p2.turnOn();
   }
@@ -214,19 +189,19 @@ void draw() {
     ppad.p2.turnOff();
   }
 
-  // CBOX - Power LED
-    cbox.pwr.turnOn();
+  // C-Box - Power LED
+  cbox.pwr.turnOn();
 
-  // CBOX - LED Essential Pad
-  if(panel1.signal == 1 && boxLED1){
+  // C-Box - LED Essential Pad
+  if(panel1.signal && boxLED1){
     cbox.p1.turnOn();
   }
   else{
     cbox.p1.turnOff();
   }
 
-  // CBOX - LED Other Pad
-  if(panel2.signal == 1 && boxLED2){
+  // C-Box - LED Other Pad
+  if(panel2.signal && boxLED2){
     cbox.p2.turnOn();
   }
   else{

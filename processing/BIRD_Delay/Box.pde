@@ -27,15 +27,12 @@ class Box {
     rect(-3, 50, 15, 15);
     rect(-17, 72, 40, 15);
 
-
     noFill();
     popMatrix();
 
     p1.drawMe();
     pwr.drawMe();
     p2.drawMe();
-
-
   }
 
 }

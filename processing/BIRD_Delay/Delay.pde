@@ -1,15 +1,22 @@
 class Delay {
-  int signal;
+  boolean signal;
   boolean on;
-  int hour, minute, second, counter;
-  int timerH,timerM,timerS;
+
+  int hour;
+  int minute;
+  int second;
+  int counter;
+
+  int timerH;
+  int timerM;
+  int timerS;
 
   Delay() {
     timerH = 0;
     timerM = 0;
     timerS = 0;
     counter = 59;
-    signal = 1;
+    signal = true;
     on = false;
     hour = 0;
     second = 0;
@@ -17,41 +24,51 @@ class Delay {
   }
 
   void update() {
-    if (on) {
-      if (timerS > 0 || timerM > 0 || timerH > 0){
-        counter = counter - 1;
-        if (counter == 0) {
-          counter = 59;
-          timerS = timerS - 1;
-          if (timerS == 0 && timerM == 0 && timerH == 0){
-            on = false;
-            signal = 1;
-            timerS = 100;
-            counter = 0;
-          }
-          if (timerS <= 0) {
-            timerM = timerM - 1;
-            if (timerM <= 0){
-              if (timerH > 0) {
-                timerH = timerH - 1;
-                timerM = 59;
-              }
-            }
-            timerS = 59;
-          }
-          if (timerS == 100){
-            timerS = 0;
-            timerM = 0;
-            timerH = 0;
-          }
-        }
-      }
+    if (!on) {
+      return;
     }
+
+    if (timerS > 0 || timerM > 0 || timerH > 0){
+      counter--;
+    }
+    else {
+      return;
+    }
+
+    if (counter <= 0) {
+      counter = 59;
+      timerS--;
+    }
+    else {
+      return;
+    }
+
+    if (timerS <= 0) {
+      timerM--;
+      timerS = 59;
+    }
+    if (timerM <= 0){
+      timerH--;
+      timerM = 59;
+    }
+    if (timerH < 0) {
+      timerH = 0;
+    }
+
+    if (timerS <= 0 && timerM <= 0 && timerH <= 0){
+      on = false;
+      signal = true;
+      timerS = 0;
+      timerM = 0;
+      timerH = 0;
+      counter = 0;
+    }
+
   }
 
   void activate(int h, int m, int s) {
     on = true;
-    signal = 0;
+    signal = false;
     timerH = h;
     timerM = m;
     timerS = s;
