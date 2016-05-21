@@ -1,5 +1,5 @@
 class Delay {
-  int signal;
+  boolean signal;
   boolean on;
 
   int hour;
@@ -16,7 +16,7 @@ class Delay {
     timerM = 0;
     timerS = 0;
     counter = 59;
-    signal = 1;
+    signal = true;
     on = false;
     hour = 0;
     second = 0;
@@ -57,7 +57,7 @@ class Delay {
 
     if (timerS <= 0 && timerM <= 0 && timerH <= 0){
       on = false;
-      signal = 1;
+      signal = true;
       timerS = 0;
       timerM = 0;
       timerH = 0;
@@ -68,7 +68,7 @@ class Delay {
 
   void activate(int h, int m, int s) {
     on = true;
-    signal = 0;
+    signal = false;
     timerH = h;
     timerM = m;
     timerS = s;

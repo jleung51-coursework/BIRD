@@ -119,20 +119,8 @@ void draw() {
 
   // Processing to Arduino
 
-  if(panel1.signal == 0){
-    t1 = false;
-  }
-  if(panel1.signal == 1){
-    t1 = true;
-  }
-
-  //Delay 2
-  if(panel2.signal == 0){
-    t2 = false;
-  }
-  if(panel2.signal == 1){
-    t2 = true;
-  }
+  t1 = panel1.signal;
+  t2 = panel2.signal;
 
   if( !t1 && !t2 ) {
     sendval = "00";
@@ -217,7 +205,7 @@ void draw() {
     cbox.pwr.turnOn();
 
   // CBOX - LED Essential Pad
-  if(panel1.signal == 1 && boxLED1){
+  if(panel1.signal && boxLED1){
     cbox.p1.turnOn();
   }
   else{
@@ -225,7 +213,7 @@ void draw() {
   }
 
   // CBOX - LED Other Pad
-  if(panel2.signal == 1 && boxLED2){
+  if(panel2.signal && boxLED2){
     cbox.p2.turnOn();
   }
   else{
