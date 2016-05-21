@@ -78,6 +78,9 @@ void loop() {
     powerOn = !powerOn;
     powerToggled = true;
   }
+
+  // Does not allow power to be repeatedly toggled if the capacitive
+  // sensor is constantly contacted
   else if(SensorGreaterThan(pinCapacitive, thresholdCapacitive)) {
     powerToggled = false;
   }
@@ -100,9 +103,11 @@ void loop() {
       c1 = '1';
     }
 
+    // Signaling power on to Processing
     Serial.println("20");
   }
   else {
+    // Signaling power off to Processing
     Serial.println("21");
   }
 
