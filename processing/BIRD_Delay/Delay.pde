@@ -1,8 +1,15 @@
 class Delay {
   int signal;
   boolean on;
-  int hour, minute, second, counter;
-  int timerH,timerM,timerS;
+
+  int hour;
+  int minute;
+  int second;
+  int counter;
+
+  int timerH;
+  int timerM;
+  int timerS;
 
   Delay() {
     timerH = 0;

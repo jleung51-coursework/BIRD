@@ -31,7 +31,6 @@ String sendval = "11";
 boolean t1 = false;
 boolean t2 = false;
 
-
 void setup() {
   size (1024,768);
 

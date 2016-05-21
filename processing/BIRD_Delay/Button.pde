@@ -1,7 +1,10 @@
 class Button {
-  int buttonX, buttonY;
-  int buttonW, buttonH;
-  color buttonColor, baseColor;
+  int buttonX;
+  int buttonY;
+  int buttonW;
+  int buttonH;
+  color buttonColor;
+  color baseColor;
   color buttonHighlight;
   color currentColor;
   boolean buttonOver = false;
