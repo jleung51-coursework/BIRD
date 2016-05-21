@@ -83,7 +83,7 @@ void draw() {
 
   // Arduino to Processing
 
-  if ( port.available() > 0) {
+  if (port.available() > 0) {
     val = port.readStringUntil('\n');
     if(val != null){
       val = trim(val);  // Remove excess whitespace at beginning/end
