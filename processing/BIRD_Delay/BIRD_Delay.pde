@@ -75,7 +75,7 @@ void draw() {
   if ( port.available() > 0) {
     val = port.readStringUntil('\n');
     if(val != null){
-      val = trim(val);
+      val = trim(val);  // Remove excess whitespace at beginning/end
     }
     connected = true;
   }
@@ -84,7 +84,7 @@ void draw() {
   }
 
   if(val != null){
-  // Pad Power
+    // Pad Power
     if(val.equals("20")){
       padPower = true;
     }
@@ -93,7 +93,7 @@ void draw() {
       padPower = false;
     }
 
-  // Pad LED 1
+    // Pad LED 1
     if(val.equals("10") || val.equals("11")){
       padLED1 = true;
       boxLED1 = true;
@@ -135,7 +135,7 @@ void draw() {
   }
 
   if(connected){
-   port.write(sendval);
+    port.write(sendval);
   }
 
   //----------------------------------------------------------------------------
@@ -176,7 +176,7 @@ void draw() {
   //----------------------------------------------------------------------------
   // LEDs
 
-  // PPAD - Power LED
+  // P-Pad - Power LED
   if(padPower){
     ppad.pwr.turnOn();
   }
@@ -184,7 +184,7 @@ void draw() {
     ppad.pwr.turnOff();
   }
 
-  // PPAD - LED Essential Pad
+  // P-Pad - LED Essential Pad
   if(padLED1){
     ppad.p1.turnOn();
   }
@@ -192,7 +192,7 @@ void draw() {
     ppad.p1.turnOff();
   }
 
-  // PPAD - LED Other Pad
+  // P-Pad - LED Other Pad
   if(padLED2){
     ppad.p2.turnOn();
   }
@@ -200,10 +200,10 @@ void draw() {
     ppad.p2.turnOff();
   }
 
-  // CBOX - Power LED
-    cbox.pwr.turnOn();
+  // C-Box - Power LED
+  cbox.pwr.turnOn();
 
-  // CBOX - LED Essential Pad
+  // C-Box - LED Essential Pad
   if(panel1.signal && boxLED1){
     cbox.p1.turnOn();
   }
@@ -211,7 +211,7 @@ void draw() {
     cbox.p1.turnOff();
   }
 
-  // CBOX - LED Other Pad
+  // C-Box - LED Other Pad
   if(panel2.signal && boxLED2){
     cbox.p2.turnOn();
   }
