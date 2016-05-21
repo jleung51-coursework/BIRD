@@ -85,35 +85,13 @@ void draw() {
 
   if(val != null){
     // Pad Power
-    if(val.equals("20")){
-      padPower = true;
-    }
+    padPower = val.equals("20");
 
-    if(val.equals("21")){
-      padPower = false;
-    }
+    padLED1 = (val.charAt(0) == '1');
+    boxLED1 = padLED1;
 
-    // Pad LED 1
-    if(val.equals("10") || val.equals("11")){
-      padLED1 = true;
-      boxLED1 = true;
-    }
-
-    if(val.equals("00") || val.equals("01")){
-      padLED1 = false;
-      boxLED1 = false;
-    }
-
-  // Pad LED 2
-    if(val.equals("01") || val.equals("11")){
-      padLED2 = true;
-      boxLED2 = true;
-    }
-
-    if(val.equals("00") || val.equals("10")){
-      padLED2 = false;
-      boxLED2 = false;
-    }
+    padLED2 = (val.charAt(1) == '1');
+    boxLED2 = padLED1;
   }
 
   // Processing to Arduino
