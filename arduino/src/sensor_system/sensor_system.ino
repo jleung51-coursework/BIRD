@@ -118,6 +118,9 @@ void loop() {
   delay(100);
   if(Serial.available()) {
     String in = Serial.readStringUntil('\n');
+
+    // Not redundant; the if() statements prevent invalid values from
+    // the Processing application overwriting c0 and c1.
     if(in.charAt(0) == '0') {
       c0 = '0';
     }
