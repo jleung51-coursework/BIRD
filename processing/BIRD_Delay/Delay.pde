@@ -24,36 +24,46 @@ class Delay {
   }
 
   void update() {
-    if (on) {
-      if (timerS > 0 || timerM > 0 || timerH > 0){
-        counter = counter - 1;
-        if (counter == 0) {
-          counter = 59;
-          timerS = timerS - 1;
-          if (timerS == 0 && timerM == 0 && timerH == 0){
-            on = false;
-            signal = 1;
-            timerS = 100;
-            counter = 0;
-          }
-          if (timerS <= 0) {
-            timerM = timerM - 1;
-            if (timerM <= 0){
-              if (timerH > 0) {
-                timerH = timerH - 1;
-                timerM = 59;
-              }
-            }
-            timerS = 59;
-          }
-          if (timerS == 100){
-            timerS = 0;
-            timerM = 0;
-            timerH = 0;
-          }
-        }
-      }
+    if (!on) {
+      return;
     }
+
+    if (timerS > 0 || timerM > 0 || timerH > 0){
+      counter--;
+    }
+    else {
+      return;
+    }
+
+    if (counter <= 0) {
+      counter = 59;
+      timerS--;
+    }
+    else {
+      return;
+    }
+
+    if (timerS <= 0) {
+      timerM--;
+      timerS = 59;
+    }
+    if (timerM <= 0){
+      timerH--;
+      timerM = 59;
+    }
+    if (timerH < 0) {
+      timerH = 0;
+    }
+
+    if (timerS <= 0 && timerM <= 0 && timerH <= 0){
+      on = false;
+      signal = 1;
+      timerS = 0;
+      timerM = 0;
+      timerH = 0;
+      counter = 0;
+    }
+
   }
 
   void activate(int h, int m, int s) {
