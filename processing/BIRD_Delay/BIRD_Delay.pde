@@ -82,7 +82,6 @@ void draw() {
   else {
     connected = false;
   }
-  println(val);
 
   if(val != null){
   // Pad Power
