@@ -5,7 +5,7 @@ class DownButton extends Button {
   }
 
   int decrease(int num) {
-    num = num - 1;
+    num--;
     if (num < 0) {
       num = 0;
     }

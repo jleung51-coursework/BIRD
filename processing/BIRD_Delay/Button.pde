@@ -21,22 +21,12 @@ class Button {
   }
 
   void update(int x, int y) {
-    if ( overButton(buttonX, buttonY, buttonW, buttonH) ) {
-      buttonOver = true;
-    }
-    else {
-      buttonOver = false;
-    }
+    buttonOver = overButton(buttonX, buttonY, buttonW, buttonH);
   }
 
   boolean overButton(int x, int y, int width, int height)  {
-    if (mouseX >= x && mouseX <= x+width &&
-        mouseY >= y && mouseY <= y+height) {
-      return true;
-    }
-    else {
-      return false;
-    }
+    return mouseX > x && mouseX < x+width &&
+           mouseY > y && mouseY < y+height;
   }
 
   void drawMe () {

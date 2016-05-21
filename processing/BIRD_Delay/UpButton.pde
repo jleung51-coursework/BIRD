@@ -5,7 +5,7 @@ class UpButton extends Button {
   }
 
   int increase(int num) {
-    num = num + 1;
+    num++;
     return num;
   }
 
