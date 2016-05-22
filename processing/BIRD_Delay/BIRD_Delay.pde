@@ -42,6 +42,10 @@ String sendval = "11";
 boolean t1 = false;
 boolean t2 = false;
 
+final int arrowButtonSize = 30;
+final int horizButtonOffset = 150;
+final int vertButtonOffset = 80;
+
 void setup() {
   size (1024,768);
 
@@ -49,25 +53,62 @@ void setup() {
 
   //----------------------------------------------------------------------------
   // Delay For The First Pressure Pad
-  hourUpButton1 = new UpButton(delaynum1,delaynum3,30,30);
-  hourDownButton1 = new DownButton(delaynum1,delaynum3+80,30,30);
-  minuteUpButton1 = new UpButton(delaynum1+150,delaynum3,30,30);
-  minuteDownButton1 = new DownButton(delaynum1+150,delaynum3+80,30,30);
-  secondUpButton1 = new UpButton(delaynum1+300,delaynum3,30,30);
-  secondDownButton1 = new DownButton(delaynum1+300,delaynum3+80,30,30);
+  hourUpButton1 = new UpButton(
+    delaynum1, delaynum3,
+    arrowButtonSize, arrowButtonSize
+  );
+  hourDownButton1 = new DownButton(
+    delaynum1, delaynum3 + vertButtonOffset,
+    arrowButtonSize, arrowButtonSize
+  );
+  minuteUpButton1 = new UpButton(
+    delaynum1 + horizButtonOffset, delaynum3,
+    arrowButtonSize, arrowButtonSize
+  );
+  minuteDownButton1 = new DownButton(
+    delaynum1 + horizButtonOffset, delaynum3 + vertButtonOffset,
+    arrowButtonSize, arrowButtonSize
+  );
+  secondUpButton1 = new UpButton(
+    delaynum1 + horizButtonOffset*2, delaynum3,
+    arrowButtonSize, arrowButtonSize
+  );
+  secondDownButton1 = new DownButton(
+    delaynum1 + horizButtonOffset*2, delaynum3 + vertButtonOffset,
+    arrowButtonSize, arrowButtonSize
+  );
 
-  delayButton1 = new DelayButton(delaynum1+180,delaynum3+140,80,40);
+  delayButton1 = new DelayButton(
+    delaynum1 + 180, delaynum3+140, 80,40);
 
   panel1 = new Delay();
 
   //----------------------------------------------------------------------------
   // Delay For The Second Pressure Pad
-  hourUpButton2 = new UpButton(delaynum2,delaynum3,30,30);
-  hourDownButton2 = new DownButton(delaynum2,delaynum3+80,30,30);
-  minuteUpButton2 = new UpButton(delaynum2+150,delaynum3,30,30);
-  minuteDownButton2 = new DownButton(delaynum2+150,delaynum3+80,30,30);
-  secondUpButton2 = new UpButton(delaynum2+300,delaynum3,30,30);
-  secondDownButton2 = new DownButton(delaynum2+300,delaynum3+80,30,30);
+  hourUpButton2 = new UpButton(
+    delaynum2, delaynum3,
+    arrowButtonSize, arrowButtonSize
+  );
+  hourDownButton2 = new DownButton(
+    delaynum2, delaynum3 + vertButtonOffset,
+    arrowButtonSize, arrowButtonSize
+  );
+  minuteUpButton2 = new UpButton(
+    delaynum2 + horizButtonOffset, delaynum3,
+    arrowButtonSize, arrowButtonSize
+  );
+  minuteDownButton2 = new DownButton(
+    delaynum2 + horizButtonOffset, delaynum3 + vertButtonOffset,
+    arrowButtonSize, arrowButtonSize
+  );
+  secondUpButton2 = new UpButton(
+    delaynum2 + horizButtonOffset*2, delaynum3,
+    arrowButtonSize, arrowButtonSize
+  );
+  secondDownButton2 = new DownButton(
+    delaynum2 + horizButtonOffset*2, delaynum3 + vertButtonOffset,
+    arrowButtonSize, arrowButtonSize
+  );
 
   delayButton2 = new DelayButton(delaynum2+180,delaynum3+140,80,40);
 
