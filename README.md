@@ -2,10 +2,14 @@
 
 BIRD is a dual-Arduino and Processing reminder system.
 
-Physical build:
+## Images
+
+### Physical build
+
 ![Picture of the Arduino systems](img/picture-m3.png)
 
-Processing application:
+### Processing application
+
 ![Picture of the Processing application interface](img/processing-application.png)
 
 ## Acronym
