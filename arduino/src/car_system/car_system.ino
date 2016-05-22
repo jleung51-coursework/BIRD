@@ -4,6 +4,9 @@
  * to whether or not the sensor systems are activated, and alerts the user if
  * a user is present and the sensors return the presence of an item.
  *
+ * If the power button is pressed while the system is alerting the user,
+ * the system turns off for several minutes before re-activating.
+ *
  */
 
 #include <avr/pgmspace.h>
@@ -94,6 +97,7 @@ void loop() {
   if(!powerOn) {
     digitalWrite(pinPowerLED, LOW);
 
+    // Turn off temporarily when power button is pressed while alert is active
     // 5 minutes
     // 60 seconds per minute
     // 1000 milliseconds per second
