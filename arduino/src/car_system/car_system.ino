@@ -103,7 +103,6 @@ void loop() {
       String in = ppad.readStringUntil('\n');
       alertSensorEssential = (in.charAt(0) == '1');
       alertSensorGeneral = (in.charAt(1) == '1');
-      }
     }
   }
 
