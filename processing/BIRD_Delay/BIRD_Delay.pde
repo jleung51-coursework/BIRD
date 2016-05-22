@@ -43,8 +43,14 @@ boolean t1 = false;
 boolean t2 = false;
 
 final int arrowButtonSize = 30;
+final int delayButtonWidth = 80;
+final int delayButtonHeight = 40;
+
 final int horizButtonOffset = 150;
 final int vertButtonOffset = 80;
+
+final int delayButtonHorizOffset = 180;
+final int delayButtonVertOffset = 140;
 
 void setup() {
   size (1024,768);
@@ -79,7 +85,9 @@ void setup() {
   );
 
   delayButton1 = new DelayButton(
-    delaynum1 + 180, delaynum3+140, 80,40);
+    delaynum1 + delayButtonHorizOffset, delaynum3 + delayButtonVertOffset,
+    delayButtonWidth, delayButtonHeight
+  );
 
   panel1 = new Delay();
 
@@ -110,7 +118,10 @@ void setup() {
     arrowButtonSize, arrowButtonSize
   );
 
-  delayButton2 = new DelayButton(delaynum2+180,delaynum3+140,80,40);
+  delayButton2 = new DelayButton(
+    delaynum2 + delayButtonHorizOffset, delaynum3 + delayButtonVertOffset,
+    delayButtonWidth, delayButtonHeight
+  );
 
   panel2 = new Delay();
 
