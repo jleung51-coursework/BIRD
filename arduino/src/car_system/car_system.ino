@@ -93,7 +93,12 @@ void loop() {
   // Power on/off
   if(!powerOn) {
     digitalWrite(pinPowerLED, LOW);
-    delay(3 * 1000);  // 3 seconds in addition to the 3 second delay
+
+    // 5 minutes
+    // 60 seconds per minute
+    // 1000 milliseconds per second
+    delay(5 * 60 * 1000);
+
     powerOn = true;
   }
   else {
