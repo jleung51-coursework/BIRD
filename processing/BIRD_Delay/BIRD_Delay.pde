@@ -29,11 +29,11 @@ int delaynum1 = 30;
 int delaynum2 = 542;
 int delaynum3 = 150;
 
-boolean padPower;
-boolean padLED1;
-boolean padLED2;
-boolean boxLED1;
-boolean boxLED2;
+boolean padPower = false;
+boolean padLED1 = false;
+boolean padLED2 = false;
+boolean boxLED1 = false;
+boolean boxLED2 = false;
 
 boolean connected = false;
 
