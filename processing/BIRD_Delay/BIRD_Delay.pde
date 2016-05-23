@@ -135,15 +135,12 @@ void draw() {
 
   // Arduino to Processing
 
-  if (port.available() > 0) {
+  connected = port.available() > 0;
+  if (connected) {
     val = port.readStringUntil('\n');
     if(val != null){
       val = trim(val);  // Remove excess whitespace at beginning/end
     }
-    connected = true;
-  }
-  else {
-    connected = false;
   }
 
   if(val != null){
