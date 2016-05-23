@@ -59,6 +59,8 @@ final int timeSetVertOffset = 65;
 final int timeShowHorizStartOffset = 160;
 final int timeShowHorizOffset = 50;
 final int timeShowVertOffset = 230;
+final int timeShowTextHorizStartOffset = 40;
+final int timeShowTextHorizOffset = timeSetHorizOffset;
 
 void setup() {
   size (1024,768);
@@ -316,9 +318,21 @@ void draw() {
 
   // Text labels for setting the timer
   textSize(25);
-  text("Hours",delaySet1_x+40,delaySet_y+65);
-  text("Minutes",delaySet1_x+190,delaySet_y+65);
-  text("Seconds",delaySet1_x+340,delaySet_y+65);
+  text(
+    "Hours",
+    delaySet1_x + timeShowTextHorizStartOffset,
+    delaySet_y + timeSetVertOffset
+  );
+  text(
+    "Minutes",
+    delaySet1_x + timeShowTextHorizStartOffset + timeShowTextHorizOffset,
+    delaySet_y + timeSetVertOffset
+  );
+  text(
+    "Seconds",
+    delaySet1_x + timeShowTextHorizStartOffset + timeShowTextHorizOffset*2,
+    delaySet_y + timeSetVertOffset
+  );
 
   //----------------------------------------------------------------------------
   //Second Pressure Pad
@@ -366,9 +380,21 @@ void draw() {
 
   // Text labels for setting the timer
   textSize(25);
-  text("Hours",delaySet2_x+40,delaySet_y+65);
-  text("Minutes",delaySet2_x+190,delaySet_y+65);
-  text("Seconds",delaySet2_x+340,delaySet_y+65);
+  text(
+    "Hours",
+    delaySet2_x + timeShowTextHorizStartOffset,
+    delaySet_y + timeSetVertOffset
+  );
+  text(
+    "Minutes",
+    delaySet2_x + timeShowTextHorizStartOffset + timeShowTextHorizOffset,
+    delaySet_y + timeSetVertOffset
+  );
+  text(
+    "Seconds",
+    delaySet2_x + timeShowTextHorizStartOffset + timeShowTextHorizOffset*2,
+    delaySet_y + timeSetVertOffset
+  );
 
   //----------------------------------------------------------------------------
   ppad.drawMe();
