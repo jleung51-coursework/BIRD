@@ -53,6 +53,10 @@ final int arrowButtonVertOffset = 80;
 final int delayButtonHorizOffset = 180;
 final int delayButtonVertOffset = 140;
 
+// Number offsets
+final int timeSetHorizOffset = 150;
+final int timeSetVertOffset = 65;
+
 void setup() {
   size (1024,768);
 
@@ -276,9 +280,18 @@ void draw() {
 
   delayButton1.drawMe();
 
-  text(panel1.hour,delaySet1_x,delaySet_y+65);
-  text(panel1.minute,delaySet1_x+150,delaySet_y+65);
-  text(panel1.second,delaySet1_x+300,delaySet_y+65);
+  text(
+    panel1.hour,
+    delaySet1_x, delaySet_y + timeSetVertOffset
+  );
+  text(
+    panel1.minute,
+    delaySet1_x + timeSetHorizOffset, delaySet_y + timeSetVertOffset
+  );
+  text(
+    panel1.second,
+    delaySet1_x + timeSetHorizOffset*2, delaySet_y + timeSetVertOffset
+  );
 
   text(panel1.timerH,delaySet1_x+160,delaySet_y+230);
   text(panel1.timerM,delaySet1_x+210,delaySet_y+230);
@@ -302,9 +315,17 @@ void draw() {
 
   delayButton2.drawMe();
 
-  text(panel2.hour,delaySet2_x,delaySet_y+65);
-  text(panel2.minute,delaySet2_x+150,delaySet_y+65);
-  text(panel2.second,delaySet2_x+300,delaySet_y+65);
+  text(
+    panel2.hour,
+    delaySet2_x, delaySet_y + timeSetVertOffset);
+  text(
+    panel2.minute,
+    delaySet2_x + timeSetHorizOffset, delaySet_y + timeSetVertOffset
+  );
+  text(
+    panel2.second,
+    delaySet2_x + timeSetHorizOffset*2, delaySet_y + timeSetVertOffset
+  );
 
   text(panel2.timerH,delaySet2_x+160,delaySet_y+230);
   text(panel2.timerM,delaySet2_x+210,delaySet_y+230);
