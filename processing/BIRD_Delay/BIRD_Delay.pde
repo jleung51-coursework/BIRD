@@ -47,6 +47,11 @@ final int arrowButtonSize = 30;
 final int delayButtonWidth = 80;
 final int delayButtonHeight = 40;
 
+// Text sizes
+final int textSizeTimer = 25;
+final int textSizeTitle = 40;
+final int textSizeDelaySetTitles = 30;
+
 // Button offsets
 final int arrowButtonHorizOffset = 150;
 final int arrowButtonVertOffset = 80;
@@ -281,6 +286,7 @@ void draw() {
 
   //----------------------------------------------------------------------------
   //First Pressure Pad
+
   hourUpButton1.drawMe();
   hourDownButton1.drawMe();
 
@@ -291,6 +297,8 @@ void draw() {
   secondDownButton1.drawMe();
 
   delayButton1.drawMe();
+
+  textSize(textSizeTimer);
 
   // Numbers for setting the timer
   text(
@@ -324,7 +332,6 @@ void draw() {
   );
 
   // Text labels for setting the timer
-  textSize(25);
   text(
     "Hours",
     delaySet1_x + timeShowTextHorizStartOffset,
@@ -353,6 +360,8 @@ void draw() {
   secondDownButton2.drawMe();
 
   delayButton2.drawMe();
+
+  textSize(textSizeTimer);
 
   // Numbers for setting the timer
   text(
@@ -386,7 +395,6 @@ void draw() {
   );
 
   // Text labels for setting the timer
-  textSize(25);
   text(
     "Hours",
     delaySet2_x + timeShowTextHorizStartOffset,
@@ -409,19 +417,19 @@ void draw() {
 
   // Text
   fill(color(255,255,255));
-  textSize(40);
+  textSize(textSizeTitle);
   text(
     "BIRD Delay",
     titleHorizOffset, titleVertOffset
   );
 
-  textSize(30);
+  textSize(textSizeDelaySetTitles);
   text(
     "Essential Pad",
     delaySet1TitleHorizOffset, delaySetTitleVertOffset
   );
 
-  textSize(30);
+  textSize(textSizeDelaySetTitles);
   text(
     "Other Pad",
     delaySet2TitleHorizOffset, delaySetTitleVertOffset
