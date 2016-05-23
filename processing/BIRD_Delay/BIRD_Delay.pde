@@ -74,6 +74,12 @@ final int delaySet1TitleHorizOffset = 155;
 final int delaySet2TitleHorizOffset = 680;
 final int delaySetTitleVertOffset = 120;
 
+// Colors
+color colorGrey = color(128, 128, 128);
+color colorWhite = color(255, 255, 255);
+color colorBackground = colorGrey;
+color colorText = colorWhite;
+
 void setup() {
   size (1024,768);
 
@@ -279,7 +285,7 @@ void draw() {
     cbox.p2.turnOff();
   }
 
-  background(128,128,128);
+  background(colorBackground);
 
   //----------------------------------------------------------------------------
   // Drawings
@@ -416,7 +422,7 @@ void draw() {
   cbox.drawMe();
 
   // Text
-  fill(color(255,255,255));
+  fill(colorText);
   textSize(textSizeTitle);
   text(
     "BIRD Delay",
