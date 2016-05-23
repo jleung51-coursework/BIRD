@@ -133,35 +133,35 @@ void draw() {
   //----------------------------------------------------------------------------
   // Update
 
-  ppad.update(padLED1,padPower,padLED2);
+  ppad.update(padLED1, padPower, padLED2);
 
   //----------------------------------------------------------------------------
   // Delay For The First Pressure Pad
-  hourUpButton1.update(mouseX,mouseY);
-  hourDownButton1.update(mouseX,mouseY);
+  hourUpButton1.update(mouseX, mouseY);
+  hourDownButton1.update(mouseX, mouseY);
 
-  minuteUpButton1.update(mouseX,mouseY);
-  minuteDownButton1.update(mouseX,mouseY);
+  minuteUpButton1.update(mouseX, mouseY);
+  minuteDownButton1.update(mouseX, mouseY);
 
-  secondUpButton1.update(mouseX,mouseY);
-  secondDownButton1.update(mouseX,mouseY);
+  secondUpButton1.update(mouseX, mouseY);
+  secondDownButton1.update(mouseX, mouseY);
 
-  delayButton1.update(mouseX,mouseY);
+  delayButton1.update(mouseX, mouseY);
 
   panel1.update();
 
   //----------------------------------------------------------------------------
   // Delay For The Second Pressure Pad
-  hourUpButton2.update(mouseX,mouseY);
-  hourDownButton2.update(mouseX,mouseY);
+  hourUpButton2.update(mouseX, mouseY);
+  hourDownButton2.update(mouseX, mouseY);
 
-  minuteUpButton2.update(mouseX,mouseY);
-  minuteDownButton2.update(mouseX,mouseY);
+  minuteUpButton2.update(mouseX, mouseY);
+  minuteDownButton2.update(mouseX, mouseY);
 
-  secondUpButton2.update(mouseX,mouseY);
-  secondDownButton2.update(mouseX,mouseY);
+  secondUpButton2.update(mouseX, mouseY);
+  secondDownButton2.update(mouseX, mouseY);
 
-  delayButton2.update(mouseX,mouseY);
+  delayButton2.update(mouseX, mouseY);
 
   panel2.update();
 
