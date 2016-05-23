@@ -56,6 +56,9 @@ final int delayButtonVertOffset = 140;
 // Number offsets
 final int timeSetHorizOffset = arrowButtonHorizOffset;
 final int timeSetVertOffset = 65;
+final int timeShowHorizStartOffset = 160;
+final int timeShowHorizOffset = 50;
+final int timeShowVertOffset = 230;
 
 void setup() {
   size (1024,768);
@@ -293,9 +296,21 @@ void draw() {
     delaySet1_x + timeSetHorizOffset*2, delaySet_y + timeSetVertOffset
   );
 
-  text(panel1.timerH,delaySet1_x+160,delaySet_y+230);
-  text(panel1.timerM,delaySet1_x+210,delaySet_y+230);
-  text(panel1.timerS,delaySet1_x+260,delaySet_y+230);
+  text(
+    panel1.timerH,
+    delaySet1_x + timeShowHorizStartOffset,
+    delaySet_y + timeShowVertOffset
+  );
+  text(
+    panel1.timerM,
+    delaySet1_x + timeShowHorizStartOffset + timeShowHorizOffset,
+    delaySet_y + timeShowVertOffset
+  );
+  text(
+    panel1.timerS,
+    delaySet1_x + timeShowHorizStartOffset + timeShowHorizOffset*2,
+    delaySet_y + timeShowVertOffset
+  );
 
   textSize(25);
   text("Hours",delaySet1_x+40,delaySet_y+65);
@@ -327,9 +342,21 @@ void draw() {
     delaySet2_x + timeSetHorizOffset*2, delaySet_y + timeSetVertOffset
   );
 
-  text(panel2.timerH,delaySet2_x+160,delaySet_y+230);
-  text(panel2.timerM,delaySet2_x+210,delaySet_y+230);
-  text(panel2.timerS,delaySet2_x+260,delaySet_y+230);
+  text(
+    panel2.timerH,
+    delaySet2_x + timeShowHorizStartOffset,
+    delaySet_y + timeShowVertOffset
+  );
+  text(
+    panel2.timerM,
+    delaySet2_x + timeShowHorizStartOffset + timeShowHorizOffset,
+    delaySet_y + timeShowVertOffset
+  );
+  text(
+    panel2.timerS,
+    delaySet2_x + timeShowHorizStartOffset + timeShowHorizOffset*2,
+    delaySet_y + timeShowVertOffset
+  );
 
   textSize(25);
   text("Hours",delaySet2_x+40,delaySet_y+65);
