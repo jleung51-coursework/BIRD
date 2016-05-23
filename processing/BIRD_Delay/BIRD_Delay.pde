@@ -42,6 +42,14 @@ String sendval = "11";
 boolean t1 = false;
 boolean t2 = false;
 
+// Text
+final String textHours = "Hours";
+final String textMinutes = "Minutes";
+final String textSeconds = "Seconds";
+final String textTitle = "BIRD Delay";
+final String textDelaySet1Title = "Essential Pad";
+final String textDelaySet2Title = "Other Pad";
+
 // Button sizes
 final int arrowButtonSize = 30;
 final int delayButtonWidth = 80;
@@ -339,17 +347,17 @@ void draw() {
 
   // Text labels for setting the timer
   text(
-    "Hours",
+    textHours,
     delaySet1_x + timeShowTextHorizStartOffset,
     delaySet_y + timeSetVertOffset
   );
   text(
-    "Minutes",
+    textMinutes,
     delaySet1_x + timeShowTextHorizStartOffset + timeShowTextHorizOffset,
     delaySet_y + timeSetVertOffset
   );
   text(
-    "Seconds",
+    textSeconds,
     delaySet1_x + timeShowTextHorizStartOffset + timeShowTextHorizOffset*2,
     delaySet_y + timeSetVertOffset
   );
@@ -402,17 +410,17 @@ void draw() {
 
   // Text labels for setting the timer
   text(
-    "Hours",
+    textHours,
     delaySet2_x + timeShowTextHorizStartOffset,
     delaySet_y + timeSetVertOffset
   );
   text(
-    "Minutes",
+    textMinutes,
     delaySet2_x + timeShowTextHorizStartOffset + timeShowTextHorizOffset,
     delaySet_y + timeSetVertOffset
   );
   text(
-    "Seconds",
+    textSeconds,
     delaySet2_x + timeShowTextHorizStartOffset + timeShowTextHorizOffset*2,
     delaySet_y + timeSetVertOffset
   );
@@ -425,19 +433,19 @@ void draw() {
   fill(colorText);
   textSize(textSizeTitle);
   text(
-    "BIRD Delay",
+    textTitle,
     titleHorizOffset, titleVertOffset
   );
 
   textSize(textSizeDelaySetTitles);
   text(
-    "Essential Pad",
+    textDelaySet1Title,
     delaySet1TitleHorizOffset, delaySetTitleVertOffset
   );
 
   textSize(textSizeDelaySetTitles);
   text(
-    "Other Pad",
+    textDelaySet2Title,
     delaySet2TitleHorizOffset, delaySetTitleVertOffset
   );
 }
