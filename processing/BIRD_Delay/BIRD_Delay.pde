@@ -37,8 +37,6 @@ boolean boxLED2;
 
 boolean connected = false;
 
-String sendval = "11";
-
 boolean t1 = false;
 boolean t2 = false;
 
@@ -110,21 +108,26 @@ void draw() {
   t1 = panel1.signal;
   t2 = panel2.signal;
 
-  if( !t1 && !t2 ) {
-    sendval = "00";
+  char sendVal1;
+  char sendVal2;
+
+  if(t1) {
+    sendVal1 = '1';
   }
-  if( t1 && !t2 ) {
-    sendval = "10";
+  else {
+    sendVal1 = '0';
   }
-  if( !t1 && t2 ) {
-    sendval = "01";
+
+  if(t2) {
+    sendVal2 = '1';
   }
-  if( t1 && t2 ) {
-    sendval = "11";
+  else {
+    sendVal2 = '0';
   }
 
   if(connected){
-    port.write(sendval);
+    port.write(sendVal1);
+    port.write(sendVal2);
   }
 
   //----------------------------------------------------------------------------
