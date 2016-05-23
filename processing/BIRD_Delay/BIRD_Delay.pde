@@ -68,7 +68,7 @@ final int timeShowVertOffset = 230;
 // Text offsets
 final int timeShowTextHorizStartOffset = 40;
 final int timeShowTextHorizOffset = timeSetHorizOffset;
-final int titleHorizOffset = 30;
+final int titleHorizOffset = 450;
 final int titleVertOffset = 65;
 final int delaySet1TitleHorizOffset = 155;
 final int delaySet2TitleHorizOffset = 680;
