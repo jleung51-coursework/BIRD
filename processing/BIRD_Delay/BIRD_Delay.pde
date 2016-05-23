@@ -283,6 +283,7 @@ void draw() {
 
   delayButton1.drawMe();
 
+  // Numbers for setting the timer
   text(
     panel1.hour,
     delaySet1_x, delaySet_y + timeSetVertOffset
@@ -296,6 +297,7 @@ void draw() {
     delaySet1_x + timeSetHorizOffset*2, delaySet_y + timeSetVertOffset
   );
 
+  // Numbers for displaying the timer
   text(
     panel1.timerH,
     delaySet1_x + timeShowHorizStartOffset,
@@ -312,6 +314,7 @@ void draw() {
     delaySet_y + timeShowVertOffset
   );
 
+  // Text labels for setting the timer
   textSize(25);
   text("Hours",delaySet1_x+40,delaySet_y+65);
   text("Minutes",delaySet1_x+190,delaySet_y+65);
@@ -330,9 +333,11 @@ void draw() {
 
   delayButton2.drawMe();
 
+  // Numbers for setting the timer
   text(
     panel2.hour,
-    delaySet2_x, delaySet_y + timeSetVertOffset);
+    delaySet2_x, delaySet_y + timeSetVertOffset
+  );
   text(
     panel2.minute,
     delaySet2_x + timeSetHorizOffset, delaySet_y + timeSetVertOffset
@@ -342,6 +347,7 @@ void draw() {
     delaySet2_x + timeSetHorizOffset*2, delaySet_y + timeSetVertOffset
   );
 
+  // Numbers for displaying the timer
   text(
     panel2.timerH,
     delaySet2_x + timeShowHorizStartOffset,
@@ -358,6 +364,7 @@ void draw() {
     delaySet_y + timeShowVertOffset
   );
 
+  // Text labels for setting the timer
   textSize(25);
   text("Hours",delaySet2_x+40,delaySet_y+65);
   text("Minutes",delaySet2_x+190,delaySet_y+65);
