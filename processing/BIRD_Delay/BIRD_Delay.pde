@@ -42,13 +42,14 @@ String sendval = "11";
 boolean t1 = false;
 boolean t2 = false;
 
+// Button sizes
 final int arrowButtonSize = 30;
 final int delayButtonWidth = 80;
 final int delayButtonHeight = 40;
 
-final int horizButtonOffset = 150;
-final int vertButtonOffset = 80;
-
+// Button offsets
+final int arrowButtonHorizOffset = 150;
+final int arrowButtonVertOffset = 80;
 final int delayButtonHorizOffset = 180;
 final int delayButtonVertOffset = 140;
 
@@ -64,23 +65,23 @@ void setup() {
     arrowButtonSize, arrowButtonSize
   );
   hourDownButton1 = new DownButton(
-    delaySet1_x, delaySet_y + vertButtonOffset,
+    delaySet1_x, delaySet_y + arrowButtonVertOffset,
     arrowButtonSize, arrowButtonSize
   );
   minuteUpButton1 = new UpButton(
-    delaySet1_x + horizButtonOffset, delaySet_y,
+    delaySet1_x + arrowButtonHorizOffset, delaySet_y,
     arrowButtonSize, arrowButtonSize
   );
   minuteDownButton1 = new DownButton(
-    delaySet1_x + horizButtonOffset, delaySet_y + vertButtonOffset,
+    delaySet1_x + arrowButtonHorizOffset, delaySet_y + arrowButtonVertOffset,
     arrowButtonSize, arrowButtonSize
   );
   secondUpButton1 = new UpButton(
-    delaySet1_x + horizButtonOffset*2, delaySet_y,
+    delaySet1_x + arrowButtonHorizOffset*2, delaySet_y,
     arrowButtonSize, arrowButtonSize
   );
   secondDownButton1 = new DownButton(
-    delaySet1_x + horizButtonOffset*2, delaySet_y + vertButtonOffset,
+    delaySet1_x + arrowButtonHorizOffset*2, delaySet_y + arrowButtonVertOffset,
     arrowButtonSize, arrowButtonSize
   );
 
@@ -98,23 +99,23 @@ void setup() {
     arrowButtonSize, arrowButtonSize
   );
   hourDownButton2 = new DownButton(
-    delaySet2_x, delaySet_y + vertButtonOffset,
+    delaySet2_x, delaySet_y + arrowButtonVertOffset,
     arrowButtonSize, arrowButtonSize
   );
   minuteUpButton2 = new UpButton(
-    delaySet2_x + horizButtonOffset, delaySet_y,
+    delaySet2_x + arrowButtonHorizOffset, delaySet_y,
     arrowButtonSize, arrowButtonSize
   );
   minuteDownButton2 = new DownButton(
-    delaySet2_x + horizButtonOffset, delaySet_y + vertButtonOffset,
+    delaySet2_x + arrowButtonHorizOffset, delaySet_y + arrowButtonVertOffset,
     arrowButtonSize, arrowButtonSize
   );
   secondUpButton2 = new UpButton(
-    delaySet2_x + horizButtonOffset*2, delaySet_y,
+    delaySet2_x + arrowButtonHorizOffset*2, delaySet_y,
     arrowButtonSize, arrowButtonSize
   );
   secondDownButton2 = new DownButton(
-    delaySet2_x + horizButtonOffset*2, delaySet_y + vertButtonOffset,
+    delaySet2_x + arrowButtonHorizOffset*2, delaySet_y + arrowButtonVertOffset,
     arrowButtonSize, arrowButtonSize
   );
 
