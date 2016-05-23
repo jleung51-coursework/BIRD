@@ -25,9 +25,9 @@ Delay panel2;
 Pad ppad;
 Box cbox;
 
-int delaynum1 = 30;
-int delaynum2 = 542;
-int delaynum3 = 150;
+int delaySet1_x = 30;
+int delaySet2_x = 542;
+int delaySet_y = 150;
 
 boolean padPower;
 boolean padLED1;
@@ -60,32 +60,32 @@ void setup() {
   //----------------------------------------------------------------------------
   // Delay For The First Pressure Pad
   hourUpButton1 = new UpButton(
-    delaynum1, delaynum3,
+    delaySet1_x, delaySet_y,
     arrowButtonSize, arrowButtonSize
   );
   hourDownButton1 = new DownButton(
-    delaynum1, delaynum3 + vertButtonOffset,
+    delaySet1_x, delaySet_y + vertButtonOffset,
     arrowButtonSize, arrowButtonSize
   );
   minuteUpButton1 = new UpButton(
-    delaynum1 + horizButtonOffset, delaynum3,
+    delaySet1_x + horizButtonOffset, delaySet_y,
     arrowButtonSize, arrowButtonSize
   );
   minuteDownButton1 = new DownButton(
-    delaynum1 + horizButtonOffset, delaynum3 + vertButtonOffset,
+    delaySet1_x + horizButtonOffset, delaySet_y + vertButtonOffset,
     arrowButtonSize, arrowButtonSize
   );
   secondUpButton1 = new UpButton(
-    delaynum1 + horizButtonOffset*2, delaynum3,
+    delaySet1_x + horizButtonOffset*2, delaySet_y,
     arrowButtonSize, arrowButtonSize
   );
   secondDownButton1 = new DownButton(
-    delaynum1 + horizButtonOffset*2, delaynum3 + vertButtonOffset,
+    delaySet1_x + horizButtonOffset*2, delaySet_y + vertButtonOffset,
     arrowButtonSize, arrowButtonSize
   );
 
   delayButton1 = new DelayButton(
-    delaynum1 + delayButtonHorizOffset, delaynum3 + delayButtonVertOffset,
+    delaySet1_x + delayButtonHorizOffset, delaySet_y + delayButtonVertOffset,
     delayButtonWidth, delayButtonHeight
   );
 
@@ -94,32 +94,32 @@ void setup() {
   //----------------------------------------------------------------------------
   // Delay For The Second Pressure Pad
   hourUpButton2 = new UpButton(
-    delaynum2, delaynum3,
+    delaySet2_x, delaySet_y,
     arrowButtonSize, arrowButtonSize
   );
   hourDownButton2 = new DownButton(
-    delaynum2, delaynum3 + vertButtonOffset,
+    delaySet2_x, delaySet_y + vertButtonOffset,
     arrowButtonSize, arrowButtonSize
   );
   minuteUpButton2 = new UpButton(
-    delaynum2 + horizButtonOffset, delaynum3,
+    delaySet2_x + horizButtonOffset, delaySet_y,
     arrowButtonSize, arrowButtonSize
   );
   minuteDownButton2 = new DownButton(
-    delaynum2 + horizButtonOffset, delaynum3 + vertButtonOffset,
+    delaySet2_x + horizButtonOffset, delaySet_y + vertButtonOffset,
     arrowButtonSize, arrowButtonSize
   );
   secondUpButton2 = new UpButton(
-    delaynum2 + horizButtonOffset*2, delaynum3,
+    delaySet2_x + horizButtonOffset*2, delaySet_y,
     arrowButtonSize, arrowButtonSize
   );
   secondDownButton2 = new DownButton(
-    delaynum2 + horizButtonOffset*2, delaynum3 + vertButtonOffset,
+    delaySet2_x + horizButtonOffset*2, delaySet_y + vertButtonOffset,
     arrowButtonSize, arrowButtonSize
   );
 
   delayButton2 = new DelayButton(
-    delaynum2 + delayButtonHorizOffset, delaynum3 + delayButtonVertOffset,
+    delaySet2_x + delayButtonHorizOffset, delaySet_y + delayButtonVertOffset,
     delayButtonWidth, delayButtonHeight
   );
 
@@ -278,18 +278,18 @@ void draw() {
 
   delayButton1.drawMe();
 
-  text(panel1.hour,delaynum1,delaynum3+65);
-  text(panel1.minute,delaynum1+150,delaynum3+65);
-  text(panel1.second,delaynum1+300,delaynum3+65);
+  text(panel1.hour,delaySet1_x,delaySet_y+65);
+  text(panel1.minute,delaySet1_x+150,delaySet_y+65);
+  text(panel1.second,delaySet1_x+300,delaySet_y+65);
 
-  text(panel1.timerH,delaynum1+160,delaynum3+230);
-  text(panel1.timerM,delaynum1+210,delaynum3+230);
-  text(panel1.timerS,delaynum1+260,delaynum3+230);
+  text(panel1.timerH,delaySet1_x+160,delaySet_y+230);
+  text(panel1.timerM,delaySet1_x+210,delaySet_y+230);
+  text(panel1.timerS,delaySet1_x+260,delaySet_y+230);
 
   textSize(25);
-  text("Hours",delaynum1+40,delaynum3+65);
-  text("Minutes",delaynum1+190,delaynum3+65);
-  text("Seconds",delaynum1+340,delaynum3+65);
+  text("Hours",delaySet1_x+40,delaySet_y+65);
+  text("Minutes",delaySet1_x+190,delaySet_y+65);
+  text("Seconds",delaySet1_x+340,delaySet_y+65);
 
   //----------------------------------------------------------------------------
   //Second Pressure Pad
@@ -304,18 +304,18 @@ void draw() {
 
   delayButton2.drawMe();
 
-  text(panel2.hour,delaynum2,delaynum3+65);
-  text(panel2.minute,delaynum2+150,delaynum3+65);
-  text(panel2.second,delaynum2+300,delaynum3+65);
+  text(panel2.hour,delaySet2_x,delaySet_y+65);
+  text(panel2.minute,delaySet2_x+150,delaySet_y+65);
+  text(panel2.second,delaySet2_x+300,delaySet_y+65);
 
-  text(panel2.timerH,delaynum2+160,delaynum3+230);
-  text(panel2.timerM,delaynum2+210,delaynum3+230);
-  text(panel2.timerS,delaynum2+260,delaynum3+230);
+  text(panel2.timerH,delaySet2_x+160,delaySet_y+230);
+  text(panel2.timerM,delaySet2_x+210,delaySet_y+230);
+  text(panel2.timerS,delaySet2_x+260,delaySet_y+230);
 
   textSize(25);
-  text("Hours",delaynum2+40,delaynum3+65);
-  text("Minutes",delaynum2+190,delaynum3+65);
-  text("Seconds",delaynum2+340,delaynum3+65);
+  text("Hours",delaySet2_x+40,delaySet_y+65);
+  text("Minutes",delaySet2_x+190,delaySet_y+65);
+  text("Seconds",delaySet2_x+340,delaySet_y+65);
 
   //----------------------------------------------------------------------------
   ppad.drawMe();
