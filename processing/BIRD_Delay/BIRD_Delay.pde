@@ -54,7 +54,7 @@ final int delayButtonHorizOffset = 180;
 final int delayButtonVertOffset = 140;
 
 // Number offsets
-final int timeSetHorizOffset = 150;
+final int timeSetHorizOffset = arrowButtonHorizOffset;
 final int timeSetVertOffset = 65;
 
 void setup() {
