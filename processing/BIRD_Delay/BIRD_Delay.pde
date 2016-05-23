@@ -59,8 +59,15 @@ final int timeSetVertOffset = 65;
 final int timeShowHorizStartOffset = 160;
 final int timeShowHorizOffset = 50;
 final int timeShowVertOffset = 230;
+
+// Text offsets
 final int timeShowTextHorizStartOffset = 40;
 final int timeShowTextHorizOffset = timeSetHorizOffset;
+final int titleHorizOffset = 30;
+final int titleVertOffset = 65;
+final int delaySet1TitleHorizOffset = 155;
+final int delaySet2TitleHorizOffset = 680;
+final int delaySetTitleVertOffset = 120;
 
 void setup() {
   size (1024,768);
@@ -403,13 +410,22 @@ void draw() {
   // Text
   fill(color(255,255,255));
   textSize(40);
-  text("BIRD Delay",30,65);
+  text(
+    "BIRD Delay",
+    titleHorizOffset, titleVertOffset
+  );
 
   textSize(30);
-  text("Essential Pad",155,120);
+  text(
+    "Essential Pad",
+    delaySet1TitleHorizOffset, delaySetTitleVertOffset
+  );
 
   textSize(30);
-  text("Other Pad",680,120);
+  text(
+    "Other Pad",
+    delaySet2TitleHorizOffset, delaySetTitleVertOffset
+  );
 }
 
 void mousePressed() {
