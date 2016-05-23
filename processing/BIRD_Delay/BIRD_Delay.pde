@@ -25,10 +25,6 @@ Delay panel2;
 Pad ppad;
 Box cbox;
 
-int delaySet1_x = 30;
-int delaySet2_x = 542;
-int delaySet_y = 150;
-
 boolean padPower;
 boolean padLED1;
 boolean padLED2;
@@ -49,6 +45,11 @@ final String textSeconds = "Seconds";
 final String textTitle = "BIRD Delay";
 final String textDelaySet1Title = "Essential Pad";
 final String textDelaySet2Title = "Other Pad";
+
+// Delay-set locations
+final int delaySet1_x = 30;
+final int delaySet2_x = 542;
+final int delaySet_y = 150;
 
 // Button sizes
 final int arrowButtonSize = 30;
