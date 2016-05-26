@@ -39,49 +39,49 @@ boolean t1 = false;
 boolean t2 = false;
 
 // Text
-final String textHours = "Hours";
-final String textMinutes = "Minutes";
-final String textSeconds = "Seconds";
-final String textTitle = "BIRD Delay";
-final String textDelaySet1Title = "Essential Pad";
-final String textDelaySet2Title = "Other Pad";
+static final String textHours = "Hours";
+static final String textMinutes = "Minutes";
+static final String textSeconds = "Seconds";
+static final String textTitle = "BIRD Delay";
+static final String textDelaySet1Title = "Essential Pad";
+static final String textDelaySet2Title = "Other Pad";
 
 // Delay-set locations
-final int delaySet1_x = 30;
-final int delaySet2_x = 542;
-final int delaySet_y = 150;
+static final int delaySet1_x = 30;
+static final int delaySet2_x = 542;
+static final int delaySet_y = 150;
 
 // Button sizes
-final int arrowButtonSize = 30;
-final int delayButtonWidth = 80;
-final int delayButtonHeight = 40;
+static final int arrowButtonSize = 30;
+static final int delayButtonWidth = 80;
+static final int delayButtonHeight = 40;
 
 // Text sizes
-final int textSizeTimer = 25;
-final int textSizeTitle = 40;
-final int textSizeDelaySetTitles = 30;
+static final int textSizeTimer = 25;
+static final int textSizeTitle = 40;
+static final int textSizeDelaySetTitles = 30;
 
 // Button offsets
-final int arrowButtonHorizOffset = 150;
-final int arrowButtonVertOffset = 80;
-final int delayButtonHorizOffset = 180;
-final int delayButtonVertOffset = 140;
+static final int arrowButtonHorizOffset = 150;
+static final int arrowButtonVertOffset = 80;
+static final int delayButtonHorizOffset = 180;
+static final int delayButtonVertOffset = 140;
 
 // Number offsets
-final int timeSetHorizOffset = arrowButtonHorizOffset;
-final int timeSetVertOffset = 65;
-final int timeShowHorizStartOffset = 160;
-final int timeShowHorizOffset = 50;
-final int timeShowVertOffset = 230;
+static final int timeSetHorizOffset = arrowButtonHorizOffset;
+static final int timeSetVertOffset = 65;
+static final int timeShowHorizStartOffset = 160;
+static final int timeShowHorizOffset = 50;
+static final int timeShowVertOffset = 230;
 
 // Text offsets
-final int timeShowTextHorizStartOffset = 40;
-final int timeShowTextHorizOffset = timeSetHorizOffset;
-final int titleHorizOffset = 450;
-final int titleVertOffset = 65;
-final int delaySet1TitleHorizOffset = 155;
-final int delaySet2TitleHorizOffset = 680;
-final int delaySetTitleVertOffset = 120;
+static final int timeShowTextHorizStartOffset = 40;
+static final int timeShowTextHorizOffset = timeSetHorizOffset;
+static final int titleHorizOffset = 450;
+static final int titleVertOffset = 65;
+static final int delaySet1TitleHorizOffset = 155;
+static final int delaySet2TitleHorizOffset = 680;
+static final int delaySetTitleVertOffset = 120;
 
 // Colors
 color colorGrey = color(128, 128, 128);
