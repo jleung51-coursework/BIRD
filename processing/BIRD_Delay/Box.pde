@@ -16,6 +16,9 @@ class Box {
   final int LED2_y = yPos + 42;
 
   final int circleDiameter = 150;
+  final int powerButtonSize = 15;
+  final int proxSensorWidth = 40;
+  final int proxSensorHeight = 15;
 
   final color colorWhite = color(255, 255, 255);
   final color colorGreyLight = color(200, 200, 200);
@@ -42,8 +45,21 @@ class Box {
     rotate(PI/4.5);
     fill(colorGrey);
 
-    rect(-3, 50, 15, 15);
-    rect(-17, 72, 40, 15);
+    final int powerButtonX = -3;
+    final int powerButtonY = 50;
+    final int proxSensorX = -17;
+    final int proxSensorY = 72;
+
+    rect(
+      powerButtonX, powerButtonY,
+      powerButtonSize, powerButtonSize
+    );
+
+    // Proximity sensor
+    rect(
+      proxSensorX, proxSensorY,
+      proxSensorWidth, proxSensorHeight
+    );
 
     noFill();
     popMatrix();
