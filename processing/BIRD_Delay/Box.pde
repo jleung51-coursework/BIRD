@@ -20,7 +20,7 @@ class Box {
     translate(xPos, yPos);
 
     fill(color(255, 255, 255));
-    arc(0, 0, 150, 150, 0, PI);
+    arc(0, 0, 150, 150, 0, PI, CHORD);
 
     rotate(PI/4.5);
     fill(color(200, 200, 200));
