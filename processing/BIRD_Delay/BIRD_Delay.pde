@@ -84,10 +84,10 @@ static final int delaySet2TitleHorizOffset = 680;
 static final int delaySetTitleVertOffset = 120;
 
 // Colors
-color colorGrey = color(128, 128, 128);
-color colorWhite = color(255, 255, 255);
-color colorBackground = colorGrey;
-color colorText = colorWhite;
+final color colorGrey = color(128, 128, 128);
+final color colorWhite = color(255, 255, 255);
+final color colorBackground = colorGrey;
+final color colorText = colorWhite;
 
 void setup() {
   size (1024,768);
