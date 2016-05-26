@@ -15,6 +15,8 @@ class Box {
   final int LED2_x = xPos + 66;
   final int LED2_y = yPos + 42;
 
+  final int circleDiameter = 150;
+
   final color colorWhite = color(255, 255, 255);
   final color colorGreyLight = color(200, 200, 200);
   final color colorRed = color(255, 0, 0);
@@ -35,10 +37,11 @@ class Box {
     translate(xPos, yPos);
 
     fill(colorWhite);
-    arc(0, 0, 150, 150, 0, PI);
+    arc(0, 0, circleDiameter, circleDiameter, 0, PI);
 
     rotate(PI/4.5);
     fill(colorGrey);
+
     rect(-3, 50, 15, 15);
     rect(-17, 72, 40, 15);
 
