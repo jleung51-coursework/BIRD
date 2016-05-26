@@ -5,6 +5,8 @@ class Box {
   LED pwr;
   LED p2;
 
+  final color colorWhite = color(255, 255, 255);
+  final color colorGreyLight = color(200, 200, 200);
   final color colorRed = color(255, 0, 0);
   final color colorGreen = color(0, 255, 0);
   final color colorYellow = color(255, 255, 0);
@@ -34,11 +36,11 @@ class Box {
     pushMatrix();
     translate(xPos, yPos);
 
-    fill(color(255, 255, 255));
+    fill(colorWhite);
     arc(0, 0, 150, 150, 0, PI);
 
     rotate(PI/4.5);
-    fill(color(200, 200, 200));
+    fill(colorGrey);
     rect(-3, 50, 15, 15);
     rect(-17, 72, 40, 15);
 
