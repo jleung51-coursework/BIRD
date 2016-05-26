@@ -1,6 +1,6 @@
 class Box {
-  int xPos;
-  int yPos;
+  final int xPos;
+  final int yPos;
   LED p1;
   LED pwr;
   LED p2;
@@ -12,9 +12,19 @@ class Box {
   Box() {
     xPos = 860;
     yPos = 550;
-    p1 = new LED(xPos+4, yPos+78, colorRed);
-    pwr = new LED(xPos+40, yPos+68, colorGreen);
-    p2 = new LED(xPos+66, yPos+42, colorYellow);
+
+    final int LED1_x = xPos + 4;
+    final int LED1_y = yPos + 78;
+
+    final int LEDpwr_x = xPos + 40;
+    final int LEDpwr_y = yPos + 68;
+
+    final int LED2_x = xPos + 66;
+    final int LED2_y = yPos + 42;
+
+    p1 = new LED(LED1_x, LED1_y, colorRed);
+    pwr = new LED(LEDpwr_x, LEDpwr_y, colorGreen);
+    p2 = new LED(LED2_x, LED2_y, colorYellow);
   }
 
   void update(){
