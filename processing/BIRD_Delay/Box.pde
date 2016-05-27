@@ -3,22 +3,22 @@ class Box {
   LED pwr;
   LED p2;
 
-  final int xPos = 860;
-  final int yPos = 550;
+  static final int xPos = 860;
+  static final int yPos = 550;
 
-  final int LED1_x = xPos + 4;
-  final int LED1_y = yPos + 78;
+  static final int LED1_x = xPos + 4;
+  static final int LED1_y = yPos + 78;
 
-  final int LEDpwr_x = xPos + 40;
-  final int LEDpwr_y = yPos + 68;
+  static final int LEDpwr_x = xPos + 40;
+  static final int LEDpwr_y = yPos + 68;
 
-  final int LED2_x = xPos + 66;
-  final int LED2_y = yPos + 42;
+  static final int LED2_x = xPos + 66;
+  static final int LED2_y = yPos + 42;
 
-  final int circleDiameter = 150;
-  final int powerButtonSize = 15;
-  final int proxSensorWidth = 40;
-  final int proxSensorHeight = 15;
+  static final int circleDiameter = 150;
+  static final int powerButtonSize = 15;
+  static final int proxSensorWidth = 40;
+  static final int proxSensorHeight = 15;
 
   final color colorWhite = color(255, 255, 255);
   final color colorGreyLight = color(200, 200, 200);
