@@ -39,55 +39,55 @@ boolean t1 = false;
 boolean t2 = false;
 
 // Text
-static final String textHours = "Hours";
-static final String textMinutes = "Minutes";
-static final String textSeconds = "Seconds";
-static final String textTitle = "BIRD Delay";
-static final String textDelaySet1Title = "Essential Pad";
-static final String textDelaySet2Title = "Other Pad";
+static final String TEXT_HOURS = "Hours";
+static final String TEXT_MINUTES = "Minutes";
+static final String TEXT_SECONDS = "Seconds";
+static final String TEXT_TITLE = "BIRD Delay";
+static final String TEXT_DELAY_SET1_TITLE = "Essential Pad";
+static final String TEXT_DELAY_SET2_TITLE = "Other Pad";
 
 // Delay-set locations
-static final int delaySet1_x = 30;
-static final int delaySet2_x = 542;
-static final int delaySet_y = 150;
+static final int DELAY_SET1_X = 30;
+static final int DELAY_SET2_X = 542;
+static final int DELAY_SET_Y = 150;
 
 // Button sizes
-static final int arrowButtonSize = 30;
-static final int delayButtonWidth = 80;
-static final int delayButtonHeight = 40;
+static final int ARROW_BUTTON_SIZE = 30;
+static final int DELAY_BUTTON_WIDTH = 80;
+static final int DELAY_BUTTON_HEIGHT = 40;
 
 // Text sizes
-static final int textSizeTimer = 25;
-static final int textSizeTitle = 40;
-static final int textSizeDelaySetTitles = 30;
+static final int TEXT_SIZE_TIMER = 25;
+static final int TEXT_SIZE_TITLE = 40;
+static final int TEXT_SIZE_DELAY_SET_TITLES = 30;
 
 // Button offsets
-static final int arrowButtonHorizOffset = 150;
-static final int arrowButtonVertOffset = 80;
-static final int delayButtonHorizOffset = 180;
-static final int delayButtonVertOffset = 140;
+static final int ARROW_BUTTON_HORIZ_OFFSET = 150;
+static final int ARROW_BUTTON_VERT_OFFSET = 80;
+static final int DELAY_BUTTON_HORIZ_OFFSET = 180;
+static final int DELAY_BUTTON_VERT_OFFSET = 140;
 
 // Number offsets
-static final int timeSetHorizOffset = arrowButtonHorizOffset;
-static final int timeSetVertOffset = 65;
-static final int timeShowHorizStartOffset = 160;
-static final int timeShowHorizOffset = 50;
-static final int timeShowVertOffset = 230;
+static final int TIME_SET_HORIZ_OFFSET = ARROW_BUTTON_HORIZ_OFFSET;
+static final int TIME_SET_VERT_OFFSET = 65;
+static final int TIME_SHOW_HORIZ_START_OFFSET = 160;
+static final int TIME_SHOW_HORIZ_OFFSET = 50;
+static final int TIME_SHOW_VERT_OFFSET = 230;
 
 // Text offsets
-static final int timeShowTextHorizStartOffset = 40;
-static final int timeShowTextHorizOffset = timeSetHorizOffset;
-static final int titleHorizOffset = 450;
-static final int titleVertOffset = 65;
-static final int delaySet1TitleHorizOffset = 155;
-static final int delaySet2TitleHorizOffset = 680;
-static final int delaySetTitleVertOffset = 120;
+static final int TIME_SHOW_TEXT_HORIZ_START_OFFSET = 40;
+static final int TIME_SHOW_TEXT_HORIZ_OFFSET = TIME_SET_HORIZ_OFFSET;
+static final int TITLE_HORIZ_OFFSET = 450;
+static final int TITLE_VERT_OFFSET = 65;
+static final int DELAY_SET1_TITLE_HORIZ_OFFSET = 155;
+static final int DELAY_SET2_TITLE_HORIZ_OFFSET = 680;
+static final int DELAY_SET_TITLE_VERT_OFFSET = 120;
 
 // Colors
-final color colorGrey = color(128, 128, 128);
-final color colorWhite = color(255, 255, 255);
-final color colorBackground = colorGrey;
-final color colorText = colorWhite;
+final color COLOR_GREY_DARK = color(128, 128, 128);
+final color COLOR_WHITE = color(255, 255, 255);
+final color COLOR_BACKGROUND = COLOR_GREY_DARK;
+final color COLOR_TEXT = COLOR_WHITE;
 
 void setup() {
   size (1024,768);
@@ -97,33 +97,40 @@ void setup() {
   //----------------------------------------------------------------------------
   // Delay For The First Pressure Pad
   hourUpButton1 = new UpButton(
-    delaySet1_x, delaySet_y,
-    arrowButtonSize, arrowButtonSize
+    DELAY_SET1_X,
+    DELAY_SET_Y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
   );
   hourDownButton1 = new DownButton(
-    delaySet1_x, delaySet_y + arrowButtonVertOffset,
-    arrowButtonSize, arrowButtonSize
+    DELAY_SET1_X,
+    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
   );
   minuteUpButton1 = new UpButton(
-    delaySet1_x + arrowButtonHorizOffset, delaySet_y,
-    arrowButtonSize, arrowButtonSize
+    DELAY_SET1_X + ARROW_BUTTON_HORIZ_OFFSET,
+    DELAY_SET_Y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
   );
   minuteDownButton1 = new DownButton(
-    delaySet1_x + arrowButtonHorizOffset, delaySet_y + arrowButtonVertOffset,
-    arrowButtonSize, arrowButtonSize
+    DELAY_SET1_X + ARROW_BUTTON_HORIZ_OFFSET,
+    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
   );
   secondUpButton1 = new UpButton(
-    delaySet1_x + arrowButtonHorizOffset*2, delaySet_y,
-    arrowButtonSize, arrowButtonSize
+    DELAY_SET1_X + ARROW_BUTTON_HORIZ_OFFSET*2,
+    DELAY_SET_Y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
   );
   secondDownButton1 = new DownButton(
-    delaySet1_x + arrowButtonHorizOffset*2, delaySet_y + arrowButtonVertOffset,
-    arrowButtonSize, arrowButtonSize
+    DELAY_SET1_X + ARROW_BUTTON_HORIZ_OFFSET*2,
+    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
   );
 
   delayButton1 = new DelayButton(
-    delaySet1_x + delayButtonHorizOffset, delaySet_y + delayButtonVertOffset,
-    delayButtonWidth, delayButtonHeight
+    DELAY_SET1_X + DELAY_BUTTON_HORIZ_OFFSET,
+    DELAY_SET_Y + DELAY_BUTTON_VERT_OFFSET,
+    DELAY_BUTTON_WIDTH, DELAY_BUTTON_HEIGHT
   );
 
   panel1 = new Delay();
@@ -131,33 +138,40 @@ void setup() {
   //----------------------------------------------------------------------------
   // Delay For The Second Pressure Pad
   hourUpButton2 = new UpButton(
-    delaySet2_x, delaySet_y,
-    arrowButtonSize, arrowButtonSize
+    DELAY_SET2_X,
+    DELAY_SET_Y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
   );
   hourDownButton2 = new DownButton(
-    delaySet2_x, delaySet_y + arrowButtonVertOffset,
-    arrowButtonSize, arrowButtonSize
+    DELAY_SET2_X,
+    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
   );
   minuteUpButton2 = new UpButton(
-    delaySet2_x + arrowButtonHorizOffset, delaySet_y,
-    arrowButtonSize, arrowButtonSize
+    DELAY_SET2_X + ARROW_BUTTON_HORIZ_OFFSET,
+    DELAY_SET_Y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
   );
   minuteDownButton2 = new DownButton(
-    delaySet2_x + arrowButtonHorizOffset, delaySet_y + arrowButtonVertOffset,
-    arrowButtonSize, arrowButtonSize
+    DELAY_SET2_X + ARROW_BUTTON_HORIZ_OFFSET,
+    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
   );
   secondUpButton2 = new UpButton(
-    delaySet2_x + arrowButtonHorizOffset*2, delaySet_y,
-    arrowButtonSize, arrowButtonSize
+    DELAY_SET2_X + ARROW_BUTTON_HORIZ_OFFSET*2,
+    DELAY_SET_Y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
   );
   secondDownButton2 = new DownButton(
-    delaySet2_x + arrowButtonHorizOffset*2, delaySet_y + arrowButtonVertOffset,
-    arrowButtonSize, arrowButtonSize
+    DELAY_SET2_X + ARROW_BUTTON_HORIZ_OFFSET*2,
+    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
   );
 
   delayButton2 = new DelayButton(
-    delaySet2_x + delayButtonHorizOffset, delaySet_y + delayButtonVertOffset,
-    delayButtonWidth, delayButtonHeight
+    DELAY_SET2_X + DELAY_BUTTON_HORIZ_OFFSET,
+    DELAY_SET_Y + DELAY_BUTTON_VERT_OFFSET,
+    DELAY_BUTTON_WIDTH, DELAY_BUTTON_HEIGHT
   );
 
   panel2 = new Delay();
@@ -294,7 +308,7 @@ void draw() {
     cbox.p2.turnOff();
   }
 
-  background(colorBackground);
+  background(COLOR_BACKGROUND);
 
   //----------------------------------------------------------------------------
   // Drawings
@@ -313,54 +327,65 @@ void draw() {
 
   delayButton1.drawMe();
 
-  textSize(textSizeTimer);
+  textSize(TEXT_SIZE_TIMER);
 
   // Numbers for setting the timer
   text(
     panel1.hour,
-    delaySet1_x, delaySet_y + timeSetVertOffset
+    DELAY_SET1_X,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
   text(
     panel1.minute,
-    delaySet1_x + timeSetHorizOffset, delaySet_y + timeSetVertOffset
+    DELAY_SET1_X + TIME_SET_HORIZ_OFFSET,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
   text(
     panel1.second,
-    delaySet1_x + timeSetHorizOffset*2, delaySet_y + timeSetVertOffset
+    DELAY_SET1_X + TIME_SET_HORIZ_OFFSET*2,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
 
   // Numbers for displaying the timer
   text(
     panel1.timerH,
-    delaySet1_x + timeShowHorizStartOffset,
-    delaySet_y + timeShowVertOffset
+    DELAY_SET1_X + TIME_SHOW_HORIZ_START_OFFSET,
+    DELAY_SET_Y + TIME_SHOW_VERT_OFFSET
   );
   text(
     panel1.timerM,
-    delaySet1_x + timeShowHorizStartOffset + timeShowHorizOffset,
-    delaySet_y + timeShowVertOffset
+    DELAY_SET1_X
+    + TIME_SHOW_HORIZ_START_OFFSET
+    + TIME_SHOW_HORIZ_OFFSET,
+    DELAY_SET_Y + TIME_SHOW_VERT_OFFSET
   );
   text(
     panel1.timerS,
-    delaySet1_x + timeShowHorizStartOffset + timeShowHorizOffset*2,
-    delaySet_y + timeShowVertOffset
+    DELAY_SET1_X
+    + TIME_SHOW_HORIZ_START_OFFSET
+    + TIME_SHOW_HORIZ_OFFSET*2,
+    DELAY_SET_Y + TIME_SHOW_VERT_OFFSET
   );
 
   // Text labels for setting the timer
   text(
-    textHours,
-    delaySet1_x + timeShowTextHorizStartOffset,
-    delaySet_y + timeSetVertOffset
+    TEXT_HOURS,
+    DELAY_SET1_X + TIME_SHOW_TEXT_HORIZ_START_OFFSET,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
   text(
-    textMinutes,
-    delaySet1_x + timeShowTextHorizStartOffset + timeShowTextHorizOffset,
-    delaySet_y + timeSetVertOffset
+    TEXT_MINUTES,
+    DELAY_SET1_X
+    + TIME_SHOW_TEXT_HORIZ_START_OFFSET
+    + TIME_SHOW_TEXT_HORIZ_OFFSET,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
   text(
-    textSeconds,
-    delaySet1_x + timeShowTextHorizStartOffset + timeShowTextHorizOffset*2,
-    delaySet_y + timeSetVertOffset
+    TEXT_SECONDS,
+    DELAY_SET1_X
+    + TIME_SHOW_TEXT_HORIZ_START_OFFSET
+    + TIME_SHOW_TEXT_HORIZ_OFFSET*2,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
 
   //----------------------------------------------------------------------------
@@ -376,54 +401,65 @@ void draw() {
 
   delayButton2.drawMe();
 
-  textSize(textSizeTimer);
+  textSize(TEXT_SIZE_TIMER);
 
   // Numbers for setting the timer
   text(
     panel2.hour,
-    delaySet2_x, delaySet_y + timeSetVertOffset
+    DELAY_SET2_X,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
   text(
     panel2.minute,
-    delaySet2_x + timeSetHorizOffset, delaySet_y + timeSetVertOffset
+    DELAY_SET2_X + TIME_SET_HORIZ_OFFSET,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
   text(
     panel2.second,
-    delaySet2_x + timeSetHorizOffset*2, delaySet_y + timeSetVertOffset
+    DELAY_SET2_X + TIME_SET_HORIZ_OFFSET*2,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
 
   // Numbers for displaying the timer
   text(
     panel2.timerH,
-    delaySet2_x + timeShowHorizStartOffset,
-    delaySet_y + timeShowVertOffset
+    DELAY_SET2_X + TIME_SHOW_HORIZ_START_OFFSET,
+    DELAY_SET_Y + TIME_SHOW_VERT_OFFSET
   );
   text(
     panel2.timerM,
-    delaySet2_x + timeShowHorizStartOffset + timeShowHorizOffset,
-    delaySet_y + timeShowVertOffset
+    DELAY_SET2_X
+    + TIME_SHOW_HORIZ_START_OFFSET
+    + TIME_SHOW_HORIZ_OFFSET,
+    DELAY_SET_Y + TIME_SHOW_VERT_OFFSET
   );
   text(
     panel2.timerS,
-    delaySet2_x + timeShowHorizStartOffset + timeShowHorizOffset*2,
-    delaySet_y + timeShowVertOffset
+    DELAY_SET2_X
+    + TIME_SHOW_HORIZ_START_OFFSET
+    + TIME_SHOW_HORIZ_OFFSET*2,
+    DELAY_SET_Y + TIME_SHOW_VERT_OFFSET
   );
 
   // Text labels for setting the timer
   text(
-    textHours,
-    delaySet2_x + timeShowTextHorizStartOffset,
-    delaySet_y + timeSetVertOffset
+    TEXT_HOURS,
+    DELAY_SET2_X + TIME_SHOW_TEXT_HORIZ_START_OFFSET,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
   text(
-    textMinutes,
-    delaySet2_x + timeShowTextHorizStartOffset + timeShowTextHorizOffset,
-    delaySet_y + timeSetVertOffset
+    TEXT_MINUTES,
+    DELAY_SET2_X
+    + TIME_SHOW_TEXT_HORIZ_START_OFFSET
+    + TIME_SHOW_TEXT_HORIZ_OFFSET,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
   text(
-    textSeconds,
-    delaySet2_x + timeShowTextHorizStartOffset + timeShowTextHorizOffset*2,
-    delaySet_y + timeSetVertOffset
+    TEXT_SECONDS,
+    DELAY_SET2_X
+    + TIME_SHOW_TEXT_HORIZ_START_OFFSET
+    + TIME_SHOW_TEXT_HORIZ_OFFSET*2,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
 
   //----------------------------------------------------------------------------
@@ -431,23 +467,23 @@ void draw() {
   cbox.drawMe();
 
   // Text
-  fill(colorText);
-  textSize(textSizeTitle);
+  fill(COLOR_TEXT);
+  textSize(TEXT_SIZE_TITLE);
   text(
-    textTitle,
-    titleHorizOffset, titleVertOffset
+    TEXT_TITLE,
+    TITLE_HORIZ_OFFSET, TITLE_VERT_OFFSET
   );
 
-  textSize(textSizeDelaySetTitles);
+  textSize(TEXT_SIZE_DELAY_SET_TITLES);
   text(
-    textDelaySet1Title,
-    delaySet1TitleHorizOffset, delaySetTitleVertOffset
+    TEXT_DELAY_SET1_TITLE,
+    DELAY_SET1_TITLE_HORIZ_OFFSET, DELAY_SET_TITLE_VERT_OFFSET
   );
 
-  textSize(textSizeDelaySetTitles);
+  textSize(TEXT_SIZE_DELAY_SET_TITLES);
   text(
-    textDelaySet2Title,
-    delaySet2TitleHorizOffset, delaySetTitleVertOffset
+    TEXT_DELAY_SET2_TITLE,
+    DELAY_SET2_TITLE_HORIZ_OFFSET, DELAY_SET_TITLE_VERT_OFFSET
   );
 }
 
