@@ -1,7 +1,7 @@
 class LED {
-  int xPos;
-  int yPos;
-  color col;
+  final int xPos;
+  final int yPos;
+  final color col;
   boolean on;
 
   LED(int x, int y, color c) {
