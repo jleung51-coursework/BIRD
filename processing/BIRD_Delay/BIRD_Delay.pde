@@ -46,6 +46,10 @@ static final String TEXT_TITLE = "BIRD Delay";
 static final String TEXT_DELAY_SET1_TITLE = "Essential Pad";
 static final String TEXT_DELAY_SET2_TITLE = "Other Pad";
 
+// Pad/Box locations
+static final int BOX_X = 860;
+static final int BOX_Y = 550;
+
 // Delay-set locations
 static final int DELAY_SET1_X = 30;
 static final int DELAY_SET2_X = 542;
@@ -177,7 +181,7 @@ void setup() {
   panel2 = new Delay();
 
   ppad = new Pad();
-  cbox = new Box();
+  cbox = new Box(BOX_X, BOX_Y);
 }
 
 void draw() {

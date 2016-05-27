@@ -3,17 +3,8 @@ class Box {
   LED pwr;
   LED p2;
 
-  final int X_POSITION = 860;
-  final int Y_POSITION = 550;
-
-  final int LED1_X = X_POSITION + 4;
-  final int LED1_Y = Y_POSITION + 78;
-
-  final int LED_POWER_X = X_POSITION + 40;
-  final int LED_POWER_Y = Y_POSITION + 68;
-
-  final int LED2_X = X_POSITION + 66;
-  final int LED2_Y = Y_POSITION + 42;
+  final int X_POSITION;
+  final int Y_POSITION;
 
   static final int CIRCLE_DIAMETER = 150;
   static final int POWER_BUTTON_SIZE = 15;
@@ -26,10 +17,22 @@ class Box {
   final color COLOR_GREEN = color(0, 255, 0);
   final color COLOR_YELLOW = color(255, 255, 0);
 
-  Box() {
-    p1 = new LED(LED1_X, LED1_Y, COLOR_RED);
-    pwr = new LED(LED_POWER_X, LED_POWER_Y, COLOR_GREEN);
-    p2 = new LED(LED2_X, LED2_Y, COLOR_YELLOW);
+  Box(int x, int y) {
+    X_POSITION = x;
+    Y_POSITION = y;
+
+    final int LED1_x = X_POSITION + 4;
+    final int LED1_y = Y_POSITION + 78;
+
+    final int LEDpwr_x = X_POSITION + 40;
+    final int LEDpwr_y = Y_POSITION + 68;
+
+    final int LED2_x = X_POSITION + 66;
+    final int LED2_y = Y_POSITION + 42;
+
+    p1 = new LED(LED1_x, LED1_y, COLOR_RED);
+    pwr = new LED(LEDpwr_x, LEDpwr_y, COLOR_GREEN);
+    p2 = new LED(LED2_x, LED2_y, COLOR_YELLOW);
   }
 
   void update(){
