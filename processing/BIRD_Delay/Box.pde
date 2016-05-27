@@ -3,17 +3,17 @@ class Box {
   LED pwr;
   LED p2;
 
-  static final int X_POSITION = 860;
-  static final int Y_POSITION = 550;
+  final int X_POSITION = 860;
+  final int Y_POSITION = 550;
 
-  static final int LED1_X = X_POSITION + 4;
-  static final int LED1_Y = Y_POSITION + 78;
+  final int LED1_X = X_POSITION + 4;
+  final int LED1_Y = Y_POSITION + 78;
 
-  static final int LED_POWER_X = X_POSITION + 40;
-  static final int LED_POWER_Y = Y_POSITION + 68;
+  final int LED_POWER_X = X_POSITION + 40;
+  final int LED_POWER_Y = Y_POSITION + 68;
 
-  static final int LED2_X = X_POSITION + 66;
-  static final int LED2_Y = Y_POSITION + 42;
+  final int LED2_X = X_POSITION + 66;
+  final int LED2_Y = Y_POSITION + 42;
 
   static final int CIRCLE_DIAMETER = 150;
   static final int POWER_BUTTON_SIZE = 15;
