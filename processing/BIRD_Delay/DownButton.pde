@@ -1,5 +1,7 @@
 class DownButton extends Button {
 
+  final color COLOR_WHITE = color(255);
+
   DownButton(int x, int y, int w, int h) {
     super(x, y, w, h);
   }
@@ -15,7 +17,8 @@ class DownButton extends Button {
 
   void drawMe(){
     super.drawMe();
-    fill(255, 255, 255);
+
+    fill(COLOR_WHITE);
     triangle(buttonX + buttonW/2, buttonY + buttonH - buttonH/4,
     buttonX + buttonW - buttonW/4, buttonY + buttonH/4,
     buttonX + buttonW/4, buttonY + buttonH/4);
