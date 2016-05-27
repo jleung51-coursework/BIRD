@@ -1,12 +1,14 @@
 class Button {
-  int buttonX;
-  int buttonY;
-  int buttonW;
-  int buttonH;
-  color buttonColor;
-  color baseColor;
-  color buttonHighlight;
-  color currentColor;
+  final int buttonX;
+  final int buttonY;
+  final int buttonW;
+  final int buttonH;
+
+  final color buttonColor;
+  final color baseColor;
+  final color buttonHighlight;
+  final color currentColor;
+
   boolean buttonOver;
 
   Button(int x, int y, int w, int h) {
