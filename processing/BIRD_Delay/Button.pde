@@ -4,18 +4,18 @@ class Button {
   final int buttonW;
   final int buttonH;
 
-  final color buttonColor;
-  final color baseColor;
-  final color buttonHighlight;
-  final color currentColor;
+  final color COLOR_BLACK = color(0);
+  final color COLOR_GREY_DARK = color(51);
+  final color COLOR_GREY = color(102);
+
+  final color buttonColor = COLOR_BLACK;
+  final color baseColor = COLOR_GREY;
+  final color buttonHighlight = COLOR_GREY_DARK;
+  final color currentColor = baseColor;
 
   boolean buttonOver;
 
   Button(int x, int y, int w, int h) {
-    buttonColor = color(0);
-    buttonHighlight = color(51);
-    baseColor = color(102);
-    currentColor = baseColor;
     buttonX = x;
     buttonY = y;
     buttonW = w;
