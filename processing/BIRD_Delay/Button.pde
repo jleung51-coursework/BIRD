@@ -7,10 +7,12 @@ class Button {
   final color COLOR_BLACK = color(0);
   final color COLOR_GREY_DARK = color(51);
   final color COLOR_GREY = color(102);
+  final color COLOR_WHITE = color(255);
 
   final color buttonColor = COLOR_BLACK;
   final color baseColor = COLOR_GREY;
   final color buttonHighlight = COLOR_GREY_DARK;
+  final color outlineColor = COLOR_WHITE;
   final color currentColor = baseColor;
 
   boolean buttonOver;
@@ -39,7 +41,7 @@ class Button {
     else {
       fill(buttonColor);
     }
-    stroke(255);
+    stroke(outlineColor);
     rect(buttonX, buttonY, buttonW, buttonH);
   }
 
