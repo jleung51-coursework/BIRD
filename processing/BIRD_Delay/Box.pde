@@ -43,7 +43,7 @@ class Box {
     arc(0, 0, circleDiameter, circleDiameter, 0, PI);
 
     rotate(PI/4.5);
-    fill(colorGrey);
+    fill(colorGreyLight);
 
     final int powerButtonX = -3;
     final int powerButtonY = 50;
