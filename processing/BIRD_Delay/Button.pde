@@ -9,11 +9,9 @@ class Button {
   final color COLOR_GREY = color(102);
   final color COLOR_WHITE = color(255);
 
-  final color buttonColor = COLOR_BLACK;
-  final color baseColor = COLOR_GREY;
-  final color buttonHighlight = COLOR_GREY_DARK;
-  final color outlineColor = COLOR_WHITE;
-  final color currentColor = baseColor;
+  final color COLOR_BUTTON_NORMAL = COLOR_BLACK;
+  final color COLOR_BUTTON_HIGHLIGHT = COLOR_GREY_DARK;
+  final color COLOR_BUTTON_OUTLINE = COLOR_WHITE;
 
   boolean buttonOver;
 
@@ -36,12 +34,12 @@ class Button {
 
   void drawMe () {
     if (buttonOver) {
-      fill(buttonHighlight);
+      fill(COLOR_BUTTON_HIGHLIGHT);
     }
     else {
-      fill(buttonColor);
+      fill(COLOR_BUTTON_NORMAL);
     }
-    stroke(outlineColor);
+    stroke(COLOR_BUTTON_OUTLINE);
     rect(buttonX, buttonY, buttonW, buttonH);
   }
 
