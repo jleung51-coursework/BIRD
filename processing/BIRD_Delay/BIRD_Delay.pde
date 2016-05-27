@@ -230,9 +230,9 @@ void draw() {
 
   delayButton1.drawMe();
 
-  text(panel1.hour,delaynum1,delaynum3+65);
-  text(panel1.minute,delaynum1+150,delaynum3+65);
-  text(panel1.second,delaynum1+300,delaynum3+65);
+  text(panel1.setHour,delaynum1,delaynum3+65);
+  text(panel1.setMinute,delaynum1+150,delaynum3+65);
+  text(panel1.setSecond,delaynum1+300,delaynum3+65);
 
   text(panel1.timerH,delaynum1+160,delaynum3+230);
   text(panel1.timerM,delaynum1+210,delaynum3+230);
@@ -256,9 +256,9 @@ void draw() {
 
   delayButton2.drawMe();
 
-  text(panel2.hour,delaynum2,delaynum3+65);
-  text(panel2.minute,delaynum2+150,delaynum3+65);
-  text(panel2.second,delaynum2+300,delaynum3+65);
+  text(panel2.setHour,delaynum2,delaynum3+65);
+  text(panel2.setMinute,delaynum2+150,delaynum3+65);
+  text(panel2.setSecond,delaynum2+300,delaynum3+65);
 
   text(panel2.timerH,delaynum2+160,delaynum3+230);
   text(panel2.timerM,delaynum2+210,delaynum3+230);
@@ -289,60 +289,68 @@ void mousePressed() {
   //----------------------------------------------------------------------------
   //Delay For First Pressure Pad
   if (delayButton1.buttonOver) {
-    panel1.activate(panel1.hour,panel1.minute,panel1.second);
+    panel1.activate(
+      panel1.setHour,
+      panel1.setMinute,
+      panel1.setSecond
+    );
   }
   if (hourUpButton1.buttonOver) {
-    panel1.hour = hourUpButton1.increase(panel1.hour);
+    panel1.setHour = hourUpButton1.increase(panel1.setHour);
   }
   if (hourDownButton1.buttonOver) {
-    panel1.hour = hourDownButton1.decrease(panel1.hour);
+    panel1.setHour = hourDownButton1.decrease(panel1.setHour);
   }
   if (minuteUpButton1.buttonOver) {
-    panel1.minute = minuteUpButton1.increase(panel1.minute);
-    if (panel1.minute == 60) {
-      panel1.minute = 0;
+    panel1.setMinute = minuteUpButton1.increase(panel1.setMinute);
+    if (panel1.setMinute == 60) {
+      panel1.setMinute = 0;
     }
   }
   if (minuteDownButton1.buttonOver) {
-    panel1.minute = minuteDownButton1.decrease(panel1.minute);
+    panel1.setMinute = minuteDownButton1.decrease(panel1.setMinute);
   }
   if (secondUpButton1.buttonOver) {
-    panel1.second = secondUpButton1.increase(panel1.second);
-    if (panel1.second == 60) {
-      panel1.second = 0;
+    panel1.setSecond = secondUpButton1.increase(panel1.setSecond);
+    if (panel1.setSecond == 60) {
+      panel1.setSecond = 0;
     }
   }
   if (secondDownButton1.buttonOver) {
-    panel1.second = secondDownButton1.decrease(panel1.second);
+    panel1.setSecond = secondDownButton1.decrease(panel1.setSecond);
   }
 
   //----------------------------------------------------------------------------
   //Delay For First Pressure Pad
   if (delayButton2.buttonOver) {
-    panel2.activate(panel2.hour,panel2.minute,panel2.second);
+    panel2.activate(
+      panel2.setHour,
+      panel2.setMinute,
+      panel2.setSecond
+    );
   }
   if (hourUpButton2.buttonOver) {
-    panel2.hour = hourUpButton2.increase(panel2.hour);
+    panel2.setHour = hourUpButton2.increase(panel2.setHour);
   }
   if (hourDownButton2.buttonOver) {
-    panel2.hour = hourDownButton1.decrease(panel2.hour);
+    panel2.setHour = hourDownButton1.decrease(panel2.setHour);
   }
   if (minuteUpButton2.buttonOver) {
-    panel2.minute = minuteUpButton2.increase(panel2.minute);
-    if (panel2.minute == 60) {
-      panel2.minute = 0;
+    panel2.setMinute = minuteUpButton2.increase(panel2.setMinute);
+    if (panel2.setMinute == 60) {
+      panel2.setMinute = 0;
     }
   }
   if (minuteDownButton2.buttonOver) {
-    panel2.minute = minuteDownButton1.decrease(panel2.minute);
+    panel2.setMinute = minuteDownButton1.decrease(panel2.setMinute);
   }
   if (secondUpButton2.buttonOver) {
-    panel2.second = secondUpButton2.increase(panel2.second);
-    if (panel2.second == 60) {
-      panel2.second = 0;
+    panel2.setSecond = secondUpButton2.increase(panel2.setSecond);
+    if (panel2.setSecond == 60) {
+      panel2.setSecond = 0;
     }
   }
   if (secondDownButton2.buttonOver) {
-    panel2.second = secondDownButton2.decrease(panel2.second);
+    panel2.setSecond = secondDownButton2.decrease(panel2.setSecond);
   }
 }
