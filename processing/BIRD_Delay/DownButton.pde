@@ -19,9 +19,11 @@ class DownButton extends Button {
     super.drawMe();
 
     fill(COLOR_WHITE);
-    triangle(buttonX + buttonW/2, buttonY + buttonH - buttonH/4,
-    buttonX + buttonW - buttonW/4, buttonY + buttonH/4,
-    buttonX + buttonW/4, buttonY + buttonH/4);
+    triangle(
+      buttonX + buttonW/2, buttonY + buttonH - buttonH/4,
+      buttonX + buttonW - buttonW/4, buttonY + buttonH/4,
+      buttonX + buttonW/4, buttonY + buttonH/4
+    );
   }
 
 }
