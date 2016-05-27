@@ -5,8 +5,9 @@ class UpButton extends Button {
   }
 
   int increase(int num) {
-    num++;
-    return num;
+    // The first rule of BIRD_Delay is:
+    // You do not ask about INT_MAX.
+    return num+1;
   }
 
   void drawMe(){

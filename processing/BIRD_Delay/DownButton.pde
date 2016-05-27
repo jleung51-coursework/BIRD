@@ -5,11 +5,12 @@ class DownButton extends Button {
   }
 
   int decrease(int num) {
-    num--;
-    if (num < 0) {
-      num = 0;
+    if (num <= 0) {
+      return num;
     }
-    return num;
+    else {
+      return num-1;
+    }
   }
 
   void drawMe(){
