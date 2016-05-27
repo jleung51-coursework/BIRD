@@ -88,8 +88,8 @@ static final int DELAY_SET2_TITLE_HORIZ_OFFSET = 680;
 static final int DELAY_SET_TITLE_VERT_OFFSET = 120;
 
 // Colors
-final color COLOR_GREY_DARK = color(128, 128, 128);
-final color COLOR_WHITE = color(255, 255, 255);
+final color COLOR_GREY_DARK = color(128);
+final color COLOR_WHITE = color(255);
 final color COLOR_BACKGROUND = COLOR_GREY_DARK;
 final color COLOR_TEXT = COLOR_WHITE;
 

@@ -11,8 +11,8 @@ class Box {
   static final int PROX_SENSOR_WIDTH = 40;
   static final int PROX_SENSOR_HEIGHT = 15;
 
-  final color COLOR_WHITE = color(255, 255, 255);
-  final color COLOR_GREY_LIGHT = color(200, 200, 200);
+  final color COLOR_WHITE = color(255);
+  final color COLOR_GREY_LIGHT = color(200);
   final color COLOR_RED = color(255, 0, 0);
   final color COLOR_GREEN = color(0, 255, 0);
   final color COLOR_YELLOW = color(255, 255, 0);
