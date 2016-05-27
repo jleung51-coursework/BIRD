@@ -2,15 +2,14 @@ class Delay {
   boolean active;
   boolean signal;
 
+  int hour = 0;
+  int minute = 0;
+  int second = 0;
+
   int timerH;
   int timerM;
   int timerS;
   int counter;
-
-  // Manipulated by the user through BIRD_Delay to set a delay time
-  int setHour = 0;
-  int setMinute = 0;
-  int setSecond = 0;
 
   Delay() {
     active = false;
