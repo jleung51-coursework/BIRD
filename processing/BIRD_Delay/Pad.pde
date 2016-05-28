@@ -1,19 +1,38 @@
 class Pad {
-  int xPos;
-  int yPos;
+  final int xPos;
+  final int yPos;
+
   LED p1;
   LED pwr;
   LED p2;
+
   boolean onPad1;
   boolean onPad2;
   boolean onPwr;
 
+  final int LED_OFFSET_X = 100;
+  final int LED_OFFSET_Y = 20;
+
   Pad() {
     xPos = 300;
     yPos = 425;
-    p1 = new LED(xPos+100, yPos+20, color(255,0,0));
-    pwr = new LED(xPos+200, yPos+20, color(0,255,0));
-    p2 = new LED(xPos+300, yPos+20, color(255,255,0));
+
+    p1 = new LED(
+      xPos + (LED_OFFSET_X * 1),
+      yPos + LED_OFFSET_Y,
+      color(255,0,0)
+    );
+    pwr = new LED(
+      xPos + (LED_OFFSET_X * 2),
+      yPos + LED_OFFSET_Y,
+      color(0,255,0)
+    );
+    p2 = new LED(
+      xPos + (LED_OFFSET_X * 3),
+      yPos + LED_OFFSET_Y,
+      color(255,255,0)
+    );
+
     onPad1 = false;
     onPad2 = false;
     onPwr = false;
