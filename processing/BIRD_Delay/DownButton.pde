@@ -1,3 +1,9 @@
+/*
+ * This Processing class implements a button which can be used to decrement
+ * a value used to delay the BIRD system.
+ *
+ */
+
 class DownButton extends Button {
 
   DownButton(int x, int y, int w, int h) {

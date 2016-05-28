@@ -1,3 +1,9 @@
+/*
+ * This Processing class implements a button which can be used to increment
+ * a value used to delay the BIRD system.
+ *
+ */
+
 class UpButton extends Button {
 
   UpButton(int x, int y, int w, int h) {

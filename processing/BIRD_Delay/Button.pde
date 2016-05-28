@@ -1,3 +1,9 @@
+/*
+ * This Processing class implements an interactive button which is highlighted
+ * when the mouse is held over it.
+ *
+ */
+
 class Button {
   int buttonX;
   int buttonY;

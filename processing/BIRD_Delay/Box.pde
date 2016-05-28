@@ -1,3 +1,9 @@
+/*
+ * This Processing class implements an object symbolizing the car "box" for
+ * the BIRD system.
+ *
+ */
+
 class Box {
   int xPos, yPos;
   LED p1;

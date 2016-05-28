@@ -1,3 +1,9 @@
+/*
+ * This Processing class implements an LED object which can be colored,
+ * activated, or deactivated to show the status of the BIRD system.
+ *
+ */
+
 class LED {
   int xPos;
   int yPos;

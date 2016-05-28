@@ -1,3 +1,10 @@
+/*
+ * This Processing file runs an application which shows the status of The
+ * BIRD system and allows the user to delay the car alert by a given amount
+ * of time.
+ *
+ */
+
 import processing.serial.*;
 Serial port;
 String val;
