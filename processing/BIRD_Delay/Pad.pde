@@ -10,22 +10,22 @@ class Pad {
   boolean onPad2;
   boolean onPwr;
 
-  final int OUTLINE_SIZE = 10;
+  static final int OUTLINE_SIZE = 10;
 
-  final int LED_OFFSET_X = 100;
-  final int LED_OFFSET_Y = 20;
+  static final int LED_OFFSET_X = 100;
+  static final int LED_OFFSET_Y = 20;
 
-  final int WIDTH = 400;
-  final int HEIGHT = 300;
+  static final int WIDTH = 400;
+  static final int HEIGHT = 300;
 
-  final int POWER_BUTTON_OFFSET_X = 185;
-  final int POWER_BUTTON_OFFSET_Y = 50;
-  final int POWER_BUTTON_SIZE = 30;
+  static final int POWER_BUTTON_OFFSET_X = 185;
+  static final int POWER_BUTTON_OFFSET_Y = 50;
+  static final int POWER_BUTTON_SIZE = 30;
 
-  final int PAD1_OFFSET_X = 30;
-  final int PAD2_OFFSET_X = 230;
-  final int PAD_OFFSET_Y = 130;
-  final int PAD_SIZE = 140;
+  static final int PAD1_OFFSET_X = 30;
+  static final int PAD2_OFFSET_X = 230;
+  static final int PAD_OFFSET_Y = 130;
+  static final int PAD_SIZE = 140;
 
   final color COLOR_WHITE = color(255);
   final color COLOR_GREY_LIGHT = color(200);
