@@ -10,6 +10,8 @@ class Pad {
   boolean onPad2;
   boolean onPwr;
 
+  final int OUTLINE_SIZE = 10;
+
   final int LED_OFFSET_X = 100;
   final int LED_OFFSET_Y = 20;
 
@@ -25,6 +27,12 @@ class Pad {
   final int PAD_OFFSET_Y = 130;
   final int PAD_SIZE = 140;
 
+  final color COLOR_WHITE = color(255);
+  final color COLOR_GREY_LIGHT = color(200);
+  final color COLOR_GREEN = color(0, 255, 0);
+  final color COLOR_RED = color(255, 0, 0);
+  final color COLOR_YELLOW = color(255, 255, 0);
+
   Pad() {
     xPos = 300;
     yPos = 425;
@@ -32,17 +40,17 @@ class Pad {
     p1 = new LED(
       xPos + (LED_OFFSET_X * 1),
       yPos + LED_OFFSET_Y,
-      color(255,0,0)
+      COLOR_RED
     );
     pwr = new LED(
       xPos + (LED_OFFSET_X * 2),
       yPos + LED_OFFSET_Y,
-      color(0,255,0)
+      COLOR_GREEN
     );
     p2 = new LED(
       xPos + (LED_OFFSET_X * 3),
       yPos + LED_OFFSET_Y,
-      color(255,255,0)
+      COLOR_YELLOW
     );
 
     onPad1 = false;
@@ -57,15 +65,16 @@ class Pad {
   }
 
   void drawMe() {
+    stroke(OUTLINE_SIZE);
 
     // Entire pad
-    stroke(10);
+    fill(COLOR_WHITE);
     rect(xPos, yPos, WIDTH, HEIGHT);
 
     // Power button
-    fill(color(200, 200, 200));
+    fill(COLOR_GREY_DARK);
     if(onPwr){
-      fill(color(0, 255, 0));
+      fill(COLOR_GREEN);
     }
     rect(
       xPos + POWER_BUTTON_OFFSET_X,
@@ -79,9 +88,11 @@ class Pad {
     p2.drawMe();
 
     // Pad 1
-    fill(color(200, 200, 200));
     if(onPad1){
-      fill(color(255, 0, 0));
+      fill(COLOR_RED);
+    }
+    else {
+      fill(COLOR_GREY_LIGHT);
     }
     rect(
       xPos + PAD1_OFFSET_X,
@@ -90,9 +101,11 @@ class Pad {
     );
 
     // Pad 2
-    fill(color(200, 200, 200));
     if(onPad2){
-      fill(color(255, 255, 0));
+      fill(COLOR_YELLOW);
+    }
+    else {
+      fill(COLOR_GREY_LIGHT);
     }
     rect(
       xPos + PAD2_OFFSET_X,
