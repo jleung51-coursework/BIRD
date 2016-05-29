@@ -24,15 +24,15 @@ class Button {
   }
 
   void update(int x, int y) {
-    buttonOver = overButton(buttonX, buttonY, buttonW, buttonH);
+    buttonOver = isOverButton();
   }
 
-  boolean overButton(int x, int y, int width, int height)  {
-    return mouseX > x && mouseX < x+width &&
-           mouseY > y && mouseY < y+height;
+  boolean isOverButton() {
+    return buttonX < mouseX && mouseX < (buttonX + buttonW) &&
+           buttonY < mouseY && mouseY < (buttonY + buttonH);
   }
 
-  void drawMe () {
+  void drawMe() {
     if (buttonOver) {
       fill(COLOR_BUTTON_HIGHLIGHT);
     }

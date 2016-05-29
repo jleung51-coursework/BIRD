@@ -33,8 +33,6 @@ boolean boxLED2;
 
 boolean connected = false;
 
-String sendval = "11";
-
 boolean t1 = false;
 boolean t2 = false;
 
@@ -185,6 +183,9 @@ void setup() {
 }
 
 void draw() {
+  background(128,128,128);
+
+
   //----------------------------------------------------------------------------
   // Arduino Connection
 
@@ -214,55 +215,60 @@ void draw() {
   t1 = panel1.signal;
   t2 = panel2.signal;
 
-  if( !t1 && !t2 ) {
-    sendval = "00";
+  char sendVal1;
+  char sendVal2;
+
+  if(t1) {
+    sendVal1 = '1';
   }
-  if( t1 && !t2 ) {
-    sendval = "10";
+  else {
+    sendVal1 = '0';
   }
-  if( !t1 && t2 ) {
-    sendval = "01";
+
+  if(t2) {
+    sendVal2 = '1';
   }
-  if( t1 && t2 ) {
-    sendval = "11";
+  else {
+    sendVal2 = '0';
   }
 
   if(connected){
-    port.write(sendval);
+    port.write(sendVal1);
+    port.write(sendVal2);
   }
 
   //----------------------------------------------------------------------------
   // Update
 
-  ppad.update(padLED1,padPower,padLED2);
+  ppad.update(padLED1, padPower, padLED2);
 
   //----------------------------------------------------------------------------
   // Delay For The First Pressure Pad
-  hourUpButton1.update(mouseX,mouseY);
-  hourDownButton1.update(mouseX,mouseY);
+  hourUpButton1.update(mouseX, mouseY);
+  hourDownButton1.update(mouseX, mouseY);
 
-  minuteUpButton1.update(mouseX,mouseY);
-  minuteDownButton1.update(mouseX,mouseY);
+  minuteUpButton1.update(mouseX, mouseY);
+  minuteDownButton1.update(mouseX, mouseY);
 
-  secondUpButton1.update(mouseX,mouseY);
-  secondDownButton1.update(mouseX,mouseY);
+  secondUpButton1.update(mouseX, mouseY);
+  secondDownButton1.update(mouseX, mouseY);
 
-  delayButton1.update(mouseX,mouseY);
+  delayButton1.update(mouseX, mouseY);
 
   panel1.update();
 
   //----------------------------------------------------------------------------
   // Delay For The Second Pressure Pad
-  hourUpButton2.update(mouseX,mouseY);
-  hourDownButton2.update(mouseX,mouseY);
+  hourUpButton2.update(mouseX, mouseY);
+  hourDownButton2.update(mouseX, mouseY);
 
-  minuteUpButton2.update(mouseX,mouseY);
-  minuteDownButton2.update(mouseX,mouseY);
+  minuteUpButton2.update(mouseX, mouseY);
+  minuteDownButton2.update(mouseX, mouseY);
 
-  secondUpButton2.update(mouseX,mouseY);
-  secondDownButton2.update(mouseX,mouseY);
+  secondUpButton2.update(mouseX, mouseY);
+  secondDownButton2.update(mouseX, mouseY);
 
-  delayButton2.update(mouseX,mouseY);
+  delayButton2.update(mouseX, mouseY);
 
   panel2.update();
 
@@ -311,6 +317,7 @@ void draw() {
   else{
     cbox.p2.turnOff();
   }
+
 
   background(COLOR_BACKGROUND);
 

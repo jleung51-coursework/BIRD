@@ -43,7 +43,7 @@ class Box {
     translate(X_POSITION, Y_POSITION);
 
     fill(COLOR_WHITE);
-    arc(0, 0, CIRCLE_DIAMETER, CIRCLE_DIAMETER, 0, PI);
+    arc(0, 0, CIRCLE_DIAMETER, CIRCLE_DIAMETER, 0, PI, CHORD);
 
     rotate(PI/4.5);
     fill(COLOR_GREY_LIGHT);
