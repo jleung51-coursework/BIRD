@@ -1,8 +1,12 @@
 class LED {
-  int xPos;
-  int yPos;
-  color col;
+  final int xPos;
+  final int yPos;
+  final color col;
   boolean on;
+
+  final int DIAMETER = 10;
+
+  final color COLOR_BLACK = color(0);
 
   LED(int x, int y, color c) {
     xPos = x;
@@ -24,9 +28,9 @@ class LED {
       fill(col);
     }
     else{
-     fill(0,0,0);
+      fill(COLOR_BLACK);
     }
-    ellipse(xPos,yPos,10,10);
+    ellipse(xPos, yPos, DIAMETER, DIAMETER);
   }
 
 }

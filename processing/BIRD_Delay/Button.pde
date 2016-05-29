@@ -1,19 +1,21 @@
 class Button {
-  int buttonX;
-  int buttonY;
-  int buttonW;
-  int buttonH;
-  color buttonColor;
-  color baseColor;
-  color buttonHighlight;
-  color currentColor;
+  final int buttonX;
+  final int buttonY;
+  final int buttonW;
+  final int buttonH;
+
+  final color COLOR_BLACK = color(0);
+  final color COLOR_GREY_DARK = color(51);
+  final color COLOR_GREY = color(102);
+  final color COLOR_WHITE = color(255);
+
+  final color COLOR_BUTTON_NORMAL = COLOR_BLACK;
+  final color COLOR_BUTTON_HIGHLIGHT = COLOR_GREY_DARK;
+  final color COLOR_BUTTON_OUTLINE = COLOR_WHITE;
+
   boolean buttonOver;
 
   Button(int x, int y, int w, int h) {
-    buttonColor = color(0);
-    buttonHighlight = color(51);
-    baseColor = color(102);
-    currentColor = baseColor;
     buttonX = x;
     buttonY = y;
     buttonW = w;
@@ -32,12 +34,12 @@ class Button {
 
   void drawMe() {
     if (buttonOver) {
-      fill(buttonHighlight);
+      fill(COLOR_BUTTON_HIGHLIGHT);
     }
     else {
-      fill(buttonColor);
+      fill(COLOR_BUTTON_NORMAL);
     }
-    stroke(255);
+    stroke(COLOR_BUTTON_OUTLINE);
     rect(buttonX, buttonY, buttonW, buttonH);
   }
 

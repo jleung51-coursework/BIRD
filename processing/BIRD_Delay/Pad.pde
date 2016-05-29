@@ -1,19 +1,58 @@
 class Pad {
-  int xPos;
-  int yPos;
+  final int xPos;
+  final int yPos;
+
   LED p1;
   LED pwr;
   LED p2;
+
   boolean onPad1;
   boolean onPad2;
   boolean onPwr;
 
+  static final int OUTLINE_SIZE = 10;
+
+  static final int LED_OFFSET_X = 100;
+  static final int LED_OFFSET_Y = 20;
+
+  static final int WIDTH = 400;
+  static final int HEIGHT = 300;
+
+  static final int POWER_BUTTON_OFFSET_X = 185;
+  static final int POWER_BUTTON_OFFSET_Y = 50;
+  static final int POWER_BUTTON_SIZE = 30;
+
+  static final int PAD1_OFFSET_X = 30;
+  static final int PAD2_OFFSET_X = 230;
+  static final int PAD_OFFSET_Y = 130;
+  static final int PAD_SIZE = 140;
+
+  final color COLOR_WHITE = color(255);
+  final color COLOR_GREY_LIGHT = color(200);
+  final color COLOR_GREEN = color(0, 255, 0);
+  final color COLOR_RED = color(255, 0, 0);
+  final color COLOR_YELLOW = color(255, 255, 0);
+
   Pad() {
     xPos = 300;
     yPos = 425;
-    p1 = new LED(xPos+100, yPos+20, color(255,0,0));
-    pwr = new LED(xPos+200, yPos+20, color(0,255,0));
-    p2 = new LED(xPos+300, yPos+20, color(255,255,0));
+
+    p1 = new LED(
+      xPos + (LED_OFFSET_X * 1),
+      yPos + LED_OFFSET_Y,
+      COLOR_RED
+    );
+    pwr = new LED(
+      xPos + (LED_OFFSET_X * 2),
+      yPos + LED_OFFSET_Y,
+      COLOR_GREEN
+    );
+    p2 = new LED(
+      xPos + (LED_OFFSET_X * 3),
+      yPos + LED_OFFSET_Y,
+      COLOR_YELLOW
+    );
+
     onPad1 = false;
     onPad2 = false;
     onPwr = false;
@@ -26,29 +65,53 @@ class Pad {
   }
 
   void drawMe() {
-    stroke(10);
-    rect(xPos, yPos, 400, 300);
+    stroke(OUTLINE_SIZE);
 
-    fill(color(200, 200, 200));
+    // Entire pad
+    fill(COLOR_WHITE);
+    rect(xPos, yPos, WIDTH, HEIGHT);
+
+    // Power button
+    fill(COLOR_GREY_DARK);
     if(onPwr){
-      fill(color(0, 255, 0));
+      fill(COLOR_GREEN);
     }
-    rect(xPos+185, yPos+50, 30, 30);
+    rect(
+      xPos + POWER_BUTTON_OFFSET_X,
+      yPos + POWER_BUTTON_OFFSET_Y,
+      POWER_BUTTON_SIZE, POWER_BUTTON_SIZE
+    );
+
+    // LEDs
     p1.drawMe();
     pwr.drawMe();
     p2.drawMe();
 
-    fill(color(200, 200, 200));
+    // Pad 1
     if(onPad1){
-      fill(color(255, 0, 0));
+      fill(COLOR_RED);
     }
+    else {
+      fill(COLOR_GREY_LIGHT);
+    }
+    rect(
+      xPos + PAD1_OFFSET_X,
+      yPos + PAD_OFFSET_Y,
+      PAD_SIZE, PAD_SIZE
+    );
 
-    rect(xPos+30, yPos+130, 140, 140);
-    fill(color(200, 200, 200));
+    // Pad 2
     if(onPad2){
-      fill(color(255, 255, 0));
+      fill(COLOR_YELLOW);
     }
-    rect(xPos+230, yPos+130, 140, 140);
+    else {
+      fill(COLOR_GREY_LIGHT);
+    }
+    rect(
+      xPos + PAD2_OFFSET_X,
+      yPos + PAD_OFFSET_Y,
+      PAD_SIZE, PAD_SIZE
+    );
   }
 
 }

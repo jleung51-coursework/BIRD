@@ -25,20 +25,71 @@ Delay panel2;
 Pad ppad;
 Box cbox;
 
-int delaynum1 = 30;
-int delaynum2 = 542;
-int delaynum3 = 150;
-
-boolean padPower = false;
-boolean padLED1 = false;
-boolean padLED2 = false;
-boolean boxLED1 = false;
-boolean boxLED2 = false;
+boolean padPower;
+boolean padLED1;
+boolean padLED2;
+boolean boxLED1;
+boolean boxLED2;
 
 boolean connected = false;
 
 boolean t1 = false;
 boolean t2 = false;
+
+// Text
+static final String TEXT_HOURS = "Hours";
+static final String TEXT_MINUTES = "Minutes";
+static final String TEXT_SECONDS = "Seconds";
+static final String TEXT_TITLE = "BIRD Delay";
+static final String TEXT_DELAY_SET1_TITLE = "Essential Pad";
+static final String TEXT_DELAY_SET2_TITLE = "Other Pad";
+
+// Pad/Box locations
+static final int BOX_X = 860;
+static final int BOX_Y = 550;
+
+// Delay-set locations
+static final int DELAY_SET1_X = 30;
+static final int DELAY_SET2_X = 542;
+static final int DELAY_SET_Y = 150;
+
+// Button sizes
+static final int ARROW_BUTTON_SIZE = 30;
+static final int DELAY_BUTTON_WIDTH = 80;
+static final int DELAY_BUTTON_HEIGHT = 40;
+
+// Text sizes
+static final int TEXT_SIZE_TIMER = 25;
+static final int TEXT_SIZE_TITLE = 40;
+static final int TEXT_SIZE_DELAY_SET_TITLES = 30;
+
+// Button offsets
+static final int ARROW_BUTTON_HORIZ_OFFSET = 150;
+static final int ARROW_BUTTON_VERT_OFFSET = 80;
+static final int DELAY_BUTTON_HORIZ_OFFSET = 180;
+static final int DELAY_BUTTON_VERT_OFFSET = 140;
+
+// Number offsets
+static final int TIME_SET_HORIZ_OFFSET = ARROW_BUTTON_HORIZ_OFFSET;
+static final int TIME_SET_VERT_OFFSET = 65;
+static final int TIME_SHOW_HORIZ_START_OFFSET = 160;
+static final int TIME_SHOW_HORIZ_OFFSET = 50;
+static final int TIME_SHOW_VERT_OFFSET = 230;
+
+// Text offsets
+static final int TIME_SHOW_TEXT_HORIZ_START_OFFSET = 40;
+static final int TIME_SHOW_TEXT_HORIZ_OFFSET = TIME_SET_HORIZ_OFFSET;
+static final int TITLE_HORIZ_OFFSET = 450;
+static final int TITLE_VERT_OFFSET = 65;
+static final int DELAY_SET1_TITLE_HORIZ_OFFSET = 155;
+static final int DELAY_SET2_TITLE_HORIZ_OFFSET = 680;
+static final int DELAY_SET_TITLE_VERT_OFFSET = 120;
+
+// Colors
+final color COLOR_GREY_DARK = color(128);
+final color COLOR_WHITE = color(255);
+final color COLOR_BACKGROUND = COLOR_GREY_DARK;
+final color COLOR_TEXT = COLOR_WHITE;
 
 void setup() {
   size (1024,768);
@@ -47,32 +98,88 @@ void setup() {
 
   //----------------------------------------------------------------------------
   // Delay For The First Pressure Pad
-  hourUpButton1 = new UpButton(delaynum1,delaynum3,30,30);
-  hourDownButton1 = new DownButton(delaynum1,delaynum3+80,30,30);
-  minuteUpButton1 = new UpButton(delaynum1+150,delaynum3,30,30);
-  minuteDownButton1 = new DownButton(delaynum1+150,delaynum3+80,30,30);
-  secondUpButton1 = new UpButton(delaynum1+300,delaynum3,30,30);
-  secondDownButton1 = new DownButton(delaynum1+300,delaynum3+80,30,30);
+  hourUpButton1 = new UpButton(
+    DELAY_SET1_X,
+    DELAY_SET_Y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  hourDownButton1 = new DownButton(
+    DELAY_SET1_X,
+    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  minuteUpButton1 = new UpButton(
+    DELAY_SET1_X + ARROW_BUTTON_HORIZ_OFFSET,
+    DELAY_SET_Y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  minuteDownButton1 = new DownButton(
+    DELAY_SET1_X + ARROW_BUTTON_HORIZ_OFFSET,
+    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  secondUpButton1 = new UpButton(
+    DELAY_SET1_X + ARROW_BUTTON_HORIZ_OFFSET*2,
+    DELAY_SET_Y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  secondDownButton1 = new DownButton(
+    DELAY_SET1_X + ARROW_BUTTON_HORIZ_OFFSET*2,
+    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
 
-  delayButton1 = new DelayButton(delaynum1+180,delaynum3+140,80,40);
+  delayButton1 = new DelayButton(
+    DELAY_SET1_X + DELAY_BUTTON_HORIZ_OFFSET,
+    DELAY_SET_Y + DELAY_BUTTON_VERT_OFFSET,
+    DELAY_BUTTON_WIDTH, DELAY_BUTTON_HEIGHT
+  );
 
   panel1 = new Delay();
 
   //----------------------------------------------------------------------------
   // Delay For The Second Pressure Pad
-  hourUpButton2 = new UpButton(delaynum2,delaynum3,30,30);
-  hourDownButton2 = new DownButton(delaynum2,delaynum3+80,30,30);
-  minuteUpButton2 = new UpButton(delaynum2+150,delaynum3,30,30);
-  minuteDownButton2 = new DownButton(delaynum2+150,delaynum3+80,30,30);
-  secondUpButton2 = new UpButton(delaynum2+300,delaynum3,30,30);
-  secondDownButton2 = new DownButton(delaynum2+300,delaynum3+80,30,30);
+  hourUpButton2 = new UpButton(
+    DELAY_SET2_X,
+    DELAY_SET_Y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  hourDownButton2 = new DownButton(
+    DELAY_SET2_X,
+    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  minuteUpButton2 = new UpButton(
+    DELAY_SET2_X + ARROW_BUTTON_HORIZ_OFFSET,
+    DELAY_SET_Y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  minuteDownButton2 = new DownButton(
+    DELAY_SET2_X + ARROW_BUTTON_HORIZ_OFFSET,
+    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  secondUpButton2 = new UpButton(
+    DELAY_SET2_X + ARROW_BUTTON_HORIZ_OFFSET*2,
+    DELAY_SET_Y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  secondDownButton2 = new DownButton(
+    DELAY_SET2_X + ARROW_BUTTON_HORIZ_OFFSET*2,
+    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
 
-  delayButton2 = new DelayButton(delaynum2+180,delaynum3+140,80,40);
+  delayButton2 = new DelayButton(
+    DELAY_SET2_X + DELAY_BUTTON_HORIZ_OFFSET,
+    DELAY_SET_Y + DELAY_BUTTON_VERT_OFFSET,
+    DELAY_BUTTON_WIDTH, DELAY_BUTTON_HEIGHT
+  );
 
   panel2 = new Delay();
 
   ppad = new Pad();
-  cbox = new Box();
+  cbox = new Box(BOX_X, BOX_Y);
 }
 
 void draw() {
@@ -84,15 +191,12 @@ void draw() {
 
   // Arduino to Processing
 
-  if (port.available() > 0) {
+  connected = port.available() > 0;
+  if (connected) {
     val = port.readStringUntil('\n');
     if(val != null){
       val = trim(val);  // Remove excess whitespace at beginning/end
     }
-    connected = true;
-  }
-  else {
-    connected = false;
   }
 
   if(val != null){
@@ -214,11 +318,15 @@ void draw() {
     cbox.p2.turnOff();
   }
 
+
+  background(COLOR_BACKGROUND);
+
   //----------------------------------------------------------------------------
   // Drawings
 
   //----------------------------------------------------------------------------
   //First Pressure Pad
+
   hourUpButton1.drawMe();
   hourDownButton1.drawMe();
 
@@ -230,18 +338,66 @@ void draw() {
 
   delayButton1.drawMe();
 
-  text(panel1.hour,delaynum1,delaynum3+65);
-  text(panel1.minute,delaynum1+150,delaynum3+65);
-  text(panel1.second,delaynum1+300,delaynum3+65);
+  textSize(TEXT_SIZE_TIMER);
 
-  text(panel1.timerH,delaynum1+160,delaynum3+230);
-  text(panel1.timerM,delaynum1+210,delaynum3+230);
-  text(panel1.timerS,delaynum1+260,delaynum3+230);
+  // Numbers for setting the timer
+  text(
+    panel1.setHour,
+    DELAY_SET1_X,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
+  );
+  text(
+    panel1.setMinute,
+    DELAY_SET1_X + TIME_SET_HORIZ_OFFSET,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
+  );
+  text(
+    panel1.setSecond,
+    DELAY_SET1_X + TIME_SET_HORIZ_OFFSET*2,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
+  );
 
-  textSize(25);
-  text("Hours",delaynum1+40,delaynum3+65);
-  text("Minutes",delaynum1+190,delaynum3+65);
-  text("Seconds",delaynum1+340,delaynum3+65);
+  // Numbers for displaying the timer
+  text(
+    panel1.timerH,
+    DELAY_SET1_X + TIME_SHOW_HORIZ_START_OFFSET,
+    DELAY_SET_Y + TIME_SHOW_VERT_OFFSET
+  );
+  text(
+    panel1.timerM,
+    DELAY_SET1_X
+    + TIME_SHOW_HORIZ_START_OFFSET
+    + TIME_SHOW_HORIZ_OFFSET,
+    DELAY_SET_Y + TIME_SHOW_VERT_OFFSET
+  );
+  text(
+    panel1.timerS,
+    DELAY_SET1_X
+    + TIME_SHOW_HORIZ_START_OFFSET
+    + TIME_SHOW_HORIZ_OFFSET*2,
+    DELAY_SET_Y + TIME_SHOW_VERT_OFFSET
+  );
+
+  // Text labels for setting the timer
+  text(
+    TEXT_HOURS,
+    DELAY_SET1_X + TIME_SHOW_TEXT_HORIZ_START_OFFSET,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
+  );
+  text(
+    TEXT_MINUTES,
+    DELAY_SET1_X
+    + TIME_SHOW_TEXT_HORIZ_START_OFFSET
+    + TIME_SHOW_TEXT_HORIZ_OFFSET,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
+  );
+  text(
+    TEXT_SECONDS,
+    DELAY_SET1_X
+    + TIME_SHOW_TEXT_HORIZ_START_OFFSET
+    + TIME_SHOW_TEXT_HORIZ_OFFSET*2,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
+  );
 
   //----------------------------------------------------------------------------
   //Second Pressure Pad
@@ -256,93 +412,158 @@ void draw() {
 
   delayButton2.drawMe();
 
-  text(panel2.hour,delaynum2,delaynum3+65);
-  text(panel2.minute,delaynum2+150,delaynum3+65);
-  text(panel2.second,delaynum2+300,delaynum3+65);
+  textSize(TEXT_SIZE_TIMER);
 
-  text(panel2.timerH,delaynum2+160,delaynum3+230);
-  text(panel2.timerM,delaynum2+210,delaynum3+230);
-  text(panel2.timerS,delaynum2+260,delaynum3+230);
+  // Numbers for setting the timer
+  text(
+    panel2.setHour,
+    DELAY_SET2_X,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
+  );
+  text(
+    panel2.setMinute,
+    DELAY_SET2_X + TIME_SET_HORIZ_OFFSET,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
+  );
+  text(
+    panel2.setSecond,
+    DELAY_SET2_X + TIME_SET_HORIZ_OFFSET*2,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
+  );
 
-  textSize(25);
-  text("Hours",delaynum2+40,delaynum3+65);
-  text("Minutes",delaynum2+190,delaynum3+65);
-  text("Seconds",delaynum2+340,delaynum3+65);
+  // Numbers for displaying the timer
+  text(
+    panel2.timerH,
+    DELAY_SET2_X + TIME_SHOW_HORIZ_START_OFFSET,
+    DELAY_SET_Y + TIME_SHOW_VERT_OFFSET
+  );
+  text(
+    panel2.timerM,
+    DELAY_SET2_X
+    + TIME_SHOW_HORIZ_START_OFFSET
+    + TIME_SHOW_HORIZ_OFFSET,
+    DELAY_SET_Y + TIME_SHOW_VERT_OFFSET
+  );
+  text(
+    panel2.timerS,
+    DELAY_SET2_X
+    + TIME_SHOW_HORIZ_START_OFFSET
+    + TIME_SHOW_HORIZ_OFFSET*2,
+    DELAY_SET_Y + TIME_SHOW_VERT_OFFSET
+  );
+
+  // Text labels for setting the timer
+  text(
+    TEXT_HOURS,
+    DELAY_SET2_X + TIME_SHOW_TEXT_HORIZ_START_OFFSET,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
+  );
+  text(
+    TEXT_MINUTES,
+    DELAY_SET2_X
+    + TIME_SHOW_TEXT_HORIZ_START_OFFSET
+    + TIME_SHOW_TEXT_HORIZ_OFFSET,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
+  );
+  text(
+    TEXT_SECONDS,
+    DELAY_SET2_X
+    + TIME_SHOW_TEXT_HORIZ_START_OFFSET
+    + TIME_SHOW_TEXT_HORIZ_OFFSET*2,
+    DELAY_SET_Y + TIME_SET_VERT_OFFSET
+  );
 
   //----------------------------------------------------------------------------
   ppad.drawMe();
   cbox.drawMe();
 
   // Text
-  fill(color(255,255,255));
-  textSize(40);
-  text("BIRD Delay",30,65);
+  fill(COLOR_TEXT);
+  textSize(TEXT_SIZE_TITLE);
+  text(
+    TEXT_TITLE,
+    TITLE_HORIZ_OFFSET, TITLE_VERT_OFFSET
+  );
 
-  textSize(30);
-  text("Essential Pad",155,120);
+  textSize(TEXT_SIZE_DELAY_SET_TITLES);
+  text(
+    TEXT_DELAY_SET1_TITLE,
+    DELAY_SET1_TITLE_HORIZ_OFFSET, DELAY_SET_TITLE_VERT_OFFSET
+  );
 
-  textSize(30);
-  text("Other Pad",680,120);
+  textSize(TEXT_SIZE_DELAY_SET_TITLES);
+  text(
+    TEXT_DELAY_SET2_TITLE,
+    DELAY_SET2_TITLE_HORIZ_OFFSET, DELAY_SET_TITLE_VERT_OFFSET
+  );
 }
 
 void mousePressed() {
   //----------------------------------------------------------------------------
   //Delay For First Pressure Pad
   if (delayButton1.buttonOver) {
-    panel1.activate(panel1.hour,panel1.minute,panel1.second);
+    panel1.activate(
+      panel1.setHour,
+      panel1.setMinute,
+      panel1.setSecond
+    );
   }
   if (hourUpButton1.buttonOver) {
-    panel1.hour = hourUpButton1.increase(panel1.hour);
+    panel1.setHour = hourUpButton1.increase(panel1.setHour);
   }
   if (hourDownButton1.buttonOver) {
-    panel1.hour = hourDownButton1.decrease(panel1.hour);
+    panel1.setHour = hourDownButton1.decrease(panel1.setHour);
   }
   if (minuteUpButton1.buttonOver) {
-    panel1.minute = minuteUpButton1.increase(panel1.minute);
-    if (panel1.minute == 60) {
-      panel1.minute = 0;
+    panel1.setMinute = minuteUpButton1.increase(panel1.setMinute);
+    if (panel1.setMinute == 60) {
+      panel1.setMinute = 0;
     }
   }
   if (minuteDownButton1.buttonOver) {
-    panel1.minute = minuteDownButton1.decrease(panel1.minute);
+    panel1.setMinute = minuteDownButton1.decrease(panel1.setMinute);
   }
   if (secondUpButton1.buttonOver) {
-    panel1.second = secondUpButton1.increase(panel1.second);
-    if (panel1.second == 60) {
-      panel1.second = 0;
+    panel1.setSecond = secondUpButton1.increase(panel1.setSecond);
+    if (panel1.setSecond == 60) {
+      panel1.setSecond = 0;
     }
   }
   if (secondDownButton1.buttonOver) {
-    panel1.second = secondDownButton1.decrease(panel1.second);
+    panel1.setSecond = secondDownButton1.decrease(panel1.setSecond);
   }
 
   //----------------------------------------------------------------------------
   //Delay For First Pressure Pad
   if (delayButton2.buttonOver) {
-    panel2.activate(panel2.hour,panel2.minute,panel2.second);
+    panel2.activate(
+      panel2.setHour,
+      panel2.setMinute,
+      panel2.setSecond
+    );
   }
   if (hourUpButton2.buttonOver) {
-    panel2.hour = hourUpButton2.increase(panel2.hour);
+    panel2.setHour = hourUpButton2.increase(panel2.setHour);
   }
   if (hourDownButton2.buttonOver) {
-    panel2.hour = hourDownButton1.decrease(panel2.hour);
+    panel2.setHour = hourDownButton1.decrease(panel2.setHour);
   }
   if (minuteUpButton2.buttonOver) {
-    panel2.minute = minuteUpButton2.increase(panel2.minute);
-    if (panel2.minute == 60) {
-      panel2.minute = 0;
+    panel2.setMinute = minuteUpButton2.increase(panel2.setMinute);
+    if (panel2.setMinute == 60) {
+      panel2.setMinute = 0;
     }
   }
   if (minuteDownButton2.buttonOver) {
-    panel2.minute = minuteDownButton1.decrease(panel2.minute);
+    panel2.setMinute = minuteDownButton1.decrease(panel2.setMinute);
   }
   if (secondUpButton2.buttonOver) {
-    panel2.second = secondUpButton2.increase(panel2.second);
-    if (panel2.second == 60) {
-      panel2.second = 0;
+    panel2.setSecond = secondUpButton2.increase(panel2.setSecond);
+    if (panel2.setSecond == 60) {
+      panel2.setSecond = 0;
     }
   }
   if (secondDownButton2.buttonOver) {
-    panel2.second = secondDownButton2.decrease(panel2.second);
+    panel2.setSecond = secondDownButton2.decrease(panel2.setSecond);
   }
 }
