@@ -1,3 +1,10 @@
+/*
+ * This Processing class implements a delay object which can be set to
+ * a specific delay time, count down, and notify the user when the timer
+ * reaches 0.
+ *
+ */
+
 class Delay {
   boolean active;
   boolean signal;

@@ -1,3 +1,9 @@
+/*
+ * This Processing class implements a button which can be used to activate
+ * a delay for the BIRD system alert.
+ *
+ */
+
 class DelayButton extends Button {
 
   final color COLOR_WHITE = color(255);

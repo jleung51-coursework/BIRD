@@ -1,3 +1,9 @@
+/*
+ * This Processing class implements an object symbolizing the pressure "pad"
+ * sensor system for the BIRD system.
+ *
+ */
+
 class Pad {
   final int xPos;
   final int yPos;
