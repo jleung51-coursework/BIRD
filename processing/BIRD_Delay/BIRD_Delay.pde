@@ -533,31 +533,31 @@ private void initializeDelaySet2(final int x, final int y) {
 // is returned.
 private String receiveFromArduino() {
 
-  String val = null;
+  String input = null;
 
   if ( !(port.available() > 0) ) {
-    return val;
+    return input;
   }
 
-  val = port.readStringUntil('\n');
+  input = port.readStringUntil('\n');
 
-  if(val != null){
-    val = trim(val);  // Remove excess whitespace at beginning/end
+  if(input != null){
+    input = trim(input);  // Remove excess whitespace at beginning/end
   }
 
-  return val;
+  return input;
 }
 
 // This private method receives a String representing the input from the
 // Arduino and sets the boolean variables representing the Arduino LEDs.
-private void setArduinoStatus(String val) {
+private void setArduinoStatus(String input) {
 
-  padPower = val.equals("20");
+  padPower = input.equals("20");
 
-  padLED1 = (val.charAt(0) == '1');
+  padLED1 = (input.charAt(0) == '1');
   boxLED1 = padLED1;
 
-  padLED2 = (val.charAt(1) == '1');
+  padLED2 = (input.charAt(1) == '1');
   boxLED2 = padLED1;
 
 }
