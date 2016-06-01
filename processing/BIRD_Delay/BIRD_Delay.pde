@@ -103,88 +103,8 @@ void setup() {
 
   port = new Serial(this, "/dev/ttyUSB0", 9600);
 
-  //----------------------------------------------------------------------------
-  // Delay For The First Pressure Pad
-  hourUpButton1 = new UpButton(
-    DELAY_SET1_X,
-    DELAY_SET_Y,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-  hourDownButton1 = new DownButton(
-    DELAY_SET1_X,
-    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-  minuteUpButton1 = new UpButton(
-    DELAY_SET1_X + ARROW_BUTTON_HORIZ_OFFSET,
-    DELAY_SET_Y,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-  minuteDownButton1 = new DownButton(
-    DELAY_SET1_X + ARROW_BUTTON_HORIZ_OFFSET,
-    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-  secondUpButton1 = new UpButton(
-    DELAY_SET1_X + ARROW_BUTTON_HORIZ_OFFSET*2,
-    DELAY_SET_Y,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-  secondDownButton1 = new DownButton(
-    DELAY_SET1_X + ARROW_BUTTON_HORIZ_OFFSET*2,
-    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-
-  delayButton1 = new DelayButton(
-    DELAY_SET1_X + DELAY_BUTTON_HORIZ_OFFSET,
-    DELAY_SET_Y + DELAY_BUTTON_VERT_OFFSET,
-    DELAY_BUTTON_WIDTH, DELAY_BUTTON_HEIGHT
-  );
-
-  panel1 = new Delay();
-
-  //----------------------------------------------------------------------------
-  // Delay For The Second Pressure Pad
-  hourUpButton2 = new UpButton(
-    DELAY_SET2_X,
-    DELAY_SET_Y,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-  hourDownButton2 = new DownButton(
-    DELAY_SET2_X,
-    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-  minuteUpButton2 = new UpButton(
-    DELAY_SET2_X + ARROW_BUTTON_HORIZ_OFFSET,
-    DELAY_SET_Y,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-  minuteDownButton2 = new DownButton(
-    DELAY_SET2_X + ARROW_BUTTON_HORIZ_OFFSET,
-    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-  secondUpButton2 = new UpButton(
-    DELAY_SET2_X + ARROW_BUTTON_HORIZ_OFFSET*2,
-    DELAY_SET_Y,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-  secondDownButton2 = new DownButton(
-    DELAY_SET2_X + ARROW_BUTTON_HORIZ_OFFSET*2,
-    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-
-  delayButton2 = new DelayButton(
-    DELAY_SET2_X + DELAY_BUTTON_HORIZ_OFFSET,
-    DELAY_SET_Y + DELAY_BUTTON_VERT_OFFSET,
-    DELAY_BUTTON_WIDTH, DELAY_BUTTON_HEIGHT
-  );
-
-  panel2 = new Delay();
-
+  initializeDelaySet1();
+  initializeDelaySet2();
   ppad = new Pad();
   cbox = new Box(BOX_X, BOX_Y);
 }
@@ -573,4 +493,90 @@ void mousePressed() {
   if (secondDownButton2.buttonOver) {
     panel2.setSecond = secondDownButton2.decrease(panel2.setSecond);
   }
+}
+
+private void initializeDelaySet1() {
+
+  hourUpButton1 = new UpButton(
+    DELAY_SET1_X,
+    DELAY_SET_Y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  hourDownButton1 = new DownButton(
+    DELAY_SET1_X,
+    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  minuteUpButton1 = new UpButton(
+    DELAY_SET1_X + ARROW_BUTTON_HORIZ_OFFSET,
+    DELAY_SET_Y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  minuteDownButton1 = new DownButton(
+    DELAY_SET1_X + ARROW_BUTTON_HORIZ_OFFSET,
+    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  secondUpButton1 = new UpButton(
+    DELAY_SET1_X + ARROW_BUTTON_HORIZ_OFFSET*2,
+    DELAY_SET_Y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  secondDownButton1 = new DownButton(
+    DELAY_SET1_X + ARROW_BUTTON_HORIZ_OFFSET*2,
+    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+
+  delayButton1 = new DelayButton(
+    DELAY_SET1_X + DELAY_BUTTON_HORIZ_OFFSET,
+    DELAY_SET_Y + DELAY_BUTTON_VERT_OFFSET,
+    DELAY_BUTTON_WIDTH, DELAY_BUTTON_HEIGHT
+  );
+
+  panel1 = new Delay();
+
+}
+
+private void initializeDelaySet2() {
+
+  hourUpButton2 = new UpButton(
+    DELAY_SET2_X,
+    DELAY_SET_Y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  hourDownButton2 = new DownButton(
+    DELAY_SET2_X,
+    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  minuteUpButton2 = new UpButton(
+    DELAY_SET2_X + ARROW_BUTTON_HORIZ_OFFSET,
+    DELAY_SET_Y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  minuteDownButton2 = new DownButton(
+    DELAY_SET2_X + ARROW_BUTTON_HORIZ_OFFSET,
+    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  secondUpButton2 = new UpButton(
+    DELAY_SET2_X + ARROW_BUTTON_HORIZ_OFFSET*2,
+    DELAY_SET_Y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  secondDownButton2 = new DownButton(
+    DELAY_SET2_X + ARROW_BUTTON_HORIZ_OFFSET*2,
+    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+
+  delayButton2 = new DelayButton(
+    DELAY_SET2_X + DELAY_BUTTON_HORIZ_OFFSET,
+    DELAY_SET_Y + DELAY_BUTTON_VERT_OFFSET,
+    DELAY_BUTTON_WIDTH, DELAY_BUTTON_HEIGHT
+  );
+
+  panel2 = new Delay();
+
 }
