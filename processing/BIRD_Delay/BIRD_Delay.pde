@@ -104,7 +104,7 @@ void setup() {
 }
 
 void draw() {
-  background(128,128,128);
+  background(COLOR_BACKGROUND);
 
   String arduinoInput = receiveFromArduino();
   if(arduinoInput != null) {
@@ -192,9 +192,6 @@ void draw() {
   else{
     cbox.p2.turnOff();
   }
-
-
-  background(COLOR_BACKGROUND);
 
   //----------------------------------------------------------------------------
   // Drawings
