@@ -495,6 +495,12 @@ void mousePressed() {
   }
 }
 
+// This private method initializes the first delay set at the
+// given coordinates.
+//
+// A delay set includes 6 buttons for incrementing/decrementing the amount
+// of time to delay, 1 button for activating a delay, and two sets of times
+// (one for setting the delay timer, one for the active delay timer).
 private void initializeDelaySet1(final int x, final int y) {
 
   hourUpButton1 = new UpButton(
@@ -531,6 +537,12 @@ private void initializeDelaySet1(final int x, final int y) {
 
 }
 
+// This private method initializes the second delay set at the
+// given coordinates.
+//
+// A delay set includes 6 buttons for incrementing/decrementing the amount
+// of time to delay, 1 button for activating a delay, and two sets of times
+// (one for setting the delay timer, one for the active delay timer).
 private void initializeDelaySet2(final int x, final int y) {
 
   hourUpButton2 = new UpButton(
