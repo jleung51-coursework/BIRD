@@ -37,9 +37,6 @@ boolean padLED2;
 boolean boxLED1;
 boolean boxLED2;
 
-boolean t1 = false;
-boolean t2 = false;
-
 // Text
 static final String TEXT_HOURS = "Hours";
 static final String TEXT_MINUTES = "Minutes";
@@ -581,20 +578,17 @@ private void setArduinoStatus(String val) {
 // If a character is 0, then the delay is not active.
 private void sendArduinoDelaySignal() {
 
-  t1 = delay1.signal;
-  t2 = delay2.signal;
-
   char sendVal1;
   char sendVal2;
 
-  if(t1) {
+  if(delay1.signal) {
     sendVal1 = '1';
   }
   else {
     sendVal1 = '0';
   }
 
-  if(t2) {
+  if(delay2.signal) {
     sendVal2 = '1';
   }
   else {
