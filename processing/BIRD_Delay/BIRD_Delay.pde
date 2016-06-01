@@ -543,14 +543,6 @@ private String receiveFromArduino() {
 
   if(val != null){
     val = trim(val);  // Remove excess whitespace at beginning/end
-
-    padPower = val.equals("20");
-
-    padLED1 = (val.charAt(0) == '1');
-    boxLED1 = padLED1;
-
-    padLED2 = (val.charAt(1) == '1');
-    boxLED2 = padLED1;
   }
 
   return val;
