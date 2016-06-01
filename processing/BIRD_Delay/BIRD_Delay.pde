@@ -7,7 +7,6 @@
 
 import processing.serial.*;
 Serial port;
-String val;
 
 UpButton hourUpButton1;
 UpButton hourUpButton2;
@@ -37,8 +36,6 @@ boolean padLED1;
 boolean padLED2;
 boolean boxLED1;
 boolean boxLED2;
-
-boolean connected = false;
 
 boolean t1 = false;
 boolean t2 = false;
@@ -112,56 +109,10 @@ void setup() {
 void draw() {
   background(128,128,128);
 
-
-  //----------------------------------------------------------------------------
-  // Arduino Connection
-
-  // Arduino to Processing
-
-  connected = port.available() > 0;
-  if (connected) {
-    val = port.readStringUntil('\n');
-    if(val != null){
-      val = trim(val);  // Remove excess whitespace at beginning/end
-    }
-  }
-
-  if(val != null){
-    // Pad Power
-    padPower = val.equals("20");
-
-    padLED1 = (val.charAt(0) == '1');
-    boxLED1 = padLED1;
-
-    padLED2 = (val.charAt(1) == '1');
-    boxLED2 = padLED1;
-  }
-
-  // Processing to Arduino
-
-  t1 = delay1.signal;
-  t2 = delay2.signal;
-
-  char sendVal1;
-  char sendVal2;
-
-  if(t1) {
-    sendVal1 = '1';
-  }
-  else {
-    sendVal1 = '0';
-  }
-
-  if(t2) {
-    sendVal2 = '1';
-  }
-  else {
-    sendVal2 = '0';
-  }
-
-  if(connected){
-    port.write(sendVal1);
-    port.write(sendVal2);
+  String arduinoInput = receiveFromArduino();
+  if(arduinoInput != null) {
+    setArduinoStatus(arduinoInput);
+    sendArduinoDelaySignal();
   }
 
   //----------------------------------------------------------------------------
@@ -577,5 +528,81 @@ private void initializeDelaySet2(final int x, final int y) {
   );
 
   delay2 = new Delay();
+
+}
+
+// This private method receives input from the Arduino until the first
+// newline character if available. If no input is received, then null
+// is returned.
+private String receiveFromArduino() {
+
+  String val = null;
+
+  if ( !(port.available() > 0) ) {
+    return val;
+  }
+
+  val = port.readStringUntil('\n');
+
+  if(val != null){
+    val = trim(val);  // Remove excess whitespace at beginning/end
+
+    padPower = val.equals("20");
+
+    padLED1 = (val.charAt(0) == '1');
+    boxLED1 = padLED1;
+
+    padLED2 = (val.charAt(1) == '1');
+    boxLED2 = padLED1;
+  }
+
+  return val;
+}
+
+// This private method receives a String representing the input from the
+// Arduino and sets the boolean variables representing the Arduino LEDs.
+private void setArduinoStatus(String val) {
+
+  padPower = val.equals("20");
+
+  padLED1 = (val.charAt(0) == '1');
+  boxLED1 = padLED1;
+
+  padLED2 = (val.charAt(1) == '1');
+  boxLED2 = padLED1;
+
+}
+
+// This private method sends the status of the delay to the Arduino
+// as two characters and a newline, representing the first delay set
+// and the second delay set respectively.
+//
+// If a character is 1, then the delay is active.
+// If a character is 0, then the delay is not active.
+private void sendArduinoDelaySignal() {
+
+  t1 = delay1.signal;
+  t2 = delay2.signal;
+
+  char sendVal1;
+  char sendVal2;
+
+  if(t1) {
+    sendVal1 = '1';
+  }
+  else {
+    sendVal1 = '0';
+  }
+
+  if(t2) {
+    sendVal2 = '1';
+  }
+  else {
+    sendVal2 = '0';
+  }
+
+  port.write(sendVal1);
+  port.write(sendVal2);
+  port.write("\n");
 
 }
