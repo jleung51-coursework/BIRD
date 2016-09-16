@@ -71,6 +71,18 @@ class Pad {
     onPad2 = pad2;
   }
 
+  public void setPad1On(boolean padOn) {
+    onPad1 = padOn;
+  }
+
+  public void setPowerOn(boolean powerOn) {
+    onPwr = powerOn;
+  }
+
+  public void setPad2On(boolean padOn) {
+    onPad2 = padOn;
+  }
+
   public void drawMe() {
     stroke(OUTLINE_SIZE);
 

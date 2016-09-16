@@ -45,6 +45,33 @@ class Box {
   public void update(){
   }
 
+  public void setLED1On(boolean powerOn) {
+    if(powerOn) {
+      p1.turnOn();
+    }
+    else {
+      p1.turnOff();
+    }
+  }
+
+  public void setPowerOn(boolean powerOn) {
+    if(powerOn) {
+      pwr.turnOn();
+    }
+    else {
+      pwr.turnOff();
+    }
+  }
+
+  public void setLED2On(boolean powerOn) {
+    if(powerOn) {
+      p2.turnOn();
+    }
+    else {
+      p2.turnOff();
+    }
+  }
+
   public void drawMe() {
     pushMatrix();
     translate(X_POSITION, Y_POSITION);

@@ -150,48 +150,13 @@ void draw() {
   //----------------------------------------------------------------------------
   // LEDs
 
-  // P-Pad - Power LED
-  if(padPower){
-    ppad.pwr.turnOn();
-  }
-  else{
-    ppad.pwr.turnOff();
-  }
+  ppad.setPad1On(padLED1);
+  ppad.setPowerOn(padPower);
+  ppad.setPad2On(padLED2);
 
-  // P-Pad - LED Essential Pad
-  if(padLED1){
-    ppad.p1.turnOn();
-  }
-  else{
-    ppad.p1.turnOff();
-  }
-
-  // P-Pad - LED Other Pad
-  if(padLED2){
-    ppad.p2.turnOn();
-  }
-  else{
-    ppad.p2.turnOff();
-  }
-
-  // C-Box - Power LED
-  cbox.pwr.turnOn();
-
-  // C-Box - LED Essential Pad
-  if(delay1.signal && boxLED1){
-    cbox.p1.turnOn();
-  }
-  else{
-    cbox.p1.turnOff();
-  }
-
-  // C-Box - LED Other Pad
-  if(delay2.signal && boxLED2){
-    cbox.p2.turnOn();
-  }
-  else{
-    cbox.p2.turnOff();
-  }
+  cbox.setLED1On(delay1.signal && boxLED1);
+  cbox.setPowerOn(true);
+  cbox.setLED1On(delay2.signal && boxLED2);
 
   //----------------------------------------------------------------------------
   // Drawings
