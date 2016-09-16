@@ -5,25 +5,26 @@
  */
 
 class Box {
-  LED p1;
-  LED pwr;
-  LED p2;
 
-  final int X_POSITION;
-  final int Y_POSITION;
+  private LED p1;
+  private LED pwr;
+  private LED p2;
 
-  static final int CIRCLE_DIAMETER = 150;
-  static final int POWER_BUTTON_SIZE = 15;
-  static final int PROX_SENSOR_WIDTH = 40;
-  static final int PROX_SENSOR_HEIGHT = 15;
+  private final int X_POSITION;
+  private final int Y_POSITION;
 
-  final color COLOR_WHITE = color(255);
-  final color COLOR_GREY_LIGHT = color(200);
-  final color COLOR_RED = color(255, 0, 0);
-  final color COLOR_GREEN = color(0, 255, 0);
-  final color COLOR_YELLOW = color(255, 255, 0);
+  private static final int CIRCLE_DIAMETER = 150;
+  private static final int POWER_BUTTON_SIZE = 15;
+  private static final int PROX_SENSOR_WIDTH = 40;
+  private static final int PROX_SENSOR_HEIGHT = 15;
 
-  Box(int x, int y) {
+  private final color COLOR_WHITE = color(255);
+  private final color COLOR_GREY_LIGHT = color(200);
+  private final color COLOR_RED = color(255, 0, 0);
+  private final color COLOR_GREEN = color(0, 255, 0);
+  private final color COLOR_YELLOW = color(255, 255, 0);
+
+  public Box(int x, int y) {
     X_POSITION = x;
     Y_POSITION = y;
 
@@ -41,10 +42,10 @@ class Box {
     p2 = new LED(LED2_x, LED2_y, COLOR_YELLOW);
   }
 
-  void update(){
+  public void update(){
   }
 
-  void drawMe() {
+  public void drawMe() {
     pushMatrix();
     translate(X_POSITION, Y_POSITION);
 

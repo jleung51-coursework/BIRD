@@ -6,15 +6,15 @@
 
 class DelayButton extends Button {
 
-  final color COLOR_WHITE = color(255);
+  private final color COLOR_WHITE = color(255);
 
-  static final String TEXT_DELAY = "Delay";
+  private static final String TEXT_DELAY = "Delay";
 
-  DelayButton(int x, int y, int w, int h) {
+  public DelayButton(int x, int y, int w, int h) {
     super(x, y, w, h);
   }
 
-  void drawMe(){
+  public void drawMe(){
     super.drawMe();
 
     fill(COLOR_WHITE);

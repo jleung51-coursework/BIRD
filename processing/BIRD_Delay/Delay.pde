@@ -6,20 +6,21 @@
  */
 
 class Delay {
-  boolean active;
-  boolean signal;
 
-  int timerH;
-  int timerM;
-  int timerS;
-  int counter;
+  private boolean active;
+  private boolean signal;
+
+  private int timerH;
+  private int timerM;
+  private int timerS;
+  private int counter;
 
   // Manipulated by the user through BIRD_Delay to set a delay time
-  int setHour = 0;
-  int setMinute = 0;
-  int setSecond = 0;
+  private int setHour = 0;
+  private int setMinute = 0;
+  private int setSecond = 0;
 
-  Delay() {
+  public Delay() {
     active = false;
     signal = true;
 
@@ -29,7 +30,7 @@ class Delay {
     counter = 59;
   }
 
-  void update() {
+  public void update() {
     if (!active) {
       return;
     }
@@ -73,7 +74,7 @@ class Delay {
 
   }
 
-  void activate(int h, int m, int s) {
+  public void activate(int h, int m, int s) {
     active = true;
     signal = false;
 
