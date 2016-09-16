@@ -34,6 +34,18 @@ class Delay {
     return signal;
   }
 
+  public int getTimerH() {
+    return timerH;
+  }
+
+  public int getTimerM() {
+    return timerM;
+  }
+
+  public int getTimerS() {
+    return timerS;
+  }
+
   public int getHour() {
     return delayHour;
   }

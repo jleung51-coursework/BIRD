@@ -270,19 +270,19 @@ void draw() {
 
   // Numbers for displaying the timer
   text(
-    delay2.timerH,
+    delay2.getTimerH(),
     DELAY_SET2_X + TIME_SHOW_HORIZ_START_OFFSET,
     DELAY_SET_Y + TIME_SHOW_VERT_OFFSET
   );
   text(
-    delay2.timerM,
+    delay2.getTimerM(),
     DELAY_SET2_X
     + TIME_SHOW_HORIZ_START_OFFSET
     + TIME_SHOW_HORIZ_OFFSET,
     DELAY_SET_Y + TIME_SHOW_VERT_OFFSET
   );
   text(
-    delay2.timerS,
+    delay2.getTimerS(),
     DELAY_SET2_X
     + TIME_SHOW_HORIZ_START_OFFSET
     + TIME_SHOW_HORIZ_OFFSET*2,
