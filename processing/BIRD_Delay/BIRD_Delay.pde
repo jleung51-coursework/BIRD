@@ -113,44 +113,34 @@ public void draw() {
     sendArduinoDelaySignal();
   }
 
-  //----------------------------------------------------------------------------
-  // Update
-
   ppad.update(padLED1, padPower, padLED2);
 
   //----------------------------------------------------------------------------
-  // Delay For The First Pressure Pad
+  // Update delay for pressure pad 1
   hourUpButton1.update(mouseX, mouseY);
   hourDownButton1.update(mouseX, mouseY);
-
   minuteUpButton1.update(mouseX, mouseY);
   minuteDownButton1.update(mouseX, mouseY);
-
   secondUpButton1.update(mouseX, mouseY);
   secondDownButton1.update(mouseX, mouseY);
-
   delayButton1.update(mouseX, mouseY);
 
   delay1.update();
 
   //----------------------------------------------------------------------------
-  // Delay For The Second Pressure Pad
+  // Update delay for pressure pad 2
   hourUpButton2.update(mouseX, mouseY);
   hourDownButton2.update(mouseX, mouseY);
-
   minuteUpButton2.update(mouseX, mouseY);
   minuteDownButton2.update(mouseX, mouseY);
-
   secondUpButton2.update(mouseX, mouseY);
   secondDownButton2.update(mouseX, mouseY);
-
   delayButton2.update(mouseX, mouseY);
 
   delay2.update();
 
   //----------------------------------------------------------------------------
   // LEDs
-
   ppad.setPad1On(padLED1);
   ppad.setPowerOn(padPower);
   ppad.setPad2On(padLED2);
@@ -167,10 +157,8 @@ public void draw() {
 
   hourUpButton1.drawMe();
   hourDownButton1.drawMe();
-
   minuteUpButton1.drawMe();
   minuteDownButton1.drawMe();
-
   secondUpButton1.drawMe();
   secondDownButton1.drawMe();
 
