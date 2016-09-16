@@ -5,41 +5,42 @@
  */
 
 class Pad {
-  final int xPos;
-  final int yPos;
 
-  LED p1;
-  LED pwr;
-  LED p2;
+  private final int xPos;
+  private final int yPos;
 
-  boolean onPad1;
-  boolean onPad2;
-  boolean onPwr;
+  private LED p1;
+  private LED pwr;
+  private LED p2;
 
-  static final int OUTLINE_SIZE = 10;
+  private boolean onPad1;
+  private boolean onPad2;
+  private boolean onPwr;
 
-  static final int LED_OFFSET_X = 100;
-  static final int LED_OFFSET_Y = 20;
+  private static final int OUTLINE_SIZE = 10;
 
-  static final int WIDTH = 400;
-  static final int HEIGHT = 300;
+  private static final int LED_OFFSET_X = 100;
+  private static final int LED_OFFSET_Y = 20;
 
-  static final int POWER_BUTTON_OFFSET_X = 185;
-  static final int POWER_BUTTON_OFFSET_Y = 50;
-  static final int POWER_BUTTON_SIZE = 30;
+  private static final int WIDTH = 400;
+  private static final int HEIGHT = 300;
 
-  static final int PAD1_OFFSET_X = 30;
-  static final int PAD2_OFFSET_X = 230;
-  static final int PAD_OFFSET_Y = 130;
-  static final int PAD_SIZE = 140;
+  private static final int POWER_BUTTON_OFFSET_X = 185;
+  private static final int POWER_BUTTON_OFFSET_Y = 50;
+  private static final int POWER_BUTTON_SIZE = 30;
 
-  final color COLOR_WHITE = color(255);
-  final color COLOR_GREY_LIGHT = color(200);
-  final color COLOR_GREEN = color(0, 255, 0);
-  final color COLOR_RED = color(255, 0, 0);
-  final color COLOR_YELLOW = color(255, 255, 0);
+  private static final int PAD1_OFFSET_X = 30;
+  private static final int PAD2_OFFSET_X = 230;
+  private static final int PAD_OFFSET_Y = 130;
+  private static final int PAD_SIZE = 140;
 
-  Pad() {
+  private final color COLOR_WHITE = color(255);
+  private final color COLOR_GREY_LIGHT = color(200);
+  private final color COLOR_GREEN = color(0, 255, 0);
+  private final color COLOR_RED = color(255, 0, 0);
+  private final color COLOR_YELLOW = color(255, 255, 0);
+
+  public Pad() {
     xPos = 300;
     yPos = 425;
 
@@ -64,13 +65,25 @@ class Pad {
     onPwr = false;
   }
 
-  void update(boolean pad1, boolean pwr, boolean pad2) {
+  public void update(boolean pad1, boolean pwr, boolean pad2) {
     onPad1 = pad1;
     onPwr = pwr;
     onPad2 = pad2;
   }
 
-  void drawMe() {
+  public void setPad1On(boolean padOn) {
+    onPad1 = padOn;
+  }
+
+  public void setPowerOn(boolean powerOn) {
+    onPwr = powerOn;
+  }
+
+  public void setPad2On(boolean padOn) {
+    onPad2 = padOn;
+  }
+
+  public void drawMe() {
     stroke(OUTLINE_SIZE);
 
     // Entire pad

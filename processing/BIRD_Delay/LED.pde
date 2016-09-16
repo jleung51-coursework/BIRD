@@ -5,31 +5,23 @@
  */
 
 class LED {
-  final int xPos;
-  final int yPos;
-  final color col;
-  boolean on;
 
-  final int DIAMETER = 10;
+  private final int xPos;
+  private final int yPos;
+  private final color col;
+  private boolean on;
 
-  final color COLOR_BLACK = color(0);
+  private final int DIAMETER = 10;
+  private final color COLOR_BLACK = color(0);
 
-  LED(int x, int y, color c) {
+  public LED(int x, int y, color c) {
     xPos = x;
     yPos = y;
     col = c;
     on = false;
   }
 
-  void turnOn () {
-    on = true;
-  }
-
-  void turnOff () {
-    on = false;
-  }
-
-  void drawMe () {
+  public void drawMe () {
     if(on){
       fill(col);
     }
@@ -37,6 +29,14 @@ class LED {
       fill(COLOR_BLACK);
     }
     ellipse(xPos, yPos, DIAMETER, DIAMETER);
+  }
+
+  public void turnOn () {
+    on = true;
+  }
+
+  public void turnOff () {
+    on = false;
   }
 
 }

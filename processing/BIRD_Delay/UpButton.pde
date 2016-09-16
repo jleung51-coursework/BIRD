@@ -6,19 +6,20 @@
 
 class UpButton extends Button {
 
-  final color COLOR_WHITE = color(255);
+  private final color COLOR_WHITE = color(255);
 
-  UpButton(int x, int y, int w, int h) {
+  public UpButton(int x, int y, int w, int h) {
     super(x, y, w, h);
   }
 
-  int increase(int num) {
+  public int increase(int num) {
     // The first rule of BIRD_Delay is:
     // You do not ask about INT_MAX.
     return num+1;
   }
 
-  void drawMe(){
+  @Override
+  public void drawMe(){
     super.drawMe();
 
     fill(COLOR_WHITE);

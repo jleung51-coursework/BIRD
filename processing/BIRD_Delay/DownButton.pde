@@ -6,13 +6,13 @@
 
 class DownButton extends Button {
 
-  final color COLOR_WHITE = color(255);
+  private final color COLOR_WHITE = color(255);
 
-  DownButton(int x, int y, int w, int h) {
+  public DownButton(int x, int y, int w, int h) {
     super(x, y, w, h);
   }
 
-  int decrease(int num) {
+  public int decrease(int num) {
     if (num <= 0) {
       return num;
     }
@@ -21,7 +21,8 @@ class DownButton extends Button {
     }
   }
 
-  void drawMe(){
+  @Override
+  public void drawMe(){
     super.drawMe();
 
     fill(COLOR_WHITE);

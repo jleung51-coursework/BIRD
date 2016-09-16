@@ -6,93 +6,94 @@
  */
 
 import processing.serial.*;
-Serial port;
 
-UpButton hourUpButton1;
-UpButton hourUpButton2;
-DownButton hourDownButton1;
-DownButton hourDownButton2;
+private Serial port;
 
-UpButton minuteUpButton1;
-UpButton minuteUpButton2;
-DownButton minuteDownButton1;
-DownButton minuteDownButton2;
+private UpButton hourUpButton1;
+private UpButton hourUpButton2;
+private DownButton hourDownButton1;
+private DownButton hourDownButton2;
 
-UpButton secondUpButton1;
-UpButton secondUpButton2;
-DownButton secondDownButton1;
-DownButton secondDownButton2;
+private UpButton minuteUpButton1;
+private UpButton minuteUpButton2;
+private DownButton minuteDownButton1;
+private DownButton minuteDownButton2;
 
-DelayButton delayButton1;
-DelayButton delayButton2;
-Delay delay1;
-Delay delay2;
+private UpButton secondUpButton1;
+private UpButton secondUpButton2;
+private DownButton secondDownButton1;
+private DownButton secondDownButton2;
 
-Pad ppad;
-Box cbox;
+private DelayButton delayButton1;
+private DelayButton delayButton2;
+private Delay delay1;
+private Delay delay2;
 
-boolean padPower;
-boolean padLED1;
-boolean padLED2;
-boolean boxLED1;
-boolean boxLED2;
+private Pad ppad;
+private Box cbox;
+
+private boolean padPower;
+private boolean padLED1;
+private boolean padLED2;
+private boolean boxLED1;
+private boolean boxLED2;
 
 // Text
-static final String TEXT_HOURS = "Hours";
-static final String TEXT_MINUTES = "Minutes";
-static final String TEXT_SECONDS = "Seconds";
-static final String TEXT_TITLE = "BIRD Delay";
-static final String TEXT_DELAY_SET1_TITLE = "Essential Pad";
-static final String TEXT_DELAY_SET2_TITLE = "Other Pad";
+private static final String TEXT_HOURS = "Hours";
+private static final String TEXT_MINUTES = "Minutes";
+private static final String TEXT_SECONDS = "Seconds";
+private static final String TEXT_TITLE = "BIRD Delay";
+private static final String TEXT_DELAY_SET1_TITLE = "Essential Pad";
+private static final String TEXT_DELAY_SET2_TITLE = "Other Pad";
 
 // Pad/Box locations
-static final int BOX_X = 860;
-static final int BOX_Y = 550;
+private static final int BOX_X = 860;
+private static final int BOX_Y = 550;
 
 // Delay-set locations
-static final int DELAY_SET1_X = 30;
-static final int DELAY_SET2_X = 542;
-static final int DELAY_SET_Y = 150;
+private static final int DELAY_SET1_X = 30;
+private static final int DELAY_SET2_X = 542;
+private static final int DELAY_SET_Y = 150;
 
 // Button sizes
-static final int ARROW_BUTTON_SIZE = 30;
-static final int DELAY_BUTTON_WIDTH = 80;
-static final int DELAY_BUTTON_HEIGHT = 40;
+private static final int ARROW_BUTTON_SIZE = 30;
+private static final int DELAY_BUTTON_WIDTH = 80;
+private static final int DELAY_BUTTON_HEIGHT = 40;
 
 // Text sizes
-static final int TEXT_SIZE_TIMER = 25;
-static final int TEXT_SIZE_TITLE = 40;
-static final int TEXT_SIZE_DELAY_SET_TITLES = 30;
+private static final int TEXT_SIZE_TIMER = 25;
+private static final int TEXT_SIZE_TITLE = 40;
+private static final int TEXT_SIZE_DELAY_SET_TITLES = 30;
 
 // Button offsets
-static final int ARROW_BUTTON_HORIZ_OFFSET = 150;
-static final int ARROW_BUTTON_VERT_OFFSET = 80;
-static final int DELAY_BUTTON_HORIZ_OFFSET = 180;
-static final int DELAY_BUTTON_VERT_OFFSET = 140;
+private static final int ARROW_BUTTON_HORIZ_OFFSET = 150;
+private static final int ARROW_BUTTON_VERT_OFFSET = 80;
+private static final int DELAY_BUTTON_HORIZ_OFFSET = 180;
+private static final int DELAY_BUTTON_VERT_OFFSET = 140;
 
 // Number offsets
-static final int TIME_SET_HORIZ_OFFSET = ARROW_BUTTON_HORIZ_OFFSET;
-static final int TIME_SET_VERT_OFFSET = 65;
-static final int TIME_SHOW_HORIZ_START_OFFSET = 160;
-static final int TIME_SHOW_HORIZ_OFFSET = 50;
-static final int TIME_SHOW_VERT_OFFSET = 230;
+private static final int TIME_SET_HORIZ_OFFSET = ARROW_BUTTON_HORIZ_OFFSET;
+private static final int TIME_SET_VERT_OFFSET = 65;
+private static final int TIME_SHOW_HORIZ_START_OFFSET = 160;
+private static final int TIME_SHOW_HORIZ_OFFSET = 50;
+private static final int TIME_SHOW_VERT_OFFSET = 230;
 
 // Text offsets
-static final int TIME_SET_TEXT_HORIZ_START_OFFSET = 40;
-static final int TIME_SET_TEXT_HORIZ_OFFSET = TIME_SET_HORIZ_OFFSET;
-static final int TITLE_HORIZ_OFFSET = 450;
-static final int TITLE_VERT_OFFSET = 65;
-static final int DELAY_SET1_TITLE_HORIZ_OFFSET = 155;
-static final int DELAY_SET2_TITLE_HORIZ_OFFSET = 680;
-static final int DELAY_SET_TITLE_VERT_OFFSET = 120;
+private static final int TIME_SET_TEXT_HORIZ_START_OFFSET = 40;
+private static final int TIME_SET_TEXT_HORIZ_OFFSET = TIME_SET_HORIZ_OFFSET;
+private static final int TITLE_HORIZ_OFFSET = 450;
+private static final int TITLE_VERT_OFFSET = 65;
+private static final int DELAY_SET1_TITLE_HORIZ_OFFSET = 155;
+private static final int DELAY_SET2_TITLE_HORIZ_OFFSET = 680;
+private static final int DELAY_SET_TITLE_VERT_OFFSET = 120;
 
 // Colors
-final color COLOR_GREY_DARK = color(128);
-final color COLOR_WHITE = color(255);
-final color COLOR_BACKGROUND = COLOR_GREY_DARK;
-final color COLOR_TEXT = COLOR_WHITE;
+private final color COLOR_GREY_DARK = color(128);
+private final color COLOR_WHITE = color(255);
+private final color COLOR_BACKGROUND = COLOR_GREY_DARK;
+private final color COLOR_TEXT = COLOR_WHITE;
 
-void setup() {
+public void setup() {
   size (1024,768);
 
   port = new Serial(this, "/dev/ttyUSB0", 9600);
@@ -103,7 +104,7 @@ void setup() {
   cbox = new Box(BOX_X, BOX_Y);
 }
 
-void draw() {
+public void draw() {
   background(COLOR_BACKGROUND);
 
   String arduinoInput = receiveFromArduino();
@@ -150,48 +151,13 @@ void draw() {
   //----------------------------------------------------------------------------
   // LEDs
 
-  // P-Pad - Power LED
-  if(padPower){
-    ppad.pwr.turnOn();
-  }
-  else{
-    ppad.pwr.turnOff();
-  }
+  ppad.setPad1On(padLED1);
+  ppad.setPowerOn(padPower);
+  ppad.setPad2On(padLED2);
 
-  // P-Pad - LED Essential Pad
-  if(padLED1){
-    ppad.p1.turnOn();
-  }
-  else{
-    ppad.p1.turnOff();
-  }
-
-  // P-Pad - LED Other Pad
-  if(padLED2){
-    ppad.p2.turnOn();
-  }
-  else{
-    ppad.p2.turnOff();
-  }
-
-  // C-Box - Power LED
-  cbox.pwr.turnOn();
-
-  // C-Box - LED Essential Pad
-  if(delay1.signal && boxLED1){
-    cbox.p1.turnOn();
-  }
-  else{
-    cbox.p1.turnOff();
-  }
-
-  // C-Box - LED Other Pad
-  if(delay2.signal && boxLED2){
-    cbox.p2.turnOn();
-  }
-  else{
-    cbox.p2.turnOff();
-  }
+  cbox.setLED1On(delay1.getSignal() && boxLED1);
+  cbox.setPowerOn(true);
+  cbox.setLED1On(delay2.getSignal() && boxLED2);
 
   //----------------------------------------------------------------------------
   // Drawings
@@ -214,17 +180,17 @@ void draw() {
 
   // Numbers for setting the timer
   text(
-    delay1.setHour,
+    delay1.getHour(),
     DELAY_SET1_X,
     DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
   text(
-    delay1.setMinute,
+    delay1.getMinute(),
     DELAY_SET1_X + TIME_SET_HORIZ_OFFSET,
     DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
   text(
-    delay1.setSecond,
+    delay1.getSecond(),
     DELAY_SET1_X + TIME_SET_HORIZ_OFFSET*2,
     DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
@@ -288,36 +254,36 @@ void draw() {
 
   // Numbers for setting the timer
   text(
-    delay2.setHour,
+    delay2.getHour(),
     DELAY_SET2_X,
     DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
   text(
-    delay2.setMinute,
+    delay2.getMinute(),
     DELAY_SET2_X + TIME_SET_HORIZ_OFFSET,
     DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
   text(
-    delay2.setSecond,
+    delay2.getSecond(),
     DELAY_SET2_X + TIME_SET_HORIZ_OFFSET*2,
     DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
 
   // Numbers for displaying the timer
   text(
-    delay2.timerH,
+    delay2.getTimerH(),
     DELAY_SET2_X + TIME_SHOW_HORIZ_START_OFFSET,
     DELAY_SET_Y + TIME_SHOW_VERT_OFFSET
   );
   text(
-    delay2.timerM,
+    delay2.getTimerM(),
     DELAY_SET2_X
     + TIME_SHOW_HORIZ_START_OFFSET
     + TIME_SHOW_HORIZ_OFFSET,
     DELAY_SET_Y + TIME_SHOW_VERT_OFFSET
   );
   text(
-    delay2.timerS,
+    delay2.getTimerS(),
     DELAY_SET2_X
     + TIME_SHOW_HORIZ_START_OFFSET
     + TIME_SHOW_HORIZ_OFFSET*2,
@@ -370,73 +336,73 @@ void draw() {
   );
 }
 
-void mousePressed() {
+public void mousePressed() {
   //----------------------------------------------------------------------------
   //Delay For First Pressure Pad
-  if (delayButton1.buttonOver) {
+  if (delayButton1.isOverButton()) {
     delay1.activate(
-      delay1.setHour,
-      delay1.setMinute,
-      delay1.setSecond
+      delay1.getHour(),
+      delay1.getMinute(),
+      delay1.getSecond()
     );
   }
-  if (hourUpButton1.buttonOver) {
-    delay1.setHour = hourUpButton1.increase(delay1.setHour);
+  if (hourUpButton1.isOverButton()) {
+    delay1.setHour(hourUpButton1.increase(delay1.getHour()));
   }
-  if (hourDownButton1.buttonOver) {
-    delay1.setHour = hourDownButton1.decrease(delay1.setHour);
+  if (hourDownButton1.isOverButton()) {
+    delay1.setHour(hourDownButton1.decrease(delay1.getHour()));
   }
-  if (minuteUpButton1.buttonOver) {
-    delay1.setMinute = minuteUpButton1.increase(delay1.setMinute);
-    if (delay1.setMinute == 60) {
-      delay1.setMinute = 0;
+  if (minuteUpButton1.isOverButton()) {
+    delay1.setMinute(minuteUpButton1.increase(delay1.getMinute()));
+    if (delay1.getMinute() == 60) {
+      delay1.setMinute(0);
     }
   }
-  if (minuteDownButton1.buttonOver) {
-    delay1.setMinute = minuteDownButton1.decrease(delay1.setMinute);
+  if (minuteDownButton1.isOverButton()) {
+    delay1.setMinute(minuteDownButton1.decrease(delay1.getMinute()));
   }
-  if (secondUpButton1.buttonOver) {
-    delay1.setSecond = secondUpButton1.increase(delay1.setSecond);
-    if (delay1.setSecond == 60) {
-      delay1.setSecond = 0;
+  if (secondUpButton1.isOverButton()) {
+    delay1.setSecond(secondUpButton1.increase(delay1.getMinute()));
+    if (delay1.getSecond() == 60) {
+      delay1.setSecond(0);
     }
   }
-  if (secondDownButton1.buttonOver) {
-    delay1.setSecond = secondDownButton1.decrease(delay1.setSecond);
+  if (secondDownButton1.isOverButton()) {
+    delay1.setSecond(secondDownButton1.decrease(delay1.getSecond()));
   }
 
   //----------------------------------------------------------------------------
   //Delay For First Pressure Pad
-  if (delayButton2.buttonOver) {
+  if (delayButton2.isOverButton()) {
     delay2.activate(
-      delay2.setHour,
-      delay2.setMinute,
-      delay2.setSecond
+      delay2.getHour(),
+      delay2.getMinute(),
+      delay2.getSecond()
     );
   }
-  if (hourUpButton2.buttonOver) {
-    delay2.setHour = hourUpButton2.increase(delay2.setHour);
+  if (hourUpButton2.isOverButton()) {
+    delay2.setHour(hourUpButton2.increase(delay2.getHour()));
   }
-  if (hourDownButton2.buttonOver) {
-    delay2.setHour = hourDownButton1.decrease(delay2.setHour);
+  if (hourDownButton2.isOverButton()) {
+    delay2.setHour(hourDownButton1.decrease(delay2.getHour()));
   }
-  if (minuteUpButton2.buttonOver) {
-    delay2.setMinute = minuteUpButton2.increase(delay2.setMinute);
-    if (delay2.setMinute == 60) {
-      delay2.setMinute = 0;
+  if (minuteUpButton2.isOverButton()) {
+    delay2.setMinute(minuteUpButton2.increase(delay2.getMinute()));
+    if (delay2.getMinute() == 60) {
+      delay2.setMinute(0);
     }
   }
-  if (minuteDownButton2.buttonOver) {
-    delay2.setMinute = minuteDownButton1.decrease(delay2.setMinute);
+  if (minuteDownButton2.isOverButton()) {
+    delay2.setMinute(minuteDownButton1.decrease(delay2.getMinute()));
   }
-  if (secondUpButton2.buttonOver) {
-    delay2.setSecond = secondUpButton2.increase(delay2.setSecond);
-    if (delay2.setSecond == 60) {
-      delay2.setSecond = 0;
+  if (secondUpButton2.isOverButton()) {
+    delay2.setSecond(secondUpButton2.increase(delay2.getSecond()));
+    if (delay2.getSecond() == 60) {
+      delay2.setSecond(0);
     }
   }
-  if (secondDownButton2.buttonOver) {
-    delay2.setSecond = secondDownButton2.decrease(delay2.setSecond);
+  if (secondDownButton2.isOverButton()) {
+    delay2.setSecond(secondDownButton2.decrease(delay2.getSecond()));
   }
 }
 
@@ -570,14 +536,14 @@ private void sendArduinoDelaySignal() {
   char sendVal1;
   char sendVal2;
 
-  if(delay1.signal) {
+  if(delay1.getSignal()) {
     sendVal1 = '1';
   }
   else {
     sendVal1 = '0';
   }
 
-  if(delay2.signal) {
+  if(delay2.getSignal()) {
     sendVal2 = '1';
   }
   else {

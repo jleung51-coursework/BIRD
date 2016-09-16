@@ -5,23 +5,24 @@
  */
 
 class Button {
-  final int buttonX;
-  final int buttonY;
-  final int buttonW;
-  final int buttonH;
 
-  final color COLOR_BLACK = color(0);
-  final color COLOR_GREY_DARK = color(51);
-  final color COLOR_GREY = color(102);
-  final color COLOR_WHITE = color(255);
+  protected final int buttonX;
+  protected final int buttonY;
+  protected final int buttonW;
+  protected final int buttonH;
 
-  final color COLOR_BUTTON_NORMAL = COLOR_BLACK;
-  final color COLOR_BUTTON_HIGHLIGHT = COLOR_GREY_DARK;
-  final color COLOR_BUTTON_OUTLINE = COLOR_WHITE;
+  private final color COLOR_BLACK = color(0);
+  private final color COLOR_GREY_DARK = color(51);
+  private final color COLOR_GREY = color(102);
+  private final color COLOR_WHITE = color(255);
 
-  boolean buttonOver;
+  private final color COLOR_BUTTON_NORMAL = COLOR_BLACK;
+  private final color COLOR_BUTTON_HIGHLIGHT = COLOR_GREY_DARK;
+  private final color COLOR_BUTTON_OUTLINE = COLOR_WHITE;
 
-  Button(int x, int y, int w, int h) {
+  private boolean buttonOver;
+
+  public Button(int x, int y, int w, int h) {
     buttonX = x;
     buttonY = y;
     buttonW = w;
@@ -29,16 +30,16 @@ class Button {
     buttonOver = false;
   }
 
-  void update(int x, int y) {
+  public void update(int x, int y) {
     buttonOver = isOverButton();
   }
 
-  boolean isOverButton() {
+  public boolean isOverButton() {
     return buttonX < mouseX && mouseX < (buttonX + buttonW) &&
            buttonY < mouseY && mouseY < (buttonY + buttonH);
   }
 
-  void drawMe() {
+  public void drawMe() {
     if (buttonOver) {
       fill(COLOR_BUTTON_HIGHLIGHT);
     }
