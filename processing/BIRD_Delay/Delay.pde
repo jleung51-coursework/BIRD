@@ -84,4 +84,8 @@ class Delay {
     counter = 59;
   }
 
+  public boolean getSignal() {
+    return signal;
+  }
+
 }

@@ -154,9 +154,9 @@ void draw() {
   ppad.setPowerOn(padPower);
   ppad.setPad2On(padLED2);
 
-  cbox.setLED1On(delay1.signal && boxLED1);
+  cbox.setLED1On(delay1.getSignal() && boxLED1);
   cbox.setPowerOn(true);
-  cbox.setLED1On(delay2.signal && boxLED2);
+  cbox.setLED1On(delay2.getSignal() && boxLED2);
 
   //----------------------------------------------------------------------------
   // Drawings
@@ -535,14 +535,14 @@ private void sendArduinoDelaySignal() {
   char sendVal1;
   char sendVal2;
 
-  if(delay1.signal) {
+  if(delay1.getSignal()) {
     sendVal1 = '1';
   }
   else {
     sendVal1 = '0';
   }
 
-  if(delay2.signal) {
+  if(delay2.getSignal()) {
     sendVal2 = '1';
   }
   else {
