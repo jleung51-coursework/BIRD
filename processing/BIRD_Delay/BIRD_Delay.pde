@@ -6,93 +6,94 @@
  */
 
 import processing.serial.*;
-Serial port;
 
-UpButton hourUpButton1;
-UpButton hourUpButton2;
-DownButton hourDownButton1;
-DownButton hourDownButton2;
+private Serial port;
 
-UpButton minuteUpButton1;
-UpButton minuteUpButton2;
-DownButton minuteDownButton1;
-DownButton minuteDownButton2;
+private UpButton hourUpButton1;
+private UpButton hourUpButton2;
+private DownButton hourDownButton1;
+private DownButton hourDownButton2;
 
-UpButton secondUpButton1;
-UpButton secondUpButton2;
-DownButton secondDownButton1;
-DownButton secondDownButton2;
+private UpButton minuteUpButton1;
+private UpButton minuteUpButton2;
+private DownButton minuteDownButton1;
+private DownButton minuteDownButton2;
 
-DelayButton delayButton1;
-DelayButton delayButton2;
-Delay delay1;
-Delay delay2;
+private UpButton secondUpButton1;
+private UpButton secondUpButton2;
+private DownButton secondDownButton1;
+private DownButton secondDownButton2;
 
-Pad ppad;
-Box cbox;
+private DelayButton delayButton1;
+private DelayButton delayButton2;
+private Delay delay1;
+private Delay delay2;
 
-boolean padPower;
-boolean padLED1;
-boolean padLED2;
-boolean boxLED1;
-boolean boxLED2;
+private Pad ppad;
+private Box cbox;
+
+private boolean padPower;
+private boolean padLED1;
+private boolean padLED2;
+private boolean boxLED1;
+private boolean boxLED2;
 
 // Text
-static final String TEXT_HOURS = "Hours";
-static final String TEXT_MINUTES = "Minutes";
-static final String TEXT_SECONDS = "Seconds";
-static final String TEXT_TITLE = "BIRD Delay";
-static final String TEXT_DELAY_SET1_TITLE = "Essential Pad";
-static final String TEXT_DELAY_SET2_TITLE = "Other Pad";
+private static final String TEXT_HOURS = "Hours";
+private static final String TEXT_MINUTES = "Minutes";
+private static final String TEXT_SECONDS = "Seconds";
+private static final String TEXT_TITLE = "BIRD Delay";
+private static final String TEXT_DELAY_SET1_TITLE = "Essential Pad";
+private static final String TEXT_DELAY_SET2_TITLE = "Other Pad";
 
 // Pad/Box locations
-static final int BOX_X = 860;
-static final int BOX_Y = 550;
+private static final int BOX_X = 860;
+private static final int BOX_Y = 550;
 
 // Delay-set locations
-static final int DELAY_SET1_X = 30;
-static final int DELAY_SET2_X = 542;
-static final int DELAY_SET_Y = 150;
+private static final int DELAY_SET1_X = 30;
+private static final int DELAY_SET2_X = 542;
+private static final int DELAY_SET_Y = 150;
 
 // Button sizes
-static final int ARROW_BUTTON_SIZE = 30;
-static final int DELAY_BUTTON_WIDTH = 80;
-static final int DELAY_BUTTON_HEIGHT = 40;
+private static final int ARROW_BUTTON_SIZE = 30;
+private static final int DELAY_BUTTON_WIDTH = 80;
+private static final int DELAY_BUTTON_HEIGHT = 40;
 
 // Text sizes
-static final int TEXT_SIZE_TIMER = 25;
-static final int TEXT_SIZE_TITLE = 40;
-static final int TEXT_SIZE_DELAY_SET_TITLES = 30;
+private static final int TEXT_SIZE_TIMER = 25;
+private static final int TEXT_SIZE_TITLE = 40;
+private static final int TEXT_SIZE_DELAY_SET_TITLES = 30;
 
 // Button offsets
-static final int ARROW_BUTTON_HORIZ_OFFSET = 150;
-static final int ARROW_BUTTON_VERT_OFFSET = 80;
-static final int DELAY_BUTTON_HORIZ_OFFSET = 180;
-static final int DELAY_BUTTON_VERT_OFFSET = 140;
+private static final int ARROW_BUTTON_HORIZ_OFFSET = 150;
+private static final int ARROW_BUTTON_VERT_OFFSET = 80;
+private static final int DELAY_BUTTON_HORIZ_OFFSET = 180;
+private static final int DELAY_BUTTON_VERT_OFFSET = 140;
 
 // Number offsets
-static final int TIME_SET_HORIZ_OFFSET = ARROW_BUTTON_HORIZ_OFFSET;
-static final int TIME_SET_VERT_OFFSET = 65;
-static final int TIME_SHOW_HORIZ_START_OFFSET = 160;
-static final int TIME_SHOW_HORIZ_OFFSET = 50;
-static final int TIME_SHOW_VERT_OFFSET = 230;
+private static final int TIME_SET_HORIZ_OFFSET = ARROW_BUTTON_HORIZ_OFFSET;
+private static final int TIME_SET_VERT_OFFSET = 65;
+private static final int TIME_SHOW_HORIZ_START_OFFSET = 160;
+private static final int TIME_SHOW_HORIZ_OFFSET = 50;
+private static final int TIME_SHOW_VERT_OFFSET = 230;
 
 // Text offsets
-static final int TIME_SET_TEXT_HORIZ_START_OFFSET = 40;
-static final int TIME_SET_TEXT_HORIZ_OFFSET = TIME_SET_HORIZ_OFFSET;
-static final int TITLE_HORIZ_OFFSET = 450;
-static final int TITLE_VERT_OFFSET = 65;
-static final int DELAY_SET1_TITLE_HORIZ_OFFSET = 155;
-static final int DELAY_SET2_TITLE_HORIZ_OFFSET = 680;
-static final int DELAY_SET_TITLE_VERT_OFFSET = 120;
+private static final int TIME_SET_TEXT_HORIZ_START_OFFSET = 40;
+private static final int TIME_SET_TEXT_HORIZ_OFFSET = TIME_SET_HORIZ_OFFSET;
+private static final int TITLE_HORIZ_OFFSET = 450;
+private static final int TITLE_VERT_OFFSET = 65;
+private static final int DELAY_SET1_TITLE_HORIZ_OFFSET = 155;
+private static final int DELAY_SET2_TITLE_HORIZ_OFFSET = 680;
+private static final int DELAY_SET_TITLE_VERT_OFFSET = 120;
 
 // Colors
-final color COLOR_GREY_DARK = color(128);
-final color COLOR_WHITE = color(255);
-final color COLOR_BACKGROUND = COLOR_GREY_DARK;
-final color COLOR_TEXT = COLOR_WHITE;
+private final color COLOR_GREY_DARK = color(128);
+private final color COLOR_WHITE = color(255);
+private final color COLOR_BACKGROUND = COLOR_GREY_DARK;
+private final color COLOR_TEXT = COLOR_WHITE;
 
-void setup() {
+public void setup() {
   size (1024,768);
 
   port = new Serial(this, "/dev/ttyUSB0", 9600);
@@ -103,7 +104,7 @@ void setup() {
   cbox = new Box(BOX_X, BOX_Y);
 }
 
-void draw() {
+public void draw() {
   background(COLOR_BACKGROUND);
 
   String arduinoInput = receiveFromArduino();
@@ -335,7 +336,7 @@ void draw() {
   );
 }
 
-void mousePressed() {
+public void mousePressed() {
   //----------------------------------------------------------------------------
   //Delay For First Pressure Pad
   if (delayButton1.isOverButton()) {
