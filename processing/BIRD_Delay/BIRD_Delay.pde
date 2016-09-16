@@ -373,69 +373,69 @@ void draw() {
 void mousePressed() {
   //----------------------------------------------------------------------------
   //Delay For First Pressure Pad
-  if (delayButton1.buttonOver) {
+  if (delayButton1.isOverButton()) {
     delay1.activate(
       delay1.setHour,
       delay1.setMinute,
       delay1.setSecond
     );
   }
-  if (hourUpButton1.buttonOver) {
+  if (hourUpButton1.isOverButton()) {
     delay1.setHour = hourUpButton1.increase(delay1.setHour);
   }
-  if (hourDownButton1.buttonOver) {
+  if (hourDownButton1.isOverButton()) {
     delay1.setHour = hourDownButton1.decrease(delay1.setHour);
   }
-  if (minuteUpButton1.buttonOver) {
+  if (minuteUpButton1.isOverButton()) {
     delay1.setMinute = minuteUpButton1.increase(delay1.setMinute);
     if (delay1.setMinute == 60) {
       delay1.setMinute = 0;
     }
   }
-  if (minuteDownButton1.buttonOver) {
+  if (minuteDownButton1.isOverButton()) {
     delay1.setMinute = minuteDownButton1.decrease(delay1.setMinute);
   }
-  if (secondUpButton1.buttonOver) {
+  if (secondUpButton1.isOverButton()) {
     delay1.setSecond = secondUpButton1.increase(delay1.setSecond);
     if (delay1.setSecond == 60) {
       delay1.setSecond = 0;
     }
   }
-  if (secondDownButton1.buttonOver) {
+  if (secondDownButton1.isOverButton()) {
     delay1.setSecond = secondDownButton1.decrease(delay1.setSecond);
   }
 
   //----------------------------------------------------------------------------
   //Delay For First Pressure Pad
-  if (delayButton2.buttonOver) {
+  if (delayButton2.isOverButton()) {
     delay2.activate(
       delay2.setHour,
       delay2.setMinute,
       delay2.setSecond
     );
   }
-  if (hourUpButton2.buttonOver) {
+  if (hourUpButton2.isOverButton()) {
     delay2.setHour = hourUpButton2.increase(delay2.setHour);
   }
-  if (hourDownButton2.buttonOver) {
+  if (hourDownButton2.isOverButton()) {
     delay2.setHour = hourDownButton1.decrease(delay2.setHour);
   }
-  if (minuteUpButton2.buttonOver) {
+  if (minuteUpButton2.isOverButton()) {
     delay2.setMinute = minuteUpButton2.increase(delay2.setMinute);
     if (delay2.setMinute == 60) {
       delay2.setMinute = 0;
     }
   }
-  if (minuteDownButton2.buttonOver) {
+  if (minuteDownButton2.isOverButton()) {
     delay2.setMinute = minuteDownButton1.decrease(delay2.setMinute);
   }
-  if (secondUpButton2.buttonOver) {
+  if (secondUpButton2.isOverButton()) {
     delay2.setSecond = secondUpButton2.increase(delay2.setSecond);
     if (delay2.setSecond == 60) {
       delay2.setSecond = 0;
     }
   }
-  if (secondDownButton2.buttonOver) {
+  if (secondDownButton2.isOverButton()) {
     delay2.setSecond = secondDownButton2.decrease(delay2.setSecond);
   }
 }
