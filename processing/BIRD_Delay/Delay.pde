@@ -15,10 +15,10 @@ class Delay {
   private int timerS;
   private int counter;
 
-  // Manipulated by the user through BIRD_Delay to set a delay time
-  private int setHour = 0;
-  private int setMinute = 0;
-  private int setSecond = 0;
+  // Used to set a delay time
+  private int delayHour = 0;
+  private int delayMinute = 0;
+  private int delaySecond = 0;
 
   public Delay() {
     active = false;
@@ -28,6 +28,34 @@ class Delay {
     timerM = 0;
     timerS = 0;
     counter = 59;
+  }
+
+  public boolean getSignal() {
+    return signal;
+  }
+
+  public int getHour() {
+    return delayHour;
+  }
+
+  public void setHour(int val) {
+    delayHour = val;
+  }
+
+  public int getMinute() {
+    return delayMinute;
+  }
+
+  public void setMinute(int val) {
+    delayMinute = val;
+  }
+
+  public int getSecond() {
+    return delaySecond;
+  }
+
+  public void setSecond(int val) {
+    delaySecond = val;
   }
 
   public void update() {
@@ -82,10 +110,6 @@ class Delay {
     timerM = m;
     timerS = s;
     counter = 59;
-  }
-
-  public boolean getSignal() {
-    return signal;
   }
 
 }
