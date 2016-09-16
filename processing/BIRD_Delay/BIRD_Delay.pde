@@ -7,7 +7,6 @@
 
 import processing.serial.*;
 Serial port;
-String val;
 
 UpButton hourUpButton1;
 UpButton hourUpButton2;
@@ -26,8 +25,8 @@ DownButton secondDownButton2;
 
 DelayButton delayButton1;
 DelayButton delayButton2;
-Delay panel1;
-Delay panel2;
+Delay delay1;
+Delay delay2;
 
 Pad ppad;
 Box cbox;
@@ -37,11 +36,6 @@ boolean padLED1;
 boolean padLED2;
 boolean boxLED1;
 boolean boxLED2;
-
-boolean connected = false;
-
-boolean t1 = false;
-boolean t2 = false;
 
 // Text
 static final String TEXT_HOURS = "Hours";
@@ -103,145 +97,19 @@ void setup() {
 
   port = new Serial(this, "/dev/ttyUSB0", 9600);
 
-  //----------------------------------------------------------------------------
-  // Delay For The First Pressure Pad
-  hourUpButton1 = new UpButton(
-    DELAY_SET1_X,
-    DELAY_SET_Y,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-  hourDownButton1 = new DownButton(
-    DELAY_SET1_X,
-    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-  minuteUpButton1 = new UpButton(
-    DELAY_SET1_X + ARROW_BUTTON_HORIZ_OFFSET,
-    DELAY_SET_Y,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-  minuteDownButton1 = new DownButton(
-    DELAY_SET1_X + ARROW_BUTTON_HORIZ_OFFSET,
-    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-  secondUpButton1 = new UpButton(
-    DELAY_SET1_X + ARROW_BUTTON_HORIZ_OFFSET*2,
-    DELAY_SET_Y,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-  secondDownButton1 = new DownButton(
-    DELAY_SET1_X + ARROW_BUTTON_HORIZ_OFFSET*2,
-    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-
-  delayButton1 = new DelayButton(
-    DELAY_SET1_X + DELAY_BUTTON_HORIZ_OFFSET,
-    DELAY_SET_Y + DELAY_BUTTON_VERT_OFFSET,
-    DELAY_BUTTON_WIDTH, DELAY_BUTTON_HEIGHT
-  );
-
-  panel1 = new Delay();
-
-  //----------------------------------------------------------------------------
-  // Delay For The Second Pressure Pad
-  hourUpButton2 = new UpButton(
-    DELAY_SET2_X,
-    DELAY_SET_Y,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-  hourDownButton2 = new DownButton(
-    DELAY_SET2_X,
-    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-  minuteUpButton2 = new UpButton(
-    DELAY_SET2_X + ARROW_BUTTON_HORIZ_OFFSET,
-    DELAY_SET_Y,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-  minuteDownButton2 = new DownButton(
-    DELAY_SET2_X + ARROW_BUTTON_HORIZ_OFFSET,
-    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-  secondUpButton2 = new UpButton(
-    DELAY_SET2_X + ARROW_BUTTON_HORIZ_OFFSET*2,
-    DELAY_SET_Y,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-  secondDownButton2 = new DownButton(
-    DELAY_SET2_X + ARROW_BUTTON_HORIZ_OFFSET*2,
-    DELAY_SET_Y + ARROW_BUTTON_VERT_OFFSET,
-    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
-  );
-
-  delayButton2 = new DelayButton(
-    DELAY_SET2_X + DELAY_BUTTON_HORIZ_OFFSET,
-    DELAY_SET_Y + DELAY_BUTTON_VERT_OFFSET,
-    DELAY_BUTTON_WIDTH, DELAY_BUTTON_HEIGHT
-  );
-
-  panel2 = new Delay();
-
+  initializeDelaySet1(DELAY_SET1_X, DELAY_SET_Y);
+  initializeDelaySet2(DELAY_SET2_X, DELAY_SET_Y);
   ppad = new Pad();
   cbox = new Box(BOX_X, BOX_Y);
 }
 
 void draw() {
-  background(128,128,128);
+  background(COLOR_BACKGROUND);
 
-
-  //----------------------------------------------------------------------------
-  // Arduino Connection
-
-  // Arduino to Processing
-
-  connected = port.available() > 0;
-  if (connected) {
-    val = port.readStringUntil('\n');
-    if(val != null){
-      val = trim(val);  // Remove excess whitespace at beginning/end
-    }
-  }
-
-  if(val != null){
-    // Pad Power
-    padPower = val.equals("20");
-
-    padLED1 = (val.charAt(0) == '1');
-    boxLED1 = padLED1;
-
-    padLED2 = (val.charAt(1) == '1');
-    boxLED2 = padLED1;
-  }
-
-  // Processing to Arduino
-
-  t1 = panel1.signal;
-  t2 = panel2.signal;
-
-  char sendVal1;
-  char sendVal2;
-
-  if(t1) {
-    sendVal1 = '1';
-  }
-  else {
-    sendVal1 = '0';
-  }
-
-  if(t2) {
-    sendVal2 = '1';
-  }
-  else {
-    sendVal2 = '0';
-  }
-
-  if(connected){
-    port.write(sendVal1);
-    port.write(sendVal2);
+  String arduinoInput = receiveFromArduino();
+  if(arduinoInput != null) {
+    setArduinoStatus(arduinoInput);
+    sendArduinoDelaySignal();
   }
 
   //----------------------------------------------------------------------------
@@ -262,7 +130,7 @@ void draw() {
 
   delayButton1.update(mouseX, mouseY);
 
-  panel1.update();
+  delay1.update();
 
   //----------------------------------------------------------------------------
   // Delay For The Second Pressure Pad
@@ -277,7 +145,7 @@ void draw() {
 
   delayButton2.update(mouseX, mouseY);
 
-  panel2.update();
+  delay2.update();
 
   //----------------------------------------------------------------------------
   // LEDs
@@ -310,7 +178,7 @@ void draw() {
   cbox.pwr.turnOn();
 
   // C-Box - LED Essential Pad
-  if(panel1.signal && boxLED1){
+  if(delay1.signal && boxLED1){
     cbox.p1.turnOn();
   }
   else{
@@ -318,15 +186,12 @@ void draw() {
   }
 
   // C-Box - LED Other Pad
-  if(panel2.signal && boxLED2){
+  if(delay2.signal && boxLED2){
     cbox.p2.turnOn();
   }
   else{
     cbox.p2.turnOff();
   }
-
-
-  background(COLOR_BACKGROUND);
 
   //----------------------------------------------------------------------------
   // Drawings
@@ -349,36 +214,36 @@ void draw() {
 
   // Numbers for setting the timer
   text(
-    panel1.setHour,
+    delay1.setHour,
     DELAY_SET1_X,
     DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
   text(
-    panel1.setMinute,
+    delay1.setMinute,
     DELAY_SET1_X + TIME_SET_HORIZ_OFFSET,
     DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
   text(
-    panel1.setSecond,
+    delay1.setSecond,
     DELAY_SET1_X + TIME_SET_HORIZ_OFFSET*2,
     DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
 
   // Numbers for displaying the timer
   text(
-    panel1.timerH,
+    delay1.timerH,
     DELAY_SET1_X + TIME_SHOW_HORIZ_START_OFFSET,
     DELAY_SET_Y + TIME_SHOW_VERT_OFFSET
   );
   text(
-    panel1.timerM,
+    delay1.timerM,
     DELAY_SET1_X
     + TIME_SHOW_HORIZ_START_OFFSET
     + TIME_SHOW_HORIZ_OFFSET,
     DELAY_SET_Y + TIME_SHOW_VERT_OFFSET
   );
   text(
-    panel1.timerS,
+    delay1.timerS,
     DELAY_SET1_X
     + TIME_SHOW_HORIZ_START_OFFSET
     + TIME_SHOW_HORIZ_OFFSET*2,
@@ -423,36 +288,36 @@ void draw() {
 
   // Numbers for setting the timer
   text(
-    panel2.setHour,
+    delay2.setHour,
     DELAY_SET2_X,
     DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
   text(
-    panel2.setMinute,
+    delay2.setMinute,
     DELAY_SET2_X + TIME_SET_HORIZ_OFFSET,
     DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
   text(
-    panel2.setSecond,
+    delay2.setSecond,
     DELAY_SET2_X + TIME_SET_HORIZ_OFFSET*2,
     DELAY_SET_Y + TIME_SET_VERT_OFFSET
   );
 
   // Numbers for displaying the timer
   text(
-    panel2.timerH,
+    delay2.timerH,
     DELAY_SET2_X + TIME_SHOW_HORIZ_START_OFFSET,
     DELAY_SET_Y + TIME_SHOW_VERT_OFFSET
   );
   text(
-    panel2.timerM,
+    delay2.timerM,
     DELAY_SET2_X
     + TIME_SHOW_HORIZ_START_OFFSET
     + TIME_SHOW_HORIZ_OFFSET,
     DELAY_SET_Y + TIME_SHOW_VERT_OFFSET
   );
   text(
-    panel2.timerS,
+    delay2.timerS,
     DELAY_SET2_X
     + TIME_SHOW_HORIZ_START_OFFSET
     + TIME_SHOW_HORIZ_OFFSET*2,
@@ -509,68 +374,218 @@ void mousePressed() {
   //----------------------------------------------------------------------------
   //Delay For First Pressure Pad
   if (delayButton1.buttonOver) {
-    panel1.activate(
-      panel1.setHour,
-      panel1.setMinute,
-      panel1.setSecond
+    delay1.activate(
+      delay1.setHour,
+      delay1.setMinute,
+      delay1.setSecond
     );
   }
   if (hourUpButton1.buttonOver) {
-    panel1.setHour = hourUpButton1.increase(panel1.setHour);
+    delay1.setHour = hourUpButton1.increase(delay1.setHour);
   }
   if (hourDownButton1.buttonOver) {
-    panel1.setHour = hourDownButton1.decrease(panel1.setHour);
+    delay1.setHour = hourDownButton1.decrease(delay1.setHour);
   }
   if (minuteUpButton1.buttonOver) {
-    panel1.setMinute = minuteUpButton1.increase(panel1.setMinute);
-    if (panel1.setMinute == 60) {
-      panel1.setMinute = 0;
+    delay1.setMinute = minuteUpButton1.increase(delay1.setMinute);
+    if (delay1.setMinute == 60) {
+      delay1.setMinute = 0;
     }
   }
   if (minuteDownButton1.buttonOver) {
-    panel1.setMinute = minuteDownButton1.decrease(panel1.setMinute);
+    delay1.setMinute = minuteDownButton1.decrease(delay1.setMinute);
   }
   if (secondUpButton1.buttonOver) {
-    panel1.setSecond = secondUpButton1.increase(panel1.setSecond);
-    if (panel1.setSecond == 60) {
-      panel1.setSecond = 0;
+    delay1.setSecond = secondUpButton1.increase(delay1.setSecond);
+    if (delay1.setSecond == 60) {
+      delay1.setSecond = 0;
     }
   }
   if (secondDownButton1.buttonOver) {
-    panel1.setSecond = secondDownButton1.decrease(panel1.setSecond);
+    delay1.setSecond = secondDownButton1.decrease(delay1.setSecond);
   }
 
   //----------------------------------------------------------------------------
   //Delay For First Pressure Pad
   if (delayButton2.buttonOver) {
-    panel2.activate(
-      panel2.setHour,
-      panel2.setMinute,
-      panel2.setSecond
+    delay2.activate(
+      delay2.setHour,
+      delay2.setMinute,
+      delay2.setSecond
     );
   }
   if (hourUpButton2.buttonOver) {
-    panel2.setHour = hourUpButton2.increase(panel2.setHour);
+    delay2.setHour = hourUpButton2.increase(delay2.setHour);
   }
   if (hourDownButton2.buttonOver) {
-    panel2.setHour = hourDownButton1.decrease(panel2.setHour);
+    delay2.setHour = hourDownButton1.decrease(delay2.setHour);
   }
   if (minuteUpButton2.buttonOver) {
-    panel2.setMinute = minuteUpButton2.increase(panel2.setMinute);
-    if (panel2.setMinute == 60) {
-      panel2.setMinute = 0;
+    delay2.setMinute = minuteUpButton2.increase(delay2.setMinute);
+    if (delay2.setMinute == 60) {
+      delay2.setMinute = 0;
     }
   }
   if (minuteDownButton2.buttonOver) {
-    panel2.setMinute = minuteDownButton1.decrease(panel2.setMinute);
+    delay2.setMinute = minuteDownButton1.decrease(delay2.setMinute);
   }
   if (secondUpButton2.buttonOver) {
-    panel2.setSecond = secondUpButton2.increase(panel2.setSecond);
-    if (panel2.setSecond == 60) {
-      panel2.setSecond = 0;
+    delay2.setSecond = secondUpButton2.increase(delay2.setSecond);
+    if (delay2.setSecond == 60) {
+      delay2.setSecond = 0;
     }
   }
   if (secondDownButton2.buttonOver) {
-    panel2.setSecond = secondDownButton2.decrease(panel2.setSecond);
+    delay2.setSecond = secondDownButton2.decrease(delay2.setSecond);
   }
+}
+
+// This private method initializes the first delay set at the
+// given coordinates.
+//
+// A delay set includes 6 buttons for incrementing/decrementing the amount
+// of time to delay, 1 button for activating a delay, and two sets of times
+// (one for setting the delay timer, one for the active delay timer).
+private void initializeDelaySet1(final int x, final int y) {
+
+  hourUpButton1 = new UpButton(
+    x, y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  hourDownButton1 = new DownButton(
+    x, y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  minuteUpButton1 = new UpButton(
+    x + ARROW_BUTTON_HORIZ_OFFSET, y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  minuteDownButton1 = new DownButton(
+    x + ARROW_BUTTON_HORIZ_OFFSET, y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  secondUpButton1 = new UpButton(
+    x + ARROW_BUTTON_HORIZ_OFFSET*2, y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  secondDownButton1 = new DownButton(
+    x + ARROW_BUTTON_HORIZ_OFFSET*2, y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+
+  delayButton1 = new DelayButton(
+    x + DELAY_BUTTON_HORIZ_OFFSET, y + DELAY_BUTTON_VERT_OFFSET,
+    DELAY_BUTTON_WIDTH, DELAY_BUTTON_HEIGHT
+  );
+
+  delay1 = new Delay();
+
+}
+
+// This private method initializes the second delay set at the
+// given coordinates.
+//
+// A delay set includes 6 buttons for incrementing/decrementing the amount
+// of time to delay, 1 button for activating a delay, and two sets of times
+// (one for setting the delay timer, one for the active delay timer).
+private void initializeDelaySet2(final int x, final int y) {
+
+  hourUpButton2 = new UpButton(
+    x, y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  hourDownButton2 = new DownButton(
+    x, y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  minuteUpButton2 = new UpButton(
+    x + ARROW_BUTTON_HORIZ_OFFSET,
+    y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  minuteDownButton2 = new DownButton(
+    x + ARROW_BUTTON_HORIZ_OFFSET, y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  secondUpButton2 = new UpButton(
+    x + ARROW_BUTTON_HORIZ_OFFSET*2, y,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+  secondDownButton2 = new DownButton(
+    x + ARROW_BUTTON_HORIZ_OFFSET*2, y + ARROW_BUTTON_VERT_OFFSET,
+    ARROW_BUTTON_SIZE, ARROW_BUTTON_SIZE
+  );
+
+  delayButton2 = new DelayButton(
+    x + DELAY_BUTTON_HORIZ_OFFSET, y + DELAY_BUTTON_VERT_OFFSET,
+    DELAY_BUTTON_WIDTH, DELAY_BUTTON_HEIGHT
+  );
+
+  delay2 = new Delay();
+
+}
+
+// This private method receives input from the Arduino until the first
+// newline character if available. If no input is received, then null
+// is returned.
+private String receiveFromArduino() {
+
+  String input = null;
+
+  if ( !(port.available() > 0) ) {
+    return input;
+  }
+
+  input = port.readStringUntil('\n');
+
+  if(input != null){
+    input = trim(input);  // Remove excess whitespace at beginning/end
+  }
+
+  return input;
+}
+
+// This private method receives a String representing the input from the
+// Arduino and sets the boolean variables representing the Arduino LEDs.
+private void setArduinoStatus(String input) {
+
+  padPower = input.equals("20");
+
+  padLED1 = (input.charAt(0) == '1');
+  boxLED1 = padLED1;
+
+  padLED2 = (input.charAt(1) == '1');
+  boxLED2 = padLED1;
+
+}
+
+// This private method sends the status of the delay to the Arduino
+// as two characters and a newline, representing the first delay set
+// and the second delay set respectively.
+//
+// If a character is 1, then the delay is active.
+// If a character is 0, then the delay is not active.
+private void sendArduinoDelaySignal() {
+
+  char sendVal1;
+  char sendVal2;
+
+  if(delay1.signal) {
+    sendVal1 = '1';
+  }
+  else {
+    sendVal1 = '0';
+  }
+
+  if(delay2.signal) {
+    sendVal2 = '1';
+  }
+  else {
+    sendVal2 = '0';
+  }
+
+  port.write(sendVal1);
+  port.write(sendVal2);
+  port.write("\n");
+
 }
